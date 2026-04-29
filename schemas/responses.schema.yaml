@@ -1,0 +1,33 @@
+fields:
+  - name: response_id
+    type: string
+  - name: clip_id
+    type: string
+  - name: participant_id
+    type: integer
+  - name: language
+    type: string
+  - name: PAQ1_pleasant
+    type: number
+  - name: PAQ2_vibrant
+    type: number
+  - name: PAQ3_eventful
+    type: number
+  - name: PAQ4_chaotic
+    type: number
+  - name: PAQ5_annoying
+    type: number
+  - name: PAQ6_monotonous
+    type: number
+  - name: PAQ7_uneventful
+    type: number
+  - name: PAQ8_calm
+    type: number
+  - name: ISOPleasant
+    type: number
+  - name: ISOEventful
+    type: number
+  - name: age
+    type: number
+  - name: gender
+    type: string

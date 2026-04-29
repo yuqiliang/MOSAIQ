@@ -1,0 +1,151 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_clips
+title: MOSAIQ Clip-level Schema
+description: |
+  Clip-level schema for the MOSAIQ benchmark. Each row represents one clip,
+  defined by a unique combination of LocationID + SessionID + GroupID for ISD,
+  or by stimulus_id for ARAUS. Aggregated perceptual ratings (means across
+  participants) and primary psychoacoustic features are stored here; raw
+  responses are in responses.csv.
+
+primaryKey:
+  - clip_id
+
+fields:
+  # ---------- identifiers ----------
+  - name: clip_id
+    type: string
+    description: Unique clip identifier across all datasets
+    constraints:
+      required: true
+      unique: true
+      pattern: "^(ISD|ARAUS|SATP)_.+$"
+
+  - name: dataset_id
+    type: string
+    description: Source dataset name (foreign key to datasets table)
+    constraints:
+      required: true
+      enum:
+        - ISD
+        - ARAUS
+        - SATP
+
+  - name: LocationID
+    type: string
+    description: Recording location identifier (ISD-style)
+
+  - name: SessionID
+    type: string
+    description: Recording session identifier (ISD-style)
+
+  - name: GroupID
+    type: string
+    description: Participant group identifier (ISD-style)
+
+  - name: latitude
+    type: number
+    constraints: { minimum: -90, maximum: 90 }
+
+  - name: longitude
+    type: number
+    constraints: { minimum: -180, maximum: 180 }
+
+  # ---------- temporal segment ----------
+  - name: binaural_start_s
+    type: number
+    constraints: { minimum: 0 }
+
+  - name: binaural_end_s
+    type: number
+    constraints: { minimum: 0 }
+
+  # ---------- assets ----------
+  - name: audio_asset
+    type: string
+
+  - name: video_asset
+    type: string
+
+  # ---------- benchmark metadata ----------
+  - name: split
+    type: string
+    constraints:
+      enum: [train, dev, test, ""]
+
+  - name: licence_spdx
+    type: string
+    constraints:
+      required: true
+      enum: [CC-BY-4.0, CC-BY-NC-4.0, CC-BY-SA-4.0]
+
+  - name: n_responses
+    type: integer
+    constraints: { required: true, minimum: 1 }
+
+  # ---------- perceptual summary (PAQ means, 1–5 Likert) ----------
+  - name: mean_PAQ1_pleasant
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ2_vibrant
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ3_eventful
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ4_chaotic
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ5_annoying
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ6_monotonous
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ7_uneventful
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ8_calm
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  # ---------- derived circumplex ----------
+  - name: mean_ISOPleasant
+    type: number
+    constraints: { minimum: -1, maximum: 1 }
+
+  - name: mean_ISOEventful
+    type: number
+    constraints: { minimum: -1, maximum: 1 }
+
+  # ---------- primary psychoacoustic ----------
+  - name: LAeq_dBA
+    type: number
+    constraints: { minimum: 0, maximum: 130 }
+
+  - name: loudness_N_sone
+    type: number
+    constraints: { minimum: 0 }
+
+  - name: sharpness_S_acum
+    type: number
+    constraints: { minimum: 0 }
+
+  - name: roughness_R_asper
+    type: number
+    constraints: { minimum: 0 }
+
+  - name: fluctuation_strength_F_vacil
+    type: number
+    constraints: { minimum: 0 }
+
+  - name: tonality_T_tu
+    type: number
+    constraints: { minimum: 0 }
