@@ -1,0 +1,815 @@
+{
+  "International Soundscape Database (ISD)": {
+    "Description": "The International Soundscape Database contains the results of a series of soundscape assessment campaigns carried out across Europe and China.",
+    "Year": 2022,
+    "Scenario": "Urban",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 2500,
+      "Participants": 3500,
+      "Duration(mins)": 300,
+      "Assessments":3500
+    },
+    "Link": "https://zenodo.org/records/10672568",
+    "Recording": {
+      "Audio": {
+        "Ambisonics": {
+          "Bit Depth": 24,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Order": 1,
+          "Duration": "15 mins"
+        },
+        "Binaural": {
+          "Bit Depth": 24,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "30s"
+        },
+        "Monaural": {
+          "Duration": "1 hour"
+        }
+      },
+      "Visual": {
+        "Format": "Video",
+        "Resolution": "4K",
+        "Frame Rate": 30,
+        "Duration": "15 mins"
+      }
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Experimental Setting": "On-site"
+    },
+    "Acoustic Data": {
+      "Measuring Instrument": "Sound Level Meter",
+      "Metrics": [
+        "LAeq",
+        "LAFmax",
+        "1/3rd Octave Band LAeq",
+        "Octave Band LAeq",
+        "Full Statistics",
+        "Full Spectral Statistics"
+      ]
+    },
+    "Environmental Data": {
+      "Metrics": [
+        "Temperature (°C)",
+        "Lighting Intensity (Lux)",
+        "Relative Humidity (RH)"
+      ]
+    }
+  },
+
+  "Affective Responses to Augmented Urban Soundscapes (ARAUS)": {
+    "Description": "ARAUS is a large‐scale benchmark dataset comprising 25,440 unique subjective responses to 30‐second audio-visual stimuli of augmented urban soundscapes. The dataset is organized as a five-fold cross-validation set plus an independent test set, and was collected in accordance with ISO/TS 12913-2:2018.",
+    "Year": 2024,
+    "Scenario": "Urban",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 25440,
+      "Participants": 642,
+      "Duration(mins)": 12720,
+      "Assessments": 25440
+    },
+    "Link": "https://researchdata.ntu.edu.sg/dataset.xhtml?persistentId=doi:10.21979/N9/9OTEVX",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": 24,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "30s"
+        }
+      },
+      "Visual": {
+        "Format": "360 Video",
+        "Resolution": "4K",
+        "Frame Rate": 30,
+        "Duration": "30s"
+      }
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Experimental Setting": "Lab-based (VR and screen-based)"
+    },
+    "Acoustic Data": {
+      "Measuring Instrument": "Sound Level Meter",
+      "Metrics": [
+        "Loudness (dB)",
+        "Sharpness",
+        "Fluctuation strength",
+        "Roughness",
+        "Tonality",
+        "LAeq",
+        "LCeq",
+        "Spectral powers"
+      ]
+    }
+  },
+
+  "Athens Urban Soundscape (ATHUS)": {
+    "Description": "ATHUS is a dataset of audio recordings of ambient urban sounds, which has been annotated in terms of the corresponding perceived soundscape quality.",
+    "Year": 2019,
+    "Scenario": "Urban",
+    "Access": "Partilally",
+    "Sample Size": {
+      "Audio Samples": 978,
+      "Participants": 10,
+      "Duration(mins)": 440,
+      "Assessments": 978
+    },
+    "Link": "https://users.iit.demokritos.gr/~tyianak/soundscape/",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": 24,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "30s"
+        }
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "Soundscape perception quality in range of 1 to 5 (level of “pleasantness”)",
+      "Experimental Setting": "Lab-based"
+    },
+    "Acoustic Data": null,
+    "Environmental Data": null,
+    "Additional Data": {
+      "Metrics": [
+        "Metadata",
+        "Spectrogram images",
+        "GPS Location"
+      ]
+    }
+  },
+
+  "IADS-2": {
+    "Description": "The IADS-2 dataset is a standardised collection of 167 six-second natural sounds widely used in emotional research",
+    "Year": 2007,
+    "Scenario": "Various",
+    "Access": "Partilally",
+    "Sample Size": {
+      "Audio Samples": 167,
+      "Participants": 716,
+      "Duration(mins)": 16.7,
+      "Assessments": null
+    },
+    "Link": "no available link",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "6s"
+        }
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "SAM (Self-Assessment Manikin: Valence, Arousal, Dominance)",
+      "Experimental Setting": "Lab-based"
+    },
+    "Acoustic Data":null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "IADS-E": {
+    "Description": "An expanded version of the International Affective Digitized Sounds (IADS-E), an extensive auditory stimulus collection designed to facilitate research on emotional and affective responses to sound.",
+    "Year": 2018,
+    "Scenario": "Various",
+    "Access": "Partilally",
+    "Sample Size": {
+      "Audio Samples": 935,
+      "Participants": 207,
+      "Duration(mins)": 93,
+      "Assessments": 21528
+    },
+    "Link": "https://sites.google.com/view/iads-e/",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "6s"
+        }
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "SAM (Self-Assessment Manikin: Valence, Arousal, Dominance)",
+      "Experimental Setting": "Lab-based"
+    },
+    "Acoustic Data":null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "Emo-soundscapes": {
+    "Description": "The Emo-soundscapes dataset contains 1,213 soundscapes, each 6 seconds long, generated using individual audio clips from Freesound with affective labels.",
+    "Year": 2017,
+    "Scenario": "Various",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Recording": 1213,
+      "Participants": 1182,
+      "Duration(mins)": 121,
+      "Assessments": 69477
+    },
+    "Link": "https://www.metacreation.net/projects/emo-soundscapes",
+    "Recording": {
+      "Audio": {
+        "Ambisonics": null,
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "6s"
+        },
+        "Monaural": null
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "Valence–Arousal ratings (continuous affective space)",
+      "Experimental Setting": "Online"
+    },
+    "Acoustic Data":null,
+    "Environmental Data": null,
+    "Additional Data": {
+      "Metrics": [
+        "Metadata",
+        "Spectrogram images"
+      ]
+    }
+  },
+
+  "HSDD": {
+    "Description": "The University of Applied Sciences D¨ usseldorf dataset (HSDD) is an extensive crowdsourced dataset of in-situ evaluated indoor soundscapes of private dwellings, containing binaural recordings, subjective soundscape ratings, and rich situational and person-related variables collected via Experience Sampling Method.",
+    "Scenario": "Indoor",
+    "Access": "Partially",
+    "Sample Size": {
+      "Audio Samples": 6594,
+      "Participants": 105,
+      "Duration(mins)": 1648.5,
+      "Assessments": 6549
+    },
+    "Link": "https://doi.org/10.5281/zenodo.7858848",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Available": "Yes",
+          "Bit Depth": null,
+          "File Format": null,
+          "Sampling Rate": null,
+          "Duration": "15s"
+        }
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Experimental Setting": "On-site"
+    },
+    "Acoustic Data": {
+      "Available": "Yes",
+      "Measuring Instrument": "Low self-noise binaural recording device; post-processed with HEAD acoustics Artemis",
+      "Metrics": [
+        "Sound pressure levels (A-, C-, and Z-weighted)",
+        "Psychoacoustic parameters",
+        "Relative Approach indices",
+        "Energetically averaged loudness level LLz(P)",
+        "Percentile levels (L5–L95)",
+        "Third-octave band spectra"
+      ]
+    },
+    "Environmental Data": {
+      "Available": "Yes",
+      "Metrics": [
+        "Location in dwelling (e.g., living room, bedroom)",
+        "Activity during assessment",
+        "Presence and type of other people",
+        "Time of day and day of week",
+        "Person-related variables (e.g., noise sensitivity, trait affect, quality of life)"
+      ]
+    },
+    "Additional Data": {
+      "Metrics": [
+        "Questionnaire codebooks and help texts",
+        "Person-level socio-demographic variables",
+        "Experience Sampling Method logs"
+      ]
+    }
+  },
+
+  "DeLTA": {
+    "Description": "The Deep Learning Techniques for noise Annoyance detection (DeLTA) dataset comprises 2,980 15-second binaural audio recordings collected in urban public spaces across London, Venice, Granada, and Groningen (derived from the International Soundscape Database).",
+    "Year": 2022,
+    "Scenario": "Urban",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Recording": 2980,
+      "Participants": 1221,
+      "Duration(mins)": 745,
+      "Assessments": 12210
+    },
+    "Link": "https://zenodo.org/records/7158057",
+    "Recording": {
+      "Audio": {
+        "Ambisonics": null,
+        "Binaural": {
+          "Bit Depth": "24 or 32",
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "15s"
+        },
+        "Monaural": null
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Experimental Setting": "On-site (original ISD campaigns)"
+    },
+    "Acoustic Data": {
+      "Measuring Instrument": "Sound Level Meter and binaural recorder",
+      "Metrics": [
+        "LAeq",
+        "Psychoacoustic parameters (e.g., loudness, sharpness)",
+        "Spectral and level statistics"
+      ]
+    },
+    "Environmental Data": [
+      "Temperature (°C)",
+      "Weather",
+      "Contextual metadata"
+    ],
+    "Additional Data": {
+      "Metrics": [
+        "Metadata",
+        "Spectrogram images"
+      ]
+    }
+  },
+
+  "SATP": {
+    "Description": "The Soundscape Assessment in Transport-related Public spaces (SATP) dataset contains short binaural and audiovisual recordings collected in transport-related urban public spaces with associated ISO 12913 soundscape ratings.",
+    "Year": 2022,
+    "Scenario": "Urban",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 27,
+      "Participants": 645,
+      "Duration(mins)": 13.5,
+      "Assessments": 17441
+    },
+    "Link": "https://zenodo.org/records/6914434",
+    "Recording": {
+      "Audio": {
+        "Ambisonics": null,
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "30s"
+        },
+        "Monaural": null
+      },
+      "Visual": {
+        "Format": "360 Video",
+        "Resolution": "4K",
+        "Frame Rate": 30,
+        "Duration": "30s"
+      }
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Additional Data": [
+        "Contextual questions (e.g., activity, crowding, safety)",
+        "Open comments",
+        "Socio-demographic information"
+      ]
+    },
+    "Acoustic Data": {
+      "Measuring Instrument": "Sound Level Meter",
+      "Metrics": [
+        "LAeq",
+        "Spectrum (1/3-octave)",
+        "Level statistics"
+      ]
+    },
+    "Environmental Data": [
+      "Temperature (°C)",
+      "Weather",
+      "Time of day"
+    ],
+    "Additional Data": {
+      "Metrics": [
+        "Metadata",
+        "Spectrogram images"
+      ]
+    }
+  },
+
+  "Hong et al.'s dataset": {
+    "Description": "Mixed-reality soundscape dataset combining in-situ urban traffic sounds with visual holograms of natural sound sources, evaluated for overall soundscape quality and preference.",
+    "Year": 2021,
+    "Scenario": "Urban",
+    "Access": "Partially",
+    "Sample Size": {
+      "Audio Samples": 264,
+      "Participants": 33,
+      "Duration(mins)": 792,
+      "Assessments": 528
+    },
+    "Link": "https://doi.org/10.21979/N9/KE0901",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration": "3 mins"
+        }
+      },
+      "Visual": {
+        "Format": "Images",
+        "Resolution": null,
+        "Frame Rate": null,
+        "Duration": "3 mins"
+      }
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "Overall Soundscape Quality (OSQ) and soundscape preference (11-point scales)",
+      "Experimental Setting": "On-site"
+    }
+    
+  },
+
+  "Gilmour et al.'s dataset": {
+    "Description": "Dataset to study mood recovery effects of natural vs. anthropogenic sounds, using 3-min clips rated by university students before and after a stressor.",
+    "Scenario": "Natural",
+    "Access": "Partially",
+    "Sample Size": {
+      "Audio Samples": 5,
+      "Participants": 68,
+      "Duration(mins)": 15,
+      "Assessments": 340
+    },
+    "Link": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0311487#pone.0311487.s005",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": null,
+          "Duration": "3 mins"
+        }
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "Self-reported mood scales (e.g., positive and negative affect)",
+      "Experimental Setting": "Lab-based"
+    },
+    "Acoustic Data": null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "Rummukainen et al.'s dataset": {
+    "Description": "Audiovisual urban scenes captured with ambisonics and 360° video, annotated with perceptual attributes via sorting tasks and interviews.",
+    "Year": 2014,
+    "Scenario": "Urban",
+    "Access": "Partially",
+    "Sample Size": {
+      "Audio Samples": 19,
+      "Participants": 30,
+      "Duration(mins)": 19,
+      "Assessments": 570
+    },
+    "Link": "http://research.spa.aalto.fi/publications/papers/plosone14-avscenes/",
+    "Recording": {
+      "Audio": {
+        "Ambisonics": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 48000,
+          "Order": 1,
+          "Duration": "60s"
+        }
+      },
+      "Visual": "360 video"
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "Perceptual attribute sorting and interviews (qualitative descriptors)",
+      "Experimental Setting": "Lab-based"
+    },
+    "Acoustic Data": null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "Sun et al.'s dataset": {
+    "Description": "VR-based immersive dataset of 360° audiovisual recordings from urban public open spaces, annotated for soundscape classification and perceptual attributes.",
+    "Year": 2019,
+    "Scenario": "Urban",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 50,
+      "Participants": 40,
+      "Duration(mins)": 50,
+      "Assessments": 2000
+    },
+    "Link": "https://www.sciencedirect.com/science/article/pii/S0169204618305899?via%3Dihub",
+    "Recording": {
+      "Audio": {
+        "Ambisonics": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 48000,
+          "Order": 1,
+          "Duration": "60s"
+        }
+      },
+      "Visual": "360 video"
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "Soundscape classification (e.g., calm, exciting) and perceptual ratings",
+      "Experimental Setting": "Lab-based VR"
+    }
+  },
+
+  "Verma et al.'s dataset": {
+    "Description": "Spatiotemporal dataset of urban audiovisual recordings in Mumbai annotated using ISO-based perceptual labels to predict human perception in an urban setting.",
+    "Year": 2020,
+    "Scenario": "Urban",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 150,
+      "Participants": 73,
+      "Duration(mins)": 25,
+      "Assessments": 10512
+    },
+    "Link": "https://data.mendeley.com/datasets/6fnn7vndwh/1",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": null,
+          "Duration": "10s"
+        }
+      },
+      "Visual": "Video (first-person walk-throughs)"
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Experimental Setting": "Online"
+    },
+    "Acoustic Data": null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "Carvalho et al.'s dataset": {
+    "Description": "Audiovisual urban recordings with 360° video and ambisonic audio, evaluated for the perceived affective qualities of urban soundscapes via online and VR experiments.",
+    "Year": 2024,
+    "Scenario": "Urban",
+    "Access": "Partially",
+    "Sample Size": {
+      "Audio Samples": 6,
+      "Participants": 191,
+      "Duration(mins)": 72,
+      "Assessments": 1146
+    },
+    "Link": "https://doi.org/10.1371/journal.pone.0306261",
+    "Recording": {
+      "Audio": {
+        "Ambisonics": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 48000,
+          "Order": 1,
+          "Duration": "10–12 mins (raw recordings); 30s / 8s excerpts for experiments"
+        }
+      },
+      "Visual": {
+        "Format": "360 video",
+        "Resolution": "4K",
+        "Frame Rate": null,
+        "Duration": "10–12 mins (raw); 30s / 8s excerpts"
+      }
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Experimental Setting": "Mixed (online MCR and lab-based VR)"
+    },
+    "Acoustic Data": {
+      "Measuring Instrument": "Ambisonic microphone and sound level meter",
+      "Metrics": [
+        "LAeq",
+        "Loudness",
+        "Sharpness",
+        "Roughness",
+        "Fluctuation strength",
+        "Tonality"
+      ]
+    },
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "Torresin et al.'s dataset": {
+    "Description": "Indoor soundscape dataset with 20 one-minute loudspeaker-reproduced scenarios combining outdoor façade noise and indoor sounds, assessed with a 97-item perceptual questionnaire in a mock-up living room.",
+    "Year": 2020,
+    "Scenario": "Indoor",
+    "Access": "Partially",
+    "Sample Size": {
+      "Audio Samples": 20,
+      "Participants": 35,
+      "Duration(mins)": 20,
+      "Assessments": 640
+    },
+    "Link": "https://doi.org/10.1016/j.buildenv.2020.107152",
+    "Recording": {
+      "Audio": {
+        "Binaural": null
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "Custom",
+      "Experimental Setting": "Lab-based"
+    },
+    "Acoustic Data": null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "Toet et al.'s dataset": {
+    "Description": "Affective annotation of audio clips from IADS-E and short film fragments using the EmojiGrid to provide rich valence–arousal responses.",
+    "Year": 2020,
+    "Scenario": "Various",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 77,
+      "Participants": 150,
+      "Duration(mins)": 7.7,
+      "Assessments": 11550
+    },
+    "Link": "https://doi.org/10.17605/OSF.IO/GTZH4",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration(s)": "6"
+        }
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "EmojiGrid (valence–arousal grid ratings)",
+      "Experimental Setting": "Online"
+    },
+    "Acoustic Data": null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "McMullin et al.'s dataset": {
+    "Description": "Dataset of 200 natural auditory scenes evaluated for global properties such as openness, naturalness, transience, and navigability.",
+    "Scenario": "Various",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 200,
+      "Participants": 68,
+      "Duration(mins)": 200,
+      "Assessments": 13600
+    },
+    "Link": "https://osf.io/zj4xe/",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": 44100,
+          "Duration(s)": "4"
+        }
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "Custom",
+      "Experimental Setting": "Online"
+    },
+    "Acoustic Data": null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "The Silenzi in Quota dataset": {
+    "Description": "Field-recorded dataset of natural protected areas in the Italian Alps, assessed via ISO 12913 questionnaires and acoustic analysis to characterise quiet areas.",
+    "Year": 2023,
+    "Scenario": "Natural",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 28,
+      "Participants": 25,
+      "Duration(mins)": 28,
+      "Assessments": 443
+    },
+    "Link": "https://zenodo.org/records/10253143",
+    "Recording": {
+      "Audio": {
+        "Binaural": {
+          "Bit Depth": null,
+          "File Format": "WAV",
+          "Sampling Rate": null,
+          "Duration(s)": "60"
+        }
+      },
+      "Visual": null
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Experimental Setting": "On-site"
+    },
+    "Acoustic Data": null,
+    "Environmental Data": null,
+    "Additional Data": null
+  },
+
+  "The Lion City Soundscapes (LCS)": {
+    "Description": "The Lion City Soundscapes (LCS) dataset contains over 24 hours of full-length urban soundscape recordings collected at 62 locations in Singapore, together with one-minute perceptually diverse excerpts generated using a modified partitioning around medoids (PAM) algorithm guided by Pleasantness–Eventfulness predictions.",
+    "Year": 2024,
+    "Scenario": "Urban",
+    "Access": "Fully",
+    "Sample Size": {
+      "Audio Samples": 62,
+      "Participants": null,
+      "Duration(mins)": 62,
+      "Assessments": null
+    },
+    "Link": "https://doi.org/10.21979/N9/AVHSBX",
+    "Recording": {
+      "Audio": {
+        "Ambisonics": {
+          "Bit Depth": 24,
+          "File Format": "WAV",
+          "Sampling Rate": 48000,
+          "Order": 3,
+          "Duration(mins)": "9-38"
+        },
+        "Binaural": {
+          "Bit Depth": 24,
+          "File Format": "WAV",
+          "Sampling Rate": 48000,
+          "Duration(mins)": "9-38"
+        },
+        "Monaural": null
+      },
+      "Visual": {
+        "Format": "360 Video",
+        "Resolution": "4096×2048",
+        "Frame Rate": null,
+        "Duration(mins)": "9–38 mins",
+        "Camera": "Insta360 One R Twin Edition"
+      }
+    },
+    "Emotional Annotation": {
+      "Assessment Framework": "ISO/TS 12913-2:2018",
+      "Experimental Setting": "Model-predicted"
+    },
+    "Acoustic Data": {
+      "Measuring Instrument": "GRAS 146AE Free-field Microphone + HEAD Acoustics SQobold (Class 1)",
+      "Metrics": [
+        "LAeq (calibrated in situ)"
+      ]
+    },
+    "Environmental Data": {
+      "Metrics": [
+        "GPS coordinates",
+        "Time of day (08:25–19:06)",
+        "Weather condition (dry or sheltered in rain)"
+      ]
+    },
+    "Additional Data": {
+      "Metrics": [
+        "Full-length recordings (~24 hours total)",
+        "One-minute perceptually diverse excerpts (62)",
+        "S5 quadrant labels (F&E, C&R, C&T, B&L)",
+        "Excerption algorithm outputs and code"
+      ]
+    }
+  }
+}
+
+  
