@@ -2,10 +2,12 @@ $schema: https://specs.frictionlessdata.io/schemas/data-package.json
 name: mosaiq
 title: MOSAIQ – Multimodal Open Soundscape AI Quality-benchmark
 description: |
-  MOSAIQ integrates multiple soundscape datasets (ISD, ARAUS, and others)
-  under a unified clip-level schema to enable reproducible benchmarking of
-  multimodal soundscape AI models. The schema and data follow Frictionless
-  Data Package conventions for FAIR-aligned research data publication.
+ A multimodal soundscape benchmark schema linking audio, visual, perceptual, psychoacoustic, and contextual metadata for soundscape AI research.
+
+  Resources are organised in three tiers:
+    - datasets:  one row per source dataset (top-level catalogue)
+    - clips:     one row per clip (aggregated perception + primary psychoacoustics)
+    - responses: one row per individual participant response
 
 version: "0.1.0"
 licenses:
@@ -22,13 +24,20 @@ contributors:
     organization: UCL Institute for Environmental Design and Engineering
   - title: Andrew Mitchell
     role: author
-    organization: UCL Bartlett School of Sustainable Construction
+    organization: Catapult
   - title: Jian Kang
     role: author
     organization: UCL Institute for Environmental Design and Engineering
 
-
 resources:
+  - name: datasets
+    title: Dataset-level catalogue
+    path: data/_dataset_level/datasets.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/datasets.schema.yaml
+
   - name: clips
     title: Clip-level metadata (aggregated)
     path: data/ISD/clips.csv
@@ -43,7 +52,6 @@ resources:
     format: csv
     mediatype: text/csv
     encoding: utf-8
-    # foreignKeys link responses back to clips
     schema:
       fields:
         - name: response_id

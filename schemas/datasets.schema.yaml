@@ -1,0 +1,192 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_datasets
+title: MOSAIQ Dataset-level Schema
+description: |
+  Schema for the dataset-level catalogue. Each row describes one source
+  dataset (e.g., ISD, ARAUS) with its scale, modalities, recording details,
+  perceptual framework, and access conditions. All durations are normalised
+  to seconds (audio clip duration) or minutes (total dataset duration);
+  all sampling rates in Hz; bit depths in bits.
+
+  Foreign key target: clips.dataset_id references datasets.dataset_name.
+
+primaryKey:
+  - dataset_name
+
+fields:
+  # =========================================================
+  # 1. Identification
+  # =========================================================
+  - name: dataset_name
+    type: string
+    description: Canonical dataset name (used as foreign key by clips.dataset_id)
+    constraints:
+      required: true
+      unique: true
+
+  - name: description
+    type: string
+    description: Brief textual description of the dataset
+
+  - name: year
+    type: integer
+    description: Year of dataset release or first publication
+    constraints:
+      minimum: 2000
+      maximum: 2030
+
+  - name: scenario
+    type: string
+    description: Primary acoustic environment type
+    constraints:
+      enum: [Urban, Indoor, Natural, Various]
+
+  - name: link
+    type: string
+    format: uri
+    description: Permanent URL or DOI to the dataset
+
+  # =========================================================
+  # 2. Access & licensing
+  # =========================================================
+  - name: access
+    type: string
+    description: Public availability of the dataset
+    constraints:
+      required: true
+      enum: [Fully, Partially, Restricted]
+
+  - name: licence_spdx
+    type: string
+    description: SPDX licence identifier
+    constraints:
+      enum: [CC-BY-4.0, CC-BY-NC-4.0, CC-BY-NC-SA-4.0, CC-BY-SA-4.0, MIT, Other, Unknown]
+
+  # =========================================================
+  # 3. Scale
+  # =========================================================
+  - name: n_audio_samples
+    type: integer
+    description: Number of audio recordings
+    constraints: { minimum: 0 }
+
+  - name: n_participants
+    type: integer
+    description: Number of participants providing assessments
+    constraints: { minimum: 0 }
+
+  - name: n_assessments
+    type: integer
+    description: Total perceptual assessments collected
+    constraints: { minimum: 0 }
+
+  - name: total_duration_min
+    type: number
+    description: Total duration of audio material (minutes)
+    constraints: { minimum: 0 }
+
+  # =========================================================
+  # 4. Audio modalities (binary availability + technical specs)
+  # =========================================================
+  - name: audio_ambisonics_available
+    type: boolean
+    description: Ambisonics audio available
+
+  - name: audio_ambisonics_bit_depth
+    type: integer
+    description: Ambisonics audio bit depth
+    constraints: { enum: [16, 24, 32] }
+
+  - name: audio_ambisonics_sampling_rate_hz
+    type: integer
+    description: Ambisonics sampling rate (Hz)
+    constraints: { enum: [44100, 48000, 96000] }
+
+  - name: audio_ambisonics_order
+    type: integer
+    description: Ambisonics order (1 = FOA, 3 = third-order, etc.)
+    constraints: { minimum: 1, maximum: 7 }
+
+  - name: audio_ambisonics_clip_duration_s
+    type: number
+    description: Typical ambisonics clip duration (seconds)
+    constraints: { minimum: 0 }
+
+  - name: audio_binaural_available
+    type: boolean
+
+  - name: audio_binaural_bit_depth
+    type: integer
+    constraints: { enum: [16, 24, 32] }
+
+  - name: audio_binaural_sampling_rate_hz
+    type: integer
+    constraints: { enum: [44100, 48000, 96000] }
+
+  - name: audio_binaural_clip_duration_s
+    type: number
+    constraints: { minimum: 0 }
+
+  - name: audio_monaural_available
+    type: boolean
+
+  - name: audio_monaural_clip_duration_s
+    type: number
+    constraints: { minimum: 0 }
+
+  # =========================================================
+  # 5. Visual modality
+  # =========================================================
+  - name: visual_available
+    type: boolean
+    description: Visual content (image / video) available
+
+  - name: visual_format
+    type: string
+    description: Visual content format
+    constraints:
+      enum: ["Images", "Video", "360 Video", "Mixed", ""]
+
+  - name: visual_resolution
+    type: string
+    description: Resolution descriptor (e.g., "4K", "1080p", "3840x2160")
+
+  - name: visual_frame_rate_fps
+    type: integer
+    description: Video frame rate (frames per second)
+    constraints: { minimum: 1, maximum: 240 }
+
+  - name: visual_clip_duration_s
+    type: number
+    description: Typical visual clip duration (seconds)
+    constraints: { minimum: 0 }
+
+  # =========================================================
+  # 6. Perceptual annotation framework
+  # =========================================================
+  - name: annotation_framework
+    type: string
+    description: Perceptual / affective annotation framework
+    constraints:
+      required: true
+
+  - name: experimental_setting
+    type: string
+    description: Setting in which assessments were collected
+    constraints:
+      enum: [On-site, Lab-based, Online, Mixed, Other]
+
+  # =========================================================
+  # 7. Acoustic / environmental measurements
+  # =========================================================
+  - name: acoustic_data_available
+    type: boolean
+    description: Objective acoustic / psychoacoustic measurements provided
+
+  - name: acoustic_measuring_instrument
+    type: string
+    description: Instrument or tool used to derive acoustic metrics
+
+  - name: environmental_data_available
+    type: boolean
+    description: Environmental context data (temperature, humidity, etc.) provided
