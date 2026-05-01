@@ -6,7 +6,7 @@ soundscape datasets (ISD, ARAUS, …) under a unified schema.
 ## Repository structure
 
 ```
-mosaiq_frictionless/
+mosaiq/
 ├── datapackage.yaml              # Frictionless package manifest
 ├── schemas/                      # Schema definitions (rules)
 │   ├── datasets.schema.yaml
