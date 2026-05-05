@@ -1,28 +1,47 @@
 # MOSAIQ — Multimodal Open Soundscape AI Quality-benchmark
 
-Frictionless data package for the MOSAIQ benchmark, integrating multiple
-soundscape datasets (ISD, ARAUS, …) under a unified schema.
+MOSAIQ is a standardised multimodal benchmark for soundscape AI research,
+integrating audio, visual, and perceptual rating data from multiple source
+datasets (ISD, ARAUS, …) under a unified schema. This repository hosts the
+MOSAIQ data schema, validation tooling, build scripts, and (in later
+phases) baseline models and evaluation pipelines.
+
 
 ## Repository structure
 
 ```
-mosaiq/
+MOSAIQ/
+├── README.md                     # This file
+├── pyproject.toml                # Project configuration and dependencies (uv-managed)
+├── uv.lock                       # Locked dependency versions
+├── .python-version               # Pinned Python version
+├── .gitignore
+│
 ├── datapackage.yaml              # Frictionless package manifest
+│
 ├── schemas/                      # Schema definitions (rules)
-│   ├── datasets.schema.yaml
-│   ├── clips.schema.yaml
-│   └── responses.schema.yaml
+│   ├── datasets.schema.yaml      # Dataset-level metadata schema
+│   ├── clips.schema.yaml         # Clip-level metadata schema
+│   └── responses.schema.yaml     # Response-level metadata schema
+│
 ├── data/                         # Schema-conformant data (instances)
-│   ├── _dataset_level/datasets.csv
+│   ├── catalogue/
+│   │   ├── datasets_catalogue.json   # Source: nested human-authored catalogue
+│   │   └── datasets.csv               # Derived: flat schema-conformant table
 │   └── ISD/
 │       ├── clips.csv
 │       └── responses.csv
-├── build_datasets_csv.py         # Builds datasets.csv from nested JSON
-├── regen_and_flatten.py          # Builds clips.csv + responses.csv from ISD CSV
-├── validate_in_python.py         # Python API validation example
-├── pyproject.toml                # Project config + dependencies (uv-managed)
-├── uv.lock                       # Locked dependency versions
-└── .python-version               # Pinned Python version
+│
+├── scripts/                      # Build and utility scripts
+│   ├── build_datasets_csv.py     # Flattens datasets_catalogue.json → datasets.csv
+│   ├── regen_and_flatten.py      # ISD CSV → clips.csv + responses.csv
+│   └── validate_in_python.py     # Python API validation example
+│
+└── (future) baselines/           # Baseline prediction models (Phase 2 cont.)
+    (future) generation/          # MMAudio fine-tuning (Phase 3)
+    (future) augmentation/        # Generative augmentation (Phase 4)
+    (future) docs/                # Schema paper, tutorials
+    (future) tests/               # Unit tests
 ```
 
 ## Quick start
@@ -38,7 +57,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ### 2. Sync the environment
 
-From the repo root:
+From the repository root:
 
 ```bash
 uv sync
@@ -58,50 +77,77 @@ reporting `VALID`.
 
 ### 4. Regenerate data from source
 
-If you want to regenerate the CSVs from the original ISD data:
+If you have access to the original ISD `ISD_v1_0_Data.csv`, you can
+regenerate the derived CSVs from scratch:
 
 ```bash
-# Requires ISD_v1_0_Data.csv locally — update path inside the script
-uv run python regen_and_flatten.py
-uv run python build_datasets_csv.py
+uv run python scripts/build_datasets_csv.py     # rebuilds data/catalogue/datasets.csv
+uv run python scripts/regen_and_flatten.py      # rebuilds data/ISD/clips.csv + responses.csv
 ```
+
+## Schema design philosophy
+
+MOSAIQ separates the data into three layers, each with its own schema:
+
+1. **Dataset-level catalogue** (`data/catalogue/datasets.csv`) — one row per
+   source dataset, capturing scale, modalities, recording specifications,
+   perceptual framework, and access conditions.
+
+2. **Clip-level metadata** (`data/<dataset>/clips.csv`) — one row per clip
+   with aggregated PAQ ratings, derived ISO Pleasant / Eventful coordinates,
+   and primary psychoacoustic features.
+
+3. **Response-level metadata** (`data/<dataset>/responses.csv`) — one row
+   per individual participant assessment, linked to clips via `clip_id`.
+
+Schemas are formally specified using the [Frictionless Data Package](https://specs.frictionlessdata.io/)
+standard, which supports type checks, value-range constraints, enumerations,
+and foreign-key relationships across resources.
 
 ## Development
 
-### Add a new dependency
+### Add a dependency
 
 ```bash
 uv add <package-name>
+uv add --dev <package-name>     # development-only (e.g. jupyter, pytest)
 ```
 
-### Run a Python script in the environment
+### Run a Python script
 
 ```bash
 uv run python <script.py>
 ```
 
-### Open a Jupyter notebook
+### Open Jupyter
 
 ```bash
+uv add --dev jupyter ipykernel
 uv run jupyter lab
 ```
 
-## Schema design philosophy
+## Citation
 
-MOSAIQ separates three layers:
+If you use MOSAIQ in your research, please cite:
 
-1. **Dataset-level catalogue** (`datasets.csv`) — one row per source dataset,
-   with scale, modalities, and access conditions.
-2. **Clip-level metadata** (`clips.csv`) — one row per clip with aggregated
-   PAQ ratings and primary psychoacoustic features.
-3. **Response-level data** (`responses.csv`) — one row per individual
-   participant assessment.
+```bibtex
+@misc{mosaiq2026,
+  author    = {Liang, Yuqi and Mitchell, Andrew and Kang, Jian and Aletta, Francesco},
+  title     = {MOSAIQ: Multimodal Open Soundscape AI Quality-benchmark},
+  year      = {2026},
+  publisher = {GitHub},
+  howpublished = {\url{https://github.com/yuqiliang/MOSAIQ}}
+}
+```
 
-Schemas are formally specified using the [Frictionless Data Package](https://specs.frictionlessdata.io/)
-standard, which supports type checks, value constraints, enumerations, and
-foreign-key relationships across resources.
+## Team
 
-## License
+- **Yuqi Liang** (lead) — UCL Institute for Environmental Design and Engineering
+- **Francesco Aletta** (PI) — UCL Institute for Environmental Design and Engineering
+- **Jian Kang** — UCL Institute for Environmental Design and Engineering
+- **Andrew Mitchell** — UCL Bartlett School of Sustainable Construction
+
+## Licence
 
 - Schemas, code, and documentation: MIT
-- Data: per-source-dataset licences (see `licence_spdx` field in `datasets.csv`)
+- Data: per-source-dataset licences (see `licence_spdx` field in each `datasets.csv` row)

@@ -32,7 +32,7 @@ contributors:
 resources:
   - name: datasets
     title: Dataset-level catalogue
-    path: data/_dataset_level/datasets.csv
+    path: data/catalogue/datasets.csv
     format: csv
     mediatype: text/csv
     encoding: utf-8
