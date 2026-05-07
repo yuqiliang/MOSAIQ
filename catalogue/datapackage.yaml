@@ -1,0 +1,21 @@
+$schema: https://specs.frictionlessdata.io/schemas/data-package.json
+name: mosaiq-catalogue
+title: MOSAIQ Catalogue Metadata
+description: |
+  Dataset-level metadata catalogue: one row per source dataset, with scale,
+  modalities, recording specifications, perceptual framework, and access
+  conditions. Derived from the systematic literature review.
+
+version: "0.1.0"
+licenses:
+  - name: CC-BY-4.0
+    path: https://creativecommons.org/licenses/by/4.0/
+
+resources:
+  - name: datasets
+    title: Dataset-level catalogue
+    path: datasets.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: ../shared_schemas/datasets.schema.yaml

@@ -1,0 +1,23 @@
+$schema: https://specs.frictionlessdata.io/schemas/data-catalog.json
+name: mosaiq
+title: MOSAIQ Data Catalog
+description: |
+  MOSAIQ is a catalog of soundscape datasets harmonised under shared
+  schema principles for reproducible multimodal soundscape AI research.
+
+  Each dataset is published as an independent Frictionless data package,
+  preserving its specific characteristics while conforming to MOSAIQ's
+  shared schema design (see /shared_schemas).
+
+  The /catalogue subdirectory holds dataset-level metadata describing
+  the catalog's contents.
+
+datasets:
+  - name: isd
+    path: datasets/ISD/datapackage.yaml
+
+  # Future:
+  # - name: araus
+  #   path: datasets/ARAUS/datapackage.yaml
+  # - name: satp
+  #   path: datasets/SATP/datapackage.yaml

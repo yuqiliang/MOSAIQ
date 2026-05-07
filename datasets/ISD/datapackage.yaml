@@ -1,0 +1,36 @@
+$schema: https://specs.frictionlessdata.io/schemas/data-package.json
+name: isd
+title: International Soundscape Database (ISD)
+description: |
+  ISD subset packaged for MOSAIQ. Contains aggregated clip-level metadata
+  and individual participant responses, conforming to the MOSAIQ schemas.
+
+  Source: Mitchell et al., 2022 (Zenodo: 10.5281/zenodo.10672568)
+
+version: "0.1.0"
+licenses:
+  - name: CC-BY-4.0
+    title: Creative Commons Attribution 4.0 International
+    path: https://creativecommons.org/licenses/by/4.0/
+
+contributors:
+  - title: 
+    role: 
+    organization: UCL Institute for Environmental Design and Engineering
+
+resources:
+  - name: clips
+    title: Clip-level metadata (aggregated)
+    path: data/clips.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/clips.schema.yaml
+
+  - name: responses
+    title: Response-level metadata (per-participant)
+    path: data/responses.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/responses.schema.yaml
