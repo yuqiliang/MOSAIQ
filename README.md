@@ -11,37 +11,35 @@ phases) baseline models and evaluation pipelines.
 
 ```
 MOSAIQ/
-├── README.md                     # This file
-├── pyproject.toml                # Project configuration and dependencies (uv-managed)
-├── uv.lock                       # Locked dependency versions
-├── .python-version               # Pinned Python version
-├── .gitignore
+├── README.md
+├── pyproject.toml
+├── uv.lock
+├── datacatalog.yaml              # Top-level catalog (lists all datasets)
 │
-├── datapackage.yaml              # Frictionless package manifest
+├── catalogue/                    # Dataset-level metadata package
+│   ├── datapackage.yaml
+│   ├── datasets.csv
+│   └── datasets_catalogue.json   # Source: nested human-authored catalogue
 │
-├── schemas/                      # Schema definitions (rules)
-│   ├── datasets.schema.yaml      # Dataset-level metadata schema
-│   ├── clips.schema.yaml         # Clip-level metadata schema
-│   └── responses.schema.yaml     # Response-level metadata schema
-│
-├── data/                         # Schema-conformant data (instances)
-│   ├── catalogue/
-│   │   ├── datasets_catalogue.json   # Source: nested human-authored catalogue
-│   │   └── datasets.csv               # Derived: flat schema-conformant table
+├── datasets/                     # Each dataset = one Frictionless package
 │   └── ISD/
-│       ├── clips.csv
-│       └── responses.csv
+│       ├── datapackage.yaml
+│       ├── schemas/
+│       │   ├── clips.schema.yaml
+│       │   └── responses.schema.yaml
+│       └── data/
+│           ├── clips.csv
+│           └── responses.csv
 │
-├── scripts/                      # Build and utility scripts
-│   ├── build_datasets_csv.py     # Flattens datasets_catalogue.json → datasets.csv
-│   ├── regen_and_flatten.py      # ISD CSV → clips.csv + responses.csv
-│   └── validate_in_python.py     # Python API validation example
+├── shared_schemas/               # Shared schema templates across datasets
+│   └── datasets.schema.yaml
 │
-└── (future) baselines/           # Baseline prediction models (Phase 2 cont.)
-    (future) generation/          # MMAudio fine-tuning (Phase 3)
-    (future) augmentation/        # Generative augmentation (Phase 4)
-    (future) docs/                # Schema paper, tutorials
-    (future) tests/               # Unit tests
+├── scripts/
+│   ├── build_isd.py
+│   └── validate_in_python.py
+│
+└── notebooks/
+    └── 01_explore_isd.ipynb
 ```
 
 ## Quick start
