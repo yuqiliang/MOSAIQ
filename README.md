@@ -14,14 +14,14 @@ MOSAIQ/
 ├── README.md
 ├── pyproject.toml
 ├── uv.lock
-├── datacatalog.yaml              # Top-level catalog (lists all datasets)
+├── datacatalog.yaml             
 │
-├── catalogue/                    # Dataset-level metadata package
+├── catalogue/                   
 │   ├── datapackage.yaml
 │   ├── datasets.csv
-│   └── datasets_catalogue.json   # Source: nested human-authored catalogue
+│   └── datasets_catalogue.json   
 │
-├── datasets/                     # Each dataset = one Frictionless package
+├── datasets/                    
 │   └── ISD/
 │       ├── datapackage.yaml
 │       ├── schemas/
@@ -31,7 +31,7 @@ MOSAIQ/
 │           ├── clips.csv
 │           └── responses.csv
 │
-├── shared_schemas/               # Shared schema templates across datasets
+├── shared_schemas/               
 │   └── datasets.schema.yaml
 │
 ├── scripts/
