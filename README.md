@@ -140,8 +140,8 @@ If you use MOSAIQ in your research, please cite:
 
 ## Team
 
-- **Yuqi Liang** (lead) — UCL Institute for Environmental Design and Engineering
-- **Francesco Aletta** (PI) — UCL Institute for Environmental Design and Engineering
+- **Yuqi Liang**  — UCL Institute for Environmental Design and Engineering
+- **Francesco Aletta**  — UCL Institute for Environmental Design and Engineering
 - **Jian Kang** — UCL Institute for Environmental Design and Engineering
 - **Andrew Mitchell** — UCL Bartlett School of Sustainable Construction
 
