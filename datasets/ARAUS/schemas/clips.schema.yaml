@@ -1,0 +1,153 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_araus_clips
+title: MOSAIQ ARAUS Clip-level Schema
+description: |
+  One row per unique augmented stimulus in ARAUS, identified by
+  (fold_r, soundscape, masker, smr). Perceptual values are aggregated means
+  across all accepted responses for that stimulus.
+
+primaryKey:
+  - clip_id
+
+fields:
+  - name: clip_id
+    type: string
+    description: Stable MOSAIQ clip identifier (e.g., ARAUS_000001)
+    constraints:
+      required: true
+      unique: true
+      pattern: "^ARAUS_.+$"
+
+  - name: dataset_id
+    type: string
+    constraints:
+      required: true
+      enum: [ARAUS]
+
+  - name: fold_r
+    type: integer
+    description: ARAUS response fold index
+    constraints:
+      required: true
+      enum: [-1, 0, 1, 2, 3, 4, 5, 6, 7]
+
+  - name: split
+    type: string
+    description: MOSAIQ split mapping for benchmarking
+    constraints:
+      required: true
+      enum: [train, dev, test, aux]
+
+  - name: soundscape
+    type: string
+    constraints:
+      required: true
+
+  - name: masker
+    type: string
+    constraints:
+      required: true
+
+  - name: smr_db
+    type: integer
+    constraints:
+      required: true
+      enum: [-6, -3, 0, 3, 6]
+
+  - name: is_common_stimulus
+    type: boolean
+    description: True for practice/attention/consistency common stimuli
+
+  - name: audio_asset
+    type: string
+    description: Relative path or asset id for generated augmented audio
+
+  - name: video_asset
+    type: string
+    description: Relative path or asset id for paired 360 video
+
+  - name: licence_spdx
+    type: string
+    constraints:
+      required: true
+      enum: [Other, Unknown]
+
+  - name: n_responses
+    type: integer
+    constraints:
+      required: true
+      minimum: 1
+
+  - name: mean_PAQ1_pleasant
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ2_vibrant
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ3_eventful
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ4_chaotic
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ5_annoying
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ6_monotonous
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ7_uneventful
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_PAQ8_calm
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_appropriate
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: mean_ISOPleasant
+    type: number
+    constraints: { minimum: -1, maximum: 1 }
+
+  - name: mean_ISOEventful
+    type: number
+    constraints: { minimum: -1, maximum: 1 }
+
+  - name: LAeq_dBA
+    type: number
+    description: Aggregated A-weighted level (mapped from LAavg_r)
+    constraints: { minimum: 0, maximum: 130 }
+
+  - name: loudness_N_sone
+    type: number
+    description: Aggregated loudness (mapped from Navg_r)
+    constraints: { minimum: 0 }
+
+  - name: sharpness_S_acum
+    type: number
+    description: Aggregated sharpness (mapped from Savg_r)
+    constraints: { minimum: 0 }
+
+  - name: roughness_R_asper
+    type: number
+    description: Aggregated roughness (mapped from Ravg_r)
+    constraints: { minimum: 0 }
+
+  - name: fluctuation_strength_F_vacil
+    type: number
+    description: Aggregated fluctuation strength (mapped from Favg_r)
+    constraints: { minimum: 0 }
+
+  - name: tonality_T_tu
+    type: number
+    description: Aggregated tonality (mapped from Tavg_r)
+    constraints: { minimum: 0 }

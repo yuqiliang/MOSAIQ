@@ -16,8 +16,9 @@ datasets:
   - name: isd
     path: datasets/ISD/datapackage.yaml
 
+  - name: araus
+    path: datasets/ARAUS/datapackage.yaml
+
   # Future:
-  # - name: araus
-  #   path: datasets/ARAUS/datapackage.yaml
   # - name: satp
   #   path: datasets/SATP/datapackage.yaml

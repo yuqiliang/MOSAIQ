@@ -1,0 +1,137 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_araus_responses
+title: MOSAIQ ARAUS Response-level Schema
+description: |
+  One row per accepted participant response in ARAUS. Core perceptual and
+  psychoacoustic fields are harmonized to MOSAIQ naming conventions.
+
+primaryKey:
+  - response_id
+
+fields:
+  - name: response_id
+    type: string
+    constraints:
+      required: true
+      unique: true
+      pattern: "^ARAUS_.+$"
+
+  - name: clip_id
+    type: string
+    constraints:
+      required: true
+      pattern: "^ARAUS_.+$"
+
+  - name: participant_id
+    type: string
+    constraints:
+      required: true
+
+  - name: fold_r
+    type: integer
+    constraints:
+      required: true
+      enum: [-1, 0, 1, 2, 3, 4, 5, 6, 7]
+
+  - name: stimulus_index
+    type: integer
+    constraints:
+      required: true
+      minimum: 1
+
+  - name: time_taken_s
+    type: number
+    constraints:
+      minimum: 30
+
+  - name: is_attention
+    type: integer
+    constraints:
+      required: true
+      enum: [0, 1]
+
+  - name: language
+    type: string
+    description: Primary language (mapped from language_a where available)
+
+  - name: age
+    type: number
+    constraints:
+      minimum: 0
+
+  - name: gender
+    type: string
+
+  - name: PAQ1_pleasant
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: PAQ2_vibrant
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: PAQ3_eventful
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: PAQ4_chaotic
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: PAQ5_annoying
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: PAQ6_monotonous
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: PAQ7_uneventful
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: PAQ8_calm
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: appropriate
+    type: integer
+    constraints: { minimum: 1, maximum: 5 }
+
+  - name: ISOPleasant
+    type: number
+    constraints: { minimum: -1, maximum: 1 }
+
+  - name: ISOEventful
+    type: number
+    constraints: { minimum: -1, maximum: 1 }
+
+  - name: LAeq_dBA
+    type: number
+    description: A-weighted level mapped from LAavg_r
+    constraints: { minimum: 0, maximum: 130 }
+
+  - name: loudness_N_sone
+    type: number
+    description: Loudness mapped from Navg_r
+    constraints: { minimum: 0 }
+
+  - name: sharpness_S_acum
+    type: number
+    description: Sharpness mapped from Savg_r
+    constraints: { minimum: 0 }
+
+  - name: roughness_R_asper
+    type: number
+    description: Roughness mapped from Ravg_r
+    constraints: { minimum: 0 }
+
+  - name: fluctuation_strength_F_vacil
+    type: number
+    description: Fluctuation strength mapped from Favg_r
+    constraints: { minimum: 0 }
+
+  - name: tonality_T_tu
+    type: number
+    description: Tonality mapped from Tavg_r
+    constraints: { minimum: 0 }

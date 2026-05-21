@@ -1,0 +1,36 @@
+$schema: https://specs.frictionlessdata.io/schemas/data-package.json
+name: araus
+title: Affective Responses to Augmented Urban Soundscapes (ARAUS)
+description: |
+  ARAUS subset packaged for MOSAIQ. This package defines harmonized
+  clip-level and response-level schemas aligned with MOSAIQ conventions.
+
+  Source dataset DOI: 10.21979/N9/9OTEVX
+
+version: "0.1.0"
+licenses:
+  - name: Other
+    title: Mixed per-file Creative Commons licenses (see source metadata)
+    path: https://researchdata.ntu.edu.sg/dataset.xhtml?persistentId=doi:10.21979/N9/9OTEVX
+
+contributors:
+  - title: ARAUS Dataset Team
+    role: author
+    organization: Nanyang Technological University
+
+resources:
+  - name: clips
+    title: Clip-level metadata (aggregated over responses)
+    path: data/clips.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/clips.schema.yaml
+
+  - name: responses
+    title: Response-level metadata (per-participant)
+    path: data/responses.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/responses.schema.yaml

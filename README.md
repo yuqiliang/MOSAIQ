@@ -22,8 +22,17 @@ MOSAIQ/
 │   └── datasets_catalogue.json   
 │
 ├── datasets/                    
-│   └── ISD/
+│   ├── ISD/
+│   │   ├── datapackage.yaml
+│   │   ├── schemas/
+│   │   │   ├── clips.schema.yaml
+│   │   │   └── responses.schema.yaml
+│   │   └── data/
+│   │       ├── clips.csv
+│   │       └── responses.csv
+│   └── ARAUS/
 │       ├── datapackage.yaml
+│       ├── SCHEMA_NOTES.md
 │       ├── schemas/
 │       │   ├── clips.schema.yaml
 │       │   └── responses.schema.yaml
@@ -67,11 +76,13 @@ dependencies pinned in `uv.lock`.
 ### 3. Validate the data package
 
 ```bash
-uv run frictionless validate datapackage.yaml
+uv run frictionless validate catalogue/datapackage.yaml
+uv run frictionless validate datasets/ISD/datapackage.yaml
+uv run frictionless validate datasets/ARAUS/datapackage.yaml
 ```
 
-Expected output: three resources (`datasets`, `clips`, `responses`) all
-reporting `VALID`.
+Expected output: catalogue resources (`datasets`) and dataset package
+resources (`clips`, `responses`) all reporting `VALID`.
 
 ### 4. Regenerate data from source
 
