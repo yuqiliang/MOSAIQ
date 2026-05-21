@@ -18,4 +18,4 @@ resources:
     format: csv
     mediatype: text/csv
     encoding: utf-8
-    schema: ../shared_schemas/datasets.schema.yaml
+    schema: schemas/datasets.schema.yaml

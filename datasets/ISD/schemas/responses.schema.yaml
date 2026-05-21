@@ -4,7 +4,7 @@ fields:
   - name: clip_id
     type: string
   - name: participant_id
-    type: integer
+    type: string
   - name: language
     type: string
   - name: PAQ1_pleasant
