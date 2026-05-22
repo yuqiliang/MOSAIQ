@@ -65,6 +65,28 @@ fields:
   - name: video_asset
     type: string
     description: Relative path or asset id for paired 360 video
+    constraints:
+      required: true
+
+  - name: video_asset_id
+    type: string
+    description: Stable identifier for the source video asset linked to this clip
+    constraints:
+      required: true
+
+  - name: start_s
+    type: number
+    description: Clip start timestamp in seconds in the source video
+    constraints:
+      required: true
+      minimum: 0
+
+  - name: end_s
+    type: number
+    description: Clip end timestamp in seconds in the source video
+    constraints:
+      required: true
+      minimum: 0
 
   - name: licence_spdx
     type: string

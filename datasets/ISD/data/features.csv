@@ -1,0 +1,1 @@
+feature_id,clip_id,feature_type,embedding_path_or_value,embedding_dim,dtype,pooling,frame_time_s,frame_index,video_asset_id,provenance_json

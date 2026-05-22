@@ -91,6 +91,9 @@ for (loc, sess, grp), g in df.groupby(["LocationID", "SessionID", "GroupID"]):
         "binaural_end_s":   r0.get("RecordingLength"),
         "audio_asset":      f"ISD_{loc}_{grp}_binaural",
         "video_asset":      f"ISD_{loc}_{sess}_360",
+        "video_asset_id":   f"ISD_{loc}_{sess}_360",
+        "start_s":          0.0,
+        "end_s":            r0.get("RecordingLength"),
         "split":            "",  # to be filled later by site-balanced splitter
         "licence_spdx":     "CC-BY-4.0",
         "n_responses":      len(g),

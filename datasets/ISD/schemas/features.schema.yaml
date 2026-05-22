@@ -1,0 +1,86 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_isd_features
+title: MOSAIQ ISD Feature-level Schema
+description: |
+  Optional clip-level feature records (e.g., CLIP visual embeddings) linked to
+  clips via clip_id.
+
+primaryKey:
+  - feature_id
+
+fields:
+  - name: feature_id
+    type: string
+    constraints:
+      required: true
+      unique: true
+      pattern: "^ISD_FEAT_.+$"
+
+  - name: clip_id
+    type: string
+    constraints:
+      required: true
+      pattern: "^ISD_.+$"
+
+  - name: feature_type
+    type: string
+    constraints:
+      required: true
+      enum: [visual_clip_embedding]
+
+  - name: embedding_path_or_value
+    type: string
+    description: Base64-encoded embedding payload or relative .npy file path
+    constraints:
+      required: true
+
+  - name: embedding_dim
+    type: integer
+    constraints:
+      required: true
+      minimum: 1
+
+  - name: dtype
+    type: string
+    constraints:
+      required: true
+      enum: [float16, float32, float64]
+
+  - name: pooling
+    type: string
+    constraints:
+      required: true
+      enum: [center_frame, mean_frames, max_frames]
+
+  - name: frame_time_s
+    type: number
+    constraints:
+      required: true
+      minimum: 0
+
+  - name: frame_index
+    type: integer
+    constraints:
+      required: true
+      minimum: 0
+
+  - name: video_asset_id
+    type: string
+    constraints:
+      required: true
+
+  - name: provenance_json
+    type: string
+    description: |
+      JSON string with mandatory keys:
+      model, version, library_versions, frame_sampling_rule, preprocess,
+      device, date, script_version.
+    constraints:
+      required: true
+      pattern: '^(?=.*"model")(?=.*"version")(?=.*"library_versions")(?=.*"frame_sampling_rule")(?=.*"preprocess")(?=.*"device")(?=.*"date")(?=.*"script_version").+$'
+
+foreignKeys:
+  - fields: clip_id
+    reference:
+      resource: clips
+      fields: clip_id

@@ -223,7 +223,16 @@ def main() -> None:
     clip_keys["is_common_stimulus"] = clip_keys["fold_r"] == -1
     clip_keys["dataset_id"] = "ARAUS"
     clip_keys["audio_asset"] = ""
-    clip_keys["video_asset"] = ""
+    clip_keys["video_asset_id"] = (
+        clip_keys["soundscape"]
+        .astype(str)
+        .str.replace(r"\\.wav$", "", regex=True)
+        .str.replace(r"_segment_.*$", "", regex=True)
+        + "_360"
+    )
+    clip_keys["video_asset"] = clip_keys["video_asset_id"]
+    clip_keys["start_s"] = 0.0
+    clip_keys["end_s"] = 30.0
     clip_keys["licence_spdx"] = "Other"
 
     resp = resp.merge(clip_keys[key_cols + ["clip_id"]], on=key_cols, how="left")
@@ -295,6 +304,9 @@ def main() -> None:
         "is_common_stimulus",
         "audio_asset",
         "video_asset",
+        "video_asset_id",
+        "start_s",
+        "end_s",
         "licence_spdx",
         "n_responses",
         "mean_PAQ1_pleasant",

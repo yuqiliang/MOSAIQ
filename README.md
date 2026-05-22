@@ -26,18 +26,22 @@ MOSAIQ/
 │   │   ├── datapackage.yaml
 │   │   ├── schemas/
 │   │   │   ├── clips.schema.yaml
+│   │   │   ├── features.schema.yaml
 │   │   │   └── responses.schema.yaml
 │   │   └── data/
 │   │       ├── clips.csv
+│   │       ├── features.csv
 │   │       └── responses.csv
 │   └── ARAUS/
 │       ├── datapackage.yaml
 │       ├── SCHEMA_NOTES.md
 │       ├── schemas/
 │       │   ├── clips.schema.yaml
+│       │   ├── features.schema.yaml
 │       │   └── responses.schema.yaml
 │       └── data/
 │           ├── clips.csv
+│           ├── features.csv
 │           └── responses.csv
 │
 ├── shared_schemas/               
@@ -82,9 +86,24 @@ uv run frictionless validate datasets/ARAUS/datapackage.yaml
 ```
 
 Expected output: catalogue resources (`datasets`) and dataset package
-resources (`clips`, `responses`) all reporting `VALID`.
+resources (`clips`, `responses`, optional `features`) all reporting `VALID`.
 
-### 4. Regenerate data from source
+### 4. Build CLIP visual embedding features (optional)
+
+```bash
+uv run python scripts/build_clip_features.py \
+  --dataset-dir datasets/ISD \
+  --video-root /path/to/videos \
+  --model-name ViT-B/32 \
+  --pretrained openai \
+  --storage npy \
+  --overwrite
+```
+
+This generates `datasets/<dataset>/data/features.csv` and `.npy` embedding
+files under `datasets/<dataset>/data/features/visual_clip_embedding/`.
+
+### 5. Regenerate data from source
 
 If you have access to the original ISD `ISD_v1_0_Data.csv`, you can
 regenerate the derived CSVs from scratch:
