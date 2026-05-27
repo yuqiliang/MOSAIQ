@@ -45,11 +45,18 @@ MOSAIQ/
 │           └── responses.csv
 │
 ├── shared_schemas/               
-│   └── datasets.schema.yaml
+│   ├── datasets.schema.yaml
+│   └── features.schema.yaml
+│
+├── config/
+│   └── cityseg_class_map.yaml
 │
 ├── scripts/
 │   ├── build_isd.py
-│   └── validate_in_python.py
+│   ├── build_clip_features.py
+│   ├── build_cityseg_features.py
+│   ├── validate_in_python.py
+│   └── validate_mosaiq.py
 │
 └── notebooks/
     └── 01_explore_isd.ipynb
@@ -81,14 +88,65 @@ dependencies pinned in `uv.lock`.
 
 ```bash
 uv run frictionless validate catalogue/datapackage.yaml
-uv run frictionless validate datasets/ISD/datapackage.yaml
-uv run frictionless validate datasets/ARAUS/datapackage.yaml
+uv run frictionless validate datasets/ISD/datapackage.yaml --trusted
+uv run frictionless validate datasets/ARAUS/datapackage.yaml --trusted
 ```
 
 Expected output: catalogue resources (`datasets`) and dataset package
 resources (`clips`, `responses`, optional `features`) all reporting `VALID`.
+(`--trusted` is used for dataset packages because the shared feature schema is
+referenced via a parent-relative path.)
+
+### Derived FeatureRecords
+
+MOSAIQ supports optional derived FeatureRecords linked by `clip_id` in
+`datasets/<dataset>/data/features.csv`.
+
+Supported examples include:
+- psychoacoustic descriptors
+- CLIP visual embeddings
+- CitySeg semantic summaries
+- soundscape captions
+
+In this release, MOSAIQ defines the shared FeatureRecord schema and placeholder
+resources. Full extraction pipelines and benchmark baselines for these derived
+features will be provided in later MOSAIQ releases.
 
 ### 4. Build CLIP visual embedding features (optional)
+
+Input (`clips.csv` must contain these columns):
+- `clip_id`: unique clip identifier used to link feature records.
+- `dataset_id`: dataset namespace used in `feature_id`.
+- `video_asset` and `video_asset_id`: source video linkage; script will resolve to real video files.
+- `start_s`, `end_s`: temporal segment boundaries used for frame sampling.
+
+Output:
+- `datasets/<dataset>/data/features.csv` with columns:
+  `feature_id, clip_id, dataset_id, feature_type, feature_family, value_format, feature_path, feature_json, provenance_json, created_at, notes`
+- If `--storage npy` (default): one `.npy` file per clip under:
+  `datasets/<dataset>/data/features/clip_embedding/`
+- If `--storage base64`: embedding payload is stored in `feature_json`.
+
+Sampling and feature definition:
+- `feature_type` is always `visual_clip_embedding`.
+- `source_modality` is `visual`.
+- Default frame rule is center frame:
+  `t = (start_s + end_s) / 2`.
+- Pooling/frame metadata are stored in `feature_json`.
+
+Mandatory provenance fields written to `provenance_json`:
+- `model`, `version`, `library_versions`, `frame_sampling_rule`,
+  `preprocess`, `device`, `generated_at`, `script_version`.
+
+How to use:
+
+1. Install runtime dependencies (one-time):
+
+```bash
+uv add open-clip-torch torch torchvision pillow opencv-python-headless
+```
+
+2. Build features for one dataset (recommended `.npy` storage):
 
 ```bash
 uv run python scripts/build_clip_features.py \
@@ -97,13 +155,61 @@ uv run python scripts/build_clip_features.py \
   --model-name ViT-B/32 \
   --pretrained openai \
   --storage npy \
-  --overwrite
+  --mode append
 ```
 
-This generates `datasets/<dataset>/data/features.csv` and `.npy` embedding
-files under `datasets/<dataset>/data/features/visual_clip_embedding/`.
+3. Validate package integrity after extraction:
 
-### 5. Regenerate data from source
+```bash
+uv run frictionless validate datasets/ISD/datapackage.yaml
+```
+
+Useful options:
+- `--dataset-dir`: target dataset root (`datasets/ISD` or `datasets/ARAUS`).
+- `--video-root`: root directory to resolve `video_asset`/`video_asset_id`.
+- `--storage`: `npy` or `base64`.
+- `--dtype`: `float16`, `float32`, or `float64`.
+- `--device`: `auto`, `cpu`, or `cuda`.
+- `--limit`: process only first N clips for smoke tests.
+- `--skip-missing-video`: skip unresolved clips instead of failing.
+- `--mode`: `append` or `overwrite`.
+
+### 5. CitySeg semantic summaries (optional)
+
+CitySeg summaries are optional visual semantic FeatureRecords linked by
+`clip_id`.
+
+- CLIP embeddings provide scalable visual baseline features.
+- CitySeg summaries provide interpretable semantic descriptors such as
+  road, vegetation, sky, building, vehicle, and person proportions.
+- These features support PAQ item prediction, ISO-coordinate prediction,
+  and future gaze-on-class analysis.
+
+Feature conventions for CitySeg:
+- `feature_type=visual_semantic_summary`
+- `source_modality=visual`
+- `value_format=json` (or `path` for external large summaries)
+- Full segmentation masks/HDF5 are not stored in `features.csv`; only clip
+  summaries are stored directly, with raw assets referenced by path/provenance.
+
+Example command:
+
+```bash
+uv run python scripts/build_cityseg_features.py \
+  --clips datasets/ISD/data/clips.csv \
+  --cityseg-dir /path/to/cityseg_outputs \
+  --output datasets/ISD/data/features.csv \
+  --dataset-id ISD \
+  --mode append
+```
+
+Validation for features:
+
+```bash
+uv run python scripts/validate_mosaiq.py --dataset-dir datasets/ISD
+```
+
+### 6. Regenerate data from source
 
 If you have access to the original ISD `ISD_v1_0_Data.csv`, you can
 regenerate the derived CSVs from scratch:
