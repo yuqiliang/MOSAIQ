@@ -14,7 +14,6 @@ from pathlib import Path
 import pandas as pd
 
 ALLOWED_FEATURE_TYPES = {
-    "psychoacoustic",
     "audio_embedding",
     "visual_clip_embedding",
     "visual_semantic_summary",

@@ -14,14 +14,10 @@ Derived features are stored in `features.csv` so MOSAIQ can:
 ## How `feature_id` and `clip_id` work
 - `feature_id` uniquely identifies a single FeatureRecord row.
 - `clip_id` points to the clip unit of analysis in `clips.csv`.
-- Multiple FeatureRecords can reference the same `clip_id` (e.g., psychoacoustic + CLIP + CitySeg + caption).
+- Multiple FeatureRecords can reference the same `clip_id` (e.g., CLIP + CitySeg + caption).
 
-## Representing psychoacoustic features
-Use:
-- `feature_type=psychoacoustic`
-- `source_modality=audio`
-- `value_format=json` or `scalar`
-- `feature_value_json` for compact descriptors (e.g., LAeq, loudness, roughness).
+Primary psychoacoustic descriptors (e.g., LAeq, loudness, sharpness, roughness)
+are represented as core clip-level fields in `clips.csv`, not as FeatureRecords.
 
 ## Representing CLIP embeddings
 Use:

@@ -26,7 +26,6 @@ fields:
     constraints:
       required: true
       enum:
-        - psychoacoustic
         - audio_embedding
         - visual_clip_embedding
         - visual_semantic_summary

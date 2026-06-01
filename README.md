@@ -103,7 +103,6 @@ MOSAIQ supports optional derived FeatureRecords linked by `clip_id` in
 `datasets/<dataset>/data/features.csv`.
 
 Supported examples include:
-- psychoacoustic descriptors
 - CLIP visual embeddings
 - CitySeg semantic summaries
 - soundscape captions

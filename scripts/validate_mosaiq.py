@@ -13,11 +13,14 @@ from pathlib import Path
 from typing import Any
 
 ALLOWED_FEATURE_TYPES = {
-    "cityseg_summary",
-    "cityseg_temporal_summary",
-    "cityseg_gaze_on_class",
-    "clip_embedding",
-    "psychoacoustic",
+    "audio_embedding",
+    "visual_clip_embedding",
+    "visual_semantic_summary",
+    "text_caption",
+    "behavioural_attention",
+    "contextual_descriptor",
+    "caption_or_prompt_descriptor",
+    "other",
 }
 
 
