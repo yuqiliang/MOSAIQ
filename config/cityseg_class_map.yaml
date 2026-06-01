@@ -1,0 +1,19 @@
+{
+  "version": "v1",
+  "dataset_taxonomy": "Cityscapes",
+  "groups": {
+    "natural_ratio": ["vegetation", "sky", "water"],
+    "traffic_ratio": ["road", "vehicle", "traffic_sign", "traffic_light"],
+    "built_ratio": ["building", "wall", "fence"],
+    "human_activity_ratio": ["person", "rider", "bicycle", "motorcycle"]
+  },
+  "aliases": {
+    "traffic sign": "traffic_sign",
+    "traffic light": "traffic_light",
+    "motor bike": "motorcycle",
+    "bike": "bicycle",
+    "car": "vehicle",
+    "bus": "vehicle",
+    "truck": "vehicle"
+  }
+}

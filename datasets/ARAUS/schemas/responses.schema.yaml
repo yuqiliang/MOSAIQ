@@ -135,3 +135,9 @@ fields:
     type: number
     description: Tonality mapped from Tavg_r
     constraints: { minimum: 0 }
+
+foreignKeys:
+  - fields: clip_id
+    reference:
+      resource: clips
+      fields: clip_id

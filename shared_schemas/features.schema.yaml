@@ -1,0 +1,112 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_feature_records
+title: MOSAIQ FeatureRecord Schema
+description: |
+  Optional clip-level derived FeatureRecords linked by clip_id.
+  This schema supports multimodal derived descriptors while keeping clips.csv
+  focused on core clip metadata.
+
+primaryKey:
+  - feature_id
+
+fields:
+  - name: feature_id
+    type: string
+    constraints:
+      required: true
+      unique: true
+
+  - name: clip_id
+    type: string
+    constraints:
+      required: true
+
+  - name: feature_type
+    type: string
+    constraints:
+      required: true
+      enum:
+        - psychoacoustic
+        - audio_embedding
+        - visual_clip_embedding
+        - visual_semantic_summary
+        - text_caption
+        - behavioural_attention
+        - contextual_descriptor
+        - caption_or_prompt_descriptor
+        - other
+
+  - name: source_modality
+    type: string
+    constraints:
+      required: true
+      enum:
+        - audio
+        - visual
+        - audio_visual
+        - text
+        - gaze
+        - contextual
+        - multimodal
+        - other
+
+  - name: value_format
+    type: string
+    constraints:
+      required: true
+      enum:
+        - scalar
+        - vector
+        - json
+        - path
+        - text
+        - table
+        - array
+        - other
+
+  - name: provenance_json
+    type: string
+    constraints:
+      required: true
+
+  - name: feature_path
+    type: string
+
+  - name: feature_value_json
+    type: string
+
+  - name: embedding_dim
+    type: integer
+
+  - name: dtype
+    type: string
+
+  - name: model_name
+    type: string
+
+  - name: model_version
+    type: string
+
+  - name: input_asset_id
+    type: string
+
+  - name: frame_time_s
+    type: number
+
+  - name: frame_index
+    type: integer
+
+  - name: pooling
+    type: string
+
+  - name: language
+    type: string
+
+  - name: notes
+    type: string
+
+foreignKeys:
+  - fields: clip_id
+    reference:
+      resource: clips
+      fields: clip_id

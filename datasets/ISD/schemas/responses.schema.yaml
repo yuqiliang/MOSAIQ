@@ -1,33 +1,85 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_isd_responses
+title: MOSAIQ ISD Response-level Schema
+description: |
+  One row per participant response in ISD, linked to clip-level records by
+  clip_id.
+
+primaryKey:
+  - response_id
+
 fields:
   - name: response_id
     type: string
+    constraints:
+      required: true
+      unique: true
+      pattern: "^ISD_.+$"
+
   - name: clip_id
     type: string
+    constraints:
+      required: true
+      pattern: "^ISD_.+$"
+
   - name: participant_id
     type: string
+    constraints:
+      required: true
+
   - name: language
     type: string
+
   - name: PAQ1_pleasant
     type: number
+    constraints: { minimum: 1, maximum: 5 }
+
   - name: PAQ2_vibrant
     type: number
+    constraints: { minimum: 1, maximum: 5 }
+
   - name: PAQ3_eventful
     type: number
+    constraints: { minimum: 1, maximum: 5 }
+
   - name: PAQ4_chaotic
     type: number
+    constraints: { minimum: 1, maximum: 5 }
+
   - name: PAQ5_annoying
     type: number
+    constraints: { minimum: 1, maximum: 5 }
+
   - name: PAQ6_monotonous
     type: number
+    constraints: { minimum: 1, maximum: 5 }
+
   - name: PAQ7_uneventful
     type: number
+    constraints: { minimum: 1, maximum: 5 }
+
   - name: PAQ8_calm
     type: number
+    constraints: { minimum: 1, maximum: 5 }
+
   - name: ISOPleasant
     type: number
+    constraints: { minimum: -1, maximum: 1 }
+
   - name: ISOEventful
     type: number
+    constraints: { minimum: -1, maximum: 1 }
+
   - name: age
     type: number
+    constraints:
+      minimum: 0
+
   - name: gender
     type: string
+
+foreignKeys:
+  - fields: clip_id
+    reference:
+      resource: clips
+      fields: clip_id

@@ -34,3 +34,11 @@ resources:
     mediatype: text/csv
     encoding: utf-8
     schema: schemas/responses.schema.yaml
+
+  - name: features
+    title: Optional clip-level features (e.g., CLIP embeddings, CitySeg summaries)
+    path: data/features.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: ../../shared_schemas/features.schema.yaml
