@@ -1,0 +1,114 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_delta_clips
+title: MOSAIQ DeLTA Clip-level Schema
+description: |
+  One row per DeLTA recording in the collapsed-majority table. Source labels
+  are consensus binary indicators; annoyance is the mean 1-10 rating.
+
+primaryKey:
+  - clip_id
+
+fields:
+  - name: clip_id
+    type: string
+    constraints:
+      required: true
+      unique: true
+      pattern: "^DeLTA_.+$"
+  - name: dataset_id
+    type: string
+    constraints:
+      required: true
+      enum: [DeLTA]
+  - name: recording
+    type: string
+    constraints:
+      required: true
+  - name: audio_asset
+    type: string
+  - name: licence_spdx
+    type: string
+    constraints:
+      required: true
+      enum: [CC-BY-4.0]
+  - name: n_responses
+    type: integer
+    constraints: { required: true, minimum: 1 }
+  - name: n_sources
+    type: integer
+    constraints: { minimum: 0, maximum: 24 }
+  - name: mean_annoyance
+    type: number
+    constraints: { minimum: 1, maximum: 10 }
+  - name: source_aircraft
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_bells
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_bird_tweet
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_bus
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_car
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_children
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_construction
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_dog_bark
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_footsteps
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_general_traffic
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_horn
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_laughter
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_motorcycle
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_music
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_non_identifiable
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_other
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_rail
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_rustling_leaves
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_screeching_brakes
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_shouting
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_siren
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_speech
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_ventilation
+    type: integer
+    constraints: { enum: [0, 1] }
+  - name: source_water
+    type: integer
+    constraints: { enum: [0, 1] }

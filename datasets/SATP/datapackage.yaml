@@ -1,0 +1,46 @@
+$schema: https://specs.frictionlessdata.io/schemas/data-package.json
+name: satp
+title: Soundscape Attributes Translation Project (SATP) Dataset
+description: |
+  SATP subset packaged for MOSAIQ from the Zenodo v1.2.1 record. The package
+  contains response-level perceptual ratings and clip-level aggregates for 27
+  urban soundscape recordings. Source PAQ ratings are preserved as 0-100 raw
+  fields and converted to MOSAIQ's 1-5 PAQ fields for ISO 12913 coordinates.
+
+  Source: Oberman et al., 2022 (Zenodo: 10.5281/zenodo.7143599)
+
+version: "0.1.0"
+licenses:
+  - name: CC-BY-4.0
+    title: Creative Commons Attribution 4.0 International
+    path: https://creativecommons.org/licenses/by/4.0/
+
+contributors:
+  - title: Soundscape Attributes Translation Project Team
+    role: author
+    organization: University College London and international partners
+
+resources:
+  - name: clips
+    title: Clip-level metadata (aggregated)
+    path: data/clips.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/clips.schema.yaml
+
+  - name: responses
+    title: Response-level metadata (per-participant)
+    path: data/responses.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/responses.schema.yaml
+
+  - name: source_files
+    title: Zenodo source file manifest
+    path: data/source_files.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/source_files.schema.yaml

@@ -1,0 +1,5 @@
+file_name,zenodo_record,download_url,md5,size,role,local_ingested
+SATP Dataset v1.2.xlsx,7143599,https://zenodo.org/records/7143599/files/SATP%20Dataset%20v1.2.xlsx?download=1,a653d7bd091bf1266b9a5b4c1098b6d1,1.4 MB,source_workbook,true
+SATP WAV.zip,7143599,https://zenodo.org/records/7143599/files/SATP%20WAV.zip?download=1,1592b4ac667b2944ad3d412212dc669a,198.1 MB,audio_archive,false
+Institution Datasets.zip,7143599,https://zenodo.org/records/7143599/files/Institution%20Datasets.zip?download=1,689ffdc930792793e2035cedbd3c22e2,1.7 MB,institution_workbooks,false
+README.md,7143599,https://zenodo.org/records/7143599/files/README.md?download=1,621668be29885cbc1c0cf5faf9482334,15.3 kB,source_documentation,false

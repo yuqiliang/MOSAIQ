@@ -27,7 +27,13 @@ jobs:
         run: uv run frictionless validate catalogue/datapackage.yaml
 
       - name: Validate ISD package
-        run: uv run frictionless validate datasets/ISD/datapackage.yaml
+        run: uv run frictionless validate datasets/ISD/datapackage.yaml --trusted
 
       - name: Validate ARAUS package
-        run: uv run frictionless validate datasets/ARAUS/datapackage.yaml
+        run: uv run frictionless validate datasets/ARAUS/datapackage.yaml --trusted
+
+      - name: Validate SATP package
+        run: uv run frictionless validate datasets/SATP/datapackage.yaml
+
+      - name: Validate DeLTA package
+        run: uv run frictionless validate datasets/DeLTA/datapackage.yaml

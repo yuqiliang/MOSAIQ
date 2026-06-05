@@ -14,11 +14,13 @@ description: |
 
 datasets:
   - name: isd
-    path: datasets/ISD/datapackage.yaml
+    package: datasets/ISD/datapackage.yaml
 
   - name: araus
-    path: datasets/ARAUS/datapackage.yaml
+    package: datasets/ARAUS/datapackage.yaml
 
-  # Future:
-  # - name: satp
-  #   path: datasets/SATP/datapackage.yaml
+  - name: satp
+    package: datasets/SATP/datapackage.yaml
+
+  - name: delta
+    package: datasets/DeLTA/datapackage.yaml

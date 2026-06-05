@@ -1,0 +1,83 @@
+{
+  "name": "MOSAIQ schema-level harmonisation checklist",
+  "purpose": "Document structural and semantic readiness without claiming full statistical harmonisation.",
+  "literature_basis": [
+    {
+      "paper": "Data harmonisation for information fusion in digital healthcare",
+      "doi": "10.1016/j.inffus.2022.01.001",
+      "use_in_mosaiq": "Checklist, reproducibility, missingness, and explicit non-goals."
+    },
+    {
+      "paper": "Information fusion as an integrative cross-cutting enabler to achieve robust, explainable, and trustworthy medical artificial intelligence",
+      "doi": "10.1016/j.inffus.2021.10.007",
+      "use_in_mosaiq": "Explainability, verification, graph-style representation, and provenance."
+    },
+    {
+      "paper": "MMIEA: Multi-modal Interaction Entity Alignment model for knowledge graphs",
+      "doi": "10.1016/j.inffus.2023.101935",
+      "use_in_mosaiq": "Multi-view alignment across audio, visual, context, perception, and feature views."
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "ISD",
+      "items": [
+        {
+          "item": "dataset_properties",
+          "status": "aligned",
+          "evidence": "catalogue and clips metadata"
+        },
+        {
+          "item": "modality_availability",
+          "status": "partially_aligned",
+          "evidence": "audio and visual asset identifiers present in example"
+        },
+        {
+          "item": "iso_12913_semantics",
+          "status": "aligned",
+          "evidence": "all eight PAQ fields mapped"
+        },
+        {
+          "item": "feature_records",
+          "status": "partially_aligned",
+          "evidence": "acoustic and psychoacoustic indicators represented with provenance notes"
+        },
+        {
+          "item": "statistical_harmonisation",
+          "status": "not_performed",
+          "evidence": "explicit non-goal"
+        }
+      ]
+    },
+    {
+      "dataset_id": "ARAUS",
+      "items": [
+        {
+          "item": "dataset_properties",
+          "status": "aligned",
+          "evidence": "catalogue and clips metadata"
+        },
+        {
+          "item": "modality_availability",
+          "status": "partially_aligned",
+          "evidence": "audio channel known; audio/visual asset fields incomplete in example"
+        },
+        {
+          "item": "iso_12913_semantics",
+          "status": "aligned",
+          "evidence": "all eight PAQ fields mapped"
+        },
+        {
+          "item": "feature_records",
+          "status": "partially_aligned",
+          "evidence": "acoustic, psychoacoustic, and SMR indicators represented"
+        },
+        {
+          "item": "statistical_harmonisation",
+          "status": "not_performed",
+          "evidence": "explicit non-goal"
+        }
+      ]
+    }
+  ]
+}

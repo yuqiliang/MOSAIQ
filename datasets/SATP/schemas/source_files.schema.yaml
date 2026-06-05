@@ -1,0 +1,21 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_source_files
+title: Source File Manifest
+
+fields:
+  - name: file_name
+    type: string
+    constraints: { required: true }
+  - name: zenodo_record
+    type: string
+  - name: download_url
+    type: string
+    format: uri
+  - name: md5
+    type: string
+  - name: size
+    type: string
+  - name: role
+    type: string
+  - name: local_ingested
+    type: boolean

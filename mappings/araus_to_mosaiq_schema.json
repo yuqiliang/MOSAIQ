@@ -1,0 +1,321 @@
+{
+  "dataset_id": "ARAUS",
+  "harmonisation_scope": "schema_level",
+  "semantic_framework": "ISO_12913",
+  "mappings": [
+    {
+      "original_field": "clip_id",
+      "mosaiq_field": "sample_id",
+      "semantic_basis": "MOSAIQ sample identity",
+      "transformation": "direct_mapping",
+      "required": true,
+      "missingness_rule": "error if absent",
+      "provenance_note": "Preserve existing MOSAIQ clip identifier",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Identifier mapping is direct within the existing MOSAIQ table.",
+      "source_column_examples": [
+        "clip_id"
+      ]
+    },
+    {
+      "original_field": "dataset_id",
+      "mosaiq_field": "dataset_id",
+      "semantic_basis": "dataset identity",
+      "transformation": "direct_mapping",
+      "required": true,
+      "missingness_rule": "error if absent",
+      "provenance_note": "Expected value is ARAUS",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Identifier mapping is direct within the existing MOSAIQ table.",
+      "source_column_examples": [
+        "dataset_id"
+      ]
+    },
+    {
+      "original_field": "soundscape",
+      "mosaiq_field": "sound_sources.soundscape",
+      "semantic_basis": "source soundscape/audio component",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original ARAUS soundscape file identifier",
+      "mapping_confidence": "medium",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Metadata field is structurally mapped; source documentation should be reviewed before benchmark use.",
+      "source_column_examples": [
+        "soundscape"
+      ]
+    },
+    {
+      "original_field": "masker",
+      "mosaiq_field": "sound_sources.masker",
+      "semantic_basis": "source masker/audio component",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original ARAUS masker file identifier",
+      "mapping_confidence": "medium",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Metadata field is structurally mapped; source documentation should be reviewed before benchmark use.",
+      "source_column_examples": [
+        "masker"
+      ]
+    },
+    {
+      "original_field": "smr_db",
+      "mosaiq_field": "features.derived_features.smr_db",
+      "semantic_basis": "stimulus construction metadata",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Treat as source construction metadata, not a perceptual label",
+      "mapping_confidence": "medium",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Feature value is structurally mapped; source extraction method may need fuller provenance.",
+      "source_column_examples": [
+        "smr_db"
+      ]
+    },
+    {
+      "original_field": "audio_asset",
+      "mosaiq_field": "audio.asset",
+      "semantic_basis": "audio modality",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_accessible if asset id is unavailable",
+      "provenance_note": "Existing derived table may leave this empty",
+      "mapping_confidence": "medium",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Metadata field is structurally mapped; source documentation should be reviewed before benchmark use.",
+      "source_column_examples": [
+        "audio_asset"
+      ]
+    },
+    {
+      "original_field": "video_asset",
+      "mosaiq_field": "visual.asset",
+      "semantic_basis": "visual modality",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_accessible if visual asset id is unavailable",
+      "provenance_note": "Existing derived table may leave this empty",
+      "mapping_confidence": "medium",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Metadata field is structurally mapped; source documentation should be reviewed before benchmark use.",
+      "source_column_examples": [
+        "video_asset"
+      ]
+    },
+    {
+      "original_field": "mean_PAQ1_pleasant",
+      "mosaiq_field": "perception.iso_12913.paq.pleasant",
+      "semantic_basis": "ISO 12913 perceived affective quality item",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original value and source column name",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Direct ISO 12913 PAQ item mapping; no cross-framework conversion.",
+      "source_column_examples": [
+        "mean_PAQ1_pleasant"
+      ]
+    },
+    {
+      "original_field": "mean_PAQ2_vibrant",
+      "mosaiq_field": "perception.iso_12913.paq.vibrant",
+      "semantic_basis": "ISO 12913 perceived affective quality item",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original value and source column name",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Direct ISO 12913 PAQ item mapping; no cross-framework conversion.",
+      "source_column_examples": [
+        "mean_PAQ2_vibrant"
+      ]
+    },
+    {
+      "original_field": "mean_PAQ3_eventful",
+      "mosaiq_field": "perception.iso_12913.paq.eventful",
+      "semantic_basis": "ISO 12913 perceived affective quality item",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original value and source column name",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Direct ISO 12913 PAQ item mapping; no cross-framework conversion.",
+      "source_column_examples": [
+        "mean_PAQ3_eventful"
+      ]
+    },
+    {
+      "original_field": "mean_PAQ4_chaotic",
+      "mosaiq_field": "perception.iso_12913.paq.chaotic",
+      "semantic_basis": "ISO 12913 perceived affective quality item",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original value and source column name",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Direct ISO 12913 PAQ item mapping; no cross-framework conversion.",
+      "source_column_examples": [
+        "mean_PAQ4_chaotic"
+      ]
+    },
+    {
+      "original_field": "mean_PAQ5_annoying",
+      "mosaiq_field": "perception.iso_12913.paq.annoying",
+      "semantic_basis": "ISO 12913 perceived affective quality item",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original value and source column name",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Direct ISO 12913 PAQ item mapping; no cross-framework conversion.",
+      "source_column_examples": [
+        "mean_PAQ5_annoying"
+      ]
+    },
+    {
+      "original_field": "mean_PAQ6_monotonous",
+      "mosaiq_field": "perception.iso_12913.paq.monotonous",
+      "semantic_basis": "ISO 12913 perceived affective quality item",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original value and source column name",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Direct ISO 12913 PAQ item mapping; no cross-framework conversion.",
+      "source_column_examples": [
+        "mean_PAQ6_monotonous"
+      ]
+    },
+    {
+      "original_field": "mean_PAQ7_uneventful",
+      "mosaiq_field": "perception.iso_12913.paq.uneventful",
+      "semantic_basis": "ISO 12913 perceived affective quality item",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original value and source column name",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Direct ISO 12913 PAQ item mapping; no cross-framework conversion.",
+      "source_column_examples": [
+        "mean_PAQ7_uneventful"
+      ]
+    },
+    {
+      "original_field": "mean_PAQ8_calm",
+      "mosaiq_field": "perception.iso_12913.paq.calm",
+      "semantic_basis": "ISO 12913 perceived affective quality item",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve original value and source column name",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Direct ISO 12913 PAQ item mapping; no cross-framework conversion.",
+      "source_column_examples": [
+        "mean_PAQ8_calm"
+      ]
+    },
+    {
+      "original_field": "mean_ISOPleasant",
+      "mosaiq_field": "perception.iso_12913.derived_coordinates.pleasantness",
+      "semantic_basis": "ISO 12913 Method A coordinate",
+      "transformation": "direct_mapping_from_existing_derived_value",
+      "required": false,
+      "missingness_rule": "not_reported if absent and not recomputed",
+      "provenance_note": "Keep separate from raw PAQ item ratings",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Existing derived coordinate is kept separate from raw PAQ items.",
+      "source_column_examples": [
+        "mean_ISOPleasant"
+      ]
+    },
+    {
+      "original_field": "mean_ISOEventful",
+      "mosaiq_field": "perception.iso_12913.derived_coordinates.eventfulness",
+      "semantic_basis": "ISO 12913 Method A coordinate",
+      "transformation": "direct_mapping_from_existing_derived_value",
+      "required": false,
+      "missingness_rule": "not_reported if absent and not recomputed",
+      "provenance_note": "Keep separate from raw PAQ item ratings",
+      "mapping_confidence": "high",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Existing derived coordinate is kept separate from raw PAQ items.",
+      "source_column_examples": [
+        "mean_ISOEventful"
+      ]
+    },
+    {
+      "original_field": "LAeq_dBA",
+      "mosaiq_field": "features.acoustic_indicators.LAeq_dBA",
+      "semantic_basis": "acoustic indicator",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve method/provenance when known",
+      "mapping_confidence": "medium",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Feature value is structurally mapped; source extraction method may need fuller provenance.",
+      "source_column_examples": [
+        "LAeq_dBA"
+      ]
+    },
+    {
+      "original_field": "loudness_N_sone",
+      "mosaiq_field": "features.psychoacoustic_indicators.loudness_N_sone",
+      "semantic_basis": "psychoacoustic indicator",
+      "transformation": "direct_mapping",
+      "required": false,
+      "missingness_rule": "not_reported if absent from source metadata",
+      "provenance_note": "Preserve method/provenance when known",
+      "mapping_confidence": "medium",
+      "evidence_type": "metadata_file",
+      "review_status": "proposed",
+      "ambiguity_note": "Feature value is structurally mapped; source extraction method may need fuller provenance.",
+      "source_column_examples": [
+        "loudness_N_sone"
+      ]
+    }
+  ],
+  "mapping_review": {
+    "status": "proposed",
+    "review_basis": "Schema-level review using existing MOSAIQ metadata files and ISO 12913 field semantics.",
+    "literature_basis": [
+      "Nan et al. 2022 data harmonisation checklist and reproducibility framing",
+      "Holzinger et al. 2022 information-fusion transparency and verification framing",
+      "Zhu et al. 2023 multi-view entity-alignment framing"
+    ],
+    "note": "Mapping confidence documents schema/semantic confidence only; it is not statistical harmonisation confidence."
+  }
+}
