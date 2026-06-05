@@ -1,0 +1,38 @@
+{
+  "name": "MOSAIQ lightweight harmonisation graph model",
+  "purpose": "Represent schema-level relationships for explainable information fusion without training a knowledge-graph alignment model.",
+  "node_types": [
+    "Dataset",
+    "Sample",
+    "AudioAsset",
+    "VisualAsset",
+    "PAQAnnotation",
+    "ISO12913Item",
+    "DerivedCoordinate",
+    "FeatureRecord",
+    "Context",
+    "AcousticEnvironment",
+    "ParticipantGroup"
+  ],
+  "relation_types": [
+    "has_sample",
+    "has_audio",
+    "has_visual",
+    "has_context",
+    "has_acoustic_environment",
+    "has_participant_group",
+    "has_annotation",
+    "uses_framework_item",
+    "has_derived_coordinate",
+    "has_feature",
+    "derived_from"
+  ],
+  "alignment_views": [
+    "audio_view",
+    "visual_view",
+    "context_view",
+    "perception_view",
+    "feature_view"
+  ],
+  "scope_note": "The graph model supports traceability and multi-view alignment documentation only; it does not implement graph learning or entity matching."
+}

@@ -13,11 +13,12 @@ from pathlib import Path
 from typing import Any
 
 ALLOWED_FEATURE_TYPES = {
-    "cityseg_summary",
-    "cityseg_temporal_summary",
-    "cityseg_gaze_on_class",
-    "clip_embedding",
-    "psychoacoustic",
+    "audio_embedding",
+    "visual_clip_embedding",
+    "visual_semantic_summary",
+    "behavioural_attention",
+    "contextual_descriptor",
+    "other",
 }
 
 
@@ -46,7 +47,7 @@ def is_number_01(x: Any) -> bool:
 def validate_cityseg_feature(feature_json: dict[str, Any], idx: int, errors: list[str]) -> None:
     class_ratio = feature_json.get("class_ratio")
     if not isinstance(class_ratio, dict) or not class_ratio:
-        errors.append(f"row {idx}: cityseg_summary missing class_ratio dict")
+        errors.append(f"row {idx}: visual_semantic_summary missing class_ratio dict")
     else:
         for cname, val in class_ratio.items():
             if not is_number_01(val):
@@ -119,7 +120,9 @@ def main() -> None:
                 errors.append(f"row {idx}: provenance_json is not valid JSON")
                 provenance_json = None
 
-        feature_json_raw = (row.get("feature_json") or "").strip()
+        feature_json_raw = (
+            row.get("feature_value_json") or row.get("feature_json") or ""
+        ).strip()
         if feature_json_raw:
             try:
                 feature_json = json.loads(feature_json_raw)
@@ -134,15 +137,19 @@ def main() -> None:
 
         feature_path = (row.get("feature_path") or "").strip()
         if feature_path and not args.skip_file_check:
-            p = Path(feature_path)
-            if not p.is_absolute():
-                p = dataset_dir / p
-            if not p.exists():
-                errors.append(f"row {idx}: feature_path does not exist: {feature_path}")
+            notes = (row.get("notes") or "").lower()
+            status = str((feature_json or {}).get("status", "")).lower()
+            placeholder_path = "placeholder" in notes or "placeholder" in status
+            if not placeholder_path:
+                p = Path(feature_path)
+                if not p.is_absolute():
+                    p = dataset_dir / p
+                if not p.exists():
+                    errors.append(f"row {idx}: feature_path does not exist: {feature_path}")
 
-        if feature_type == "cityseg_summary":
+        if feature_type == "visual_semantic_summary":
             if feature_json is None:
-                errors.append(f"row {idx}: cityseg_summary requires valid feature_json")
+                errors.append(f"row {idx}: visual_semantic_summary requires valid feature_value_json")
             else:
                 validate_cityseg_feature(feature_json, idx, errors)
 

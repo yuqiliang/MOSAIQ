@@ -26,14 +26,11 @@ fields:
     constraints:
       required: true
       enum:
-        - psychoacoustic
         - audio_embedding
         - visual_clip_embedding
         - visual_semantic_summary
-        - text_caption
         - behavioural_attention
         - contextual_descriptor
-        - caption_or_prompt_descriptor
         - other
 
   - name: source_modality

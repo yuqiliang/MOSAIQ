@@ -1,0 +1,94 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_satp_responses
+title: MOSAIQ SATP Response-level Schema
+description: |
+  One row per SATP perceptual response. PAQ fields are converted from the
+  source 0-100 scale to MOSAIQ's 1-5 scale, with raw values retained.
+
+primaryKey:
+  - response_id
+
+fields:
+  - name: response_id
+    type: string
+    constraints:
+      required: true
+      unique: true
+      pattern: "^SATP_.+$"
+  - name: clip_id
+    type: string
+    constraints:
+      required: true
+      pattern: "^SATP_.+$"
+  - name: participant_id
+    type: string
+    constraints:
+      required: true
+  - name: language
+    type: string
+  - name: institution
+    type: string
+  - name: age
+    type: number
+    constraints: { minimum: 0 }
+  - name: gender
+    type: string
+  - name: sequence_id
+    type: string
+  - name: PAQ1_pleasant
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+  - name: PAQ2_vibrant
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+  - name: PAQ3_eventful
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+  - name: PAQ4_chaotic
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+  - name: PAQ5_annoying
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+  - name: PAQ6_monotonous
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+  - name: PAQ7_uneventful
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+  - name: PAQ8_calm
+    type: number
+    constraints: { minimum: 1, maximum: 5 }
+  - name: PAQ1_pleasant_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: PAQ2_vibrant_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: PAQ3_eventful_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: PAQ4_chaotic_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: PAQ5_annoying_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: PAQ6_monotonous_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: PAQ7_uneventful_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: PAQ8_calm_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: loud_raw_0_100
+    type: number
+    constraints: { minimum: 0, maximum: 100 }
+  - name: ISOPleasant
+    type: number
+    constraints: { minimum: -1, maximum: 1 }
+  - name: ISOEventful
+    type: number
+    constraints: { minimum: -1, maximum: 1 }

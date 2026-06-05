@@ -323,9 +323,9 @@
       "Audio": {
         "Ambisonics": null,
         "Binaural": {
-          "Bit Depth": "24 or 32",
-          "File Format": "WAV",
-          "Sampling Rate": 44100,
+          "Bit Depth": 24,
+          "File Format": "MP3; 24/32-bit WAV available from authors on request",
+          "Sampling Rate": 48000,
           "Duration": "15s"
         },
         "Monaural": null
@@ -333,22 +333,11 @@
       "Visual": null
     },
     "Emotional Annotation": {
-      "Assessment Framework": "ISO/TS 12913-2:2018",
-      "Experimental Setting": "On-site (original ISD campaigns)"
+      "Assessment Framework": "Annoyance rating (1-10) and 24 sound-source labels",
+      "Experimental Setting": "Online"
     },
-    "Acoustic Data": {
-      "Measuring Instrument": "Sound Level Meter and binaural recorder",
-      "Metrics": [
-        "LAeq",
-        "Psychoacoustic parameters (e.g., loudness, sharpness)",
-        "Spectral and level statistics"
-      ]
-    },
-    "Environmental Data": [
-      "Temperature (°C)",
-      "Weather",
-      "Contextual metadata"
-    ],
+    "Acoustic Data": null,
+    "Environmental Data": null,
     "Additional Data": {
       "Metrics": [
         "Metadata",
@@ -358,7 +347,7 @@
   },
 
   "SATP": {
-    "Description": "The Soundscape Assessment in Transport-related Public spaces (SATP) dataset contains short binaural and audiovisual recordings collected in transport-related urban public spaces with associated ISO 12913 soundscape ratings.",
+    "Description": "The Soundscape Attributes Translation Project (SATP) dataset contains 27 30-second binaural urban soundscape recordings and thousands of multilingual ISO 12913 Method A perceptual responses.",
     "Year": 2022,
     "Scenario": "Urban",
     "Access": "Fully",
@@ -368,46 +357,26 @@
       "Duration(mins)": 13.5,
       "Assessments": 17441
     },
-    "Link": "https://zenodo.org/records/6914434",
+    "Link": "https://zenodo.org/records/7143599",
     "Recording": {
       "Audio": {
         "Ambisonics": null,
         "Binaural": {
-          "Bit Depth": null,
+          "Bit Depth": 24,
           "File Format": "WAV",
-          "Sampling Rate": 44100,
+          "Sampling Rate": 48000,
           "Duration": "30s"
         },
         "Monaural": null
       },
-      "Visual": {
-        "Format": "360 Video",
-        "Resolution": "4K",
-        "Frame Rate": 30,
-        "Duration": "30s"
-      }
+      "Visual": null
     },
     "Emotional Annotation": {
       "Assessment Framework": "ISO/TS 12913-2:2018",
-      "Additional Data": [
-        "Contextual questions (e.g., activity, crowding, safety)",
-        "Open comments",
-        "Socio-demographic information"
-      ]
+      "Experimental Setting": "Lab-based"
     },
-    "Acoustic Data": {
-      "Measuring Instrument": "Sound Level Meter",
-      "Metrics": [
-        "LAeq",
-        "Spectrum (1/3-octave)",
-        "Level statistics"
-      ]
-    },
-    "Environmental Data": [
-      "Temperature (°C)",
-      "Weather",
-      "Time of day"
-    ],
+    "Acoustic Data": null,
+    "Environmental Data": null,
     "Additional Data": {
       "Metrics": [
         "Metadata",
@@ -811,5 +780,3 @@
     }
   }
 }
-
-  

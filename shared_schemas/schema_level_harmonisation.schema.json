@@ -1,0 +1,449 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosaiq.local/schema_level_harmonisation.schema.json",
+  "title": "MOSAIQ schema-level harmonisation record",
+  "description": "Minimal JSON schema for representing dataset-level and sample-level soundscape harmonisation records. This schema describes structure and ISO 12913 semantics only; it does not claim statistical harmonisation.",
+  "type": "object",
+  "required": ["record_type", "dataset_id", "provenance", "validation"],
+  "additionalProperties": false,
+  "properties": {
+    "record_type": {
+      "type": "string",
+      "enum": ["dataset", "sample"]
+    },
+    "dataset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataset_identity": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": ["string", "null"] },
+        "description": { "type": ["string", "null"] }
+      }
+    },
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_clip_id": {
+      "type": ["string", "null"]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "url": { "type": ["string", "null"] },
+        "citation": { "type": ["string", "null"] }
+      }
+    },
+    "harmonisation": {
+      "type": "object",
+      "required": ["scope", "levels"],
+      "additionalProperties": true,
+      "properties": {
+        "scope": {
+          "type": "string",
+          "enum": ["schema_level"]
+        },
+        "levels": {
+          "type": "object",
+          "required": [
+            "structural_harmonisation",
+            "semantic_harmonisation",
+            "feature_harmonisation",
+            "statistical_harmonisation",
+            "benchmark_split_harmonisation"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "structural_harmonisation": { "$ref": "#/$defs/harmonisation_level" },
+            "semantic_harmonisation": { "$ref": "#/$defs/harmonisation_level" },
+            "feature_harmonisation": { "$ref": "#/$defs/harmonisation_level" },
+            "statistical_harmonisation": { "$ref": "#/$defs/harmonisation_level" },
+            "benchmark_split_harmonisation": { "$ref": "#/$defs/harmonisation_level" }
+          }
+        },
+        "checklist": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/checklist_item" }
+        }
+      }
+    },
+    "access": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": true,
+      "properties": {
+        "status": { "$ref": "#/$defs/access_status" },
+        "licence_spdx": { "type": ["string", "null"] },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "study": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "study_type": { "type": ["string", "null"] },
+        "environment_type": { "$ref": "#/$defs/environment_type" },
+        "setting": { "$ref": "#/$defs/setting" }
+      }
+    },
+    "acoustic_environment": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "people": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "sound_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "audio": {
+      "type": "object",
+      "required": ["channel_type"],
+      "additionalProperties": true,
+      "properties": {
+        "channel_type": { "$ref": "#/$defs/audio_channel_type" },
+        "asset": { "type": ["string", "null"] },
+        "duration_s": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": true,
+      "properties": {
+        "type": { "$ref": "#/$defs/visual_type" },
+        "asset": { "type": ["string", "null"] }
+      }
+    },
+    "alignment": {
+      "type": "object",
+      "required": [
+        "audio_view",
+        "visual_view",
+        "context_view",
+        "perception_view",
+        "feature_view",
+        "alignment_status",
+        "unresolved_issues"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "audio_view": { "$ref": "#/$defs/view_status" },
+        "visual_view": { "$ref": "#/$defs/view_status" },
+        "context_view": { "$ref": "#/$defs/view_status" },
+        "perception_view": { "$ref": "#/$defs/view_status" },
+        "feature_view": { "$ref": "#/$defs/view_status" },
+        "alignment_status": {
+          "type": "string",
+          "enum": ["schema_aligned", "partially_schema_aligned", "not_aligned", "unknown"]
+        },
+        "unresolved_issues": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "perception": {
+      "type": "object",
+      "required": ["framework", "iso_12913"],
+      "additionalProperties": false,
+      "properties": {
+        "framework": {
+          "type": "string",
+          "enum": ["ISO_12913"]
+        },
+        "iso_12913": {
+          "type": "object",
+          "required": ["paq"],
+          "additionalProperties": false,
+          "properties": {
+            "paq": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "pleasant": { "$ref": "#/$defs/paq_rating" },
+                "vibrant": { "$ref": "#/$defs/paq_rating" },
+                "eventful": { "$ref": "#/$defs/paq_rating" },
+                "chaotic": { "$ref": "#/$defs/paq_rating" },
+                "annoying": { "$ref": "#/$defs/paq_rating" },
+                "monotonous": { "$ref": "#/$defs/paq_rating" },
+                "uneventful": { "$ref": "#/$defs/paq_rating" },
+                "calm": { "$ref": "#/$defs/paq_rating" }
+              }
+            },
+            "derived_coordinates": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "pleasantness": { "$ref": "#/$defs/derived_coordinate" },
+                "eventfulness": { "$ref": "#/$defs/derived_coordinate" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "acoustic_indicators": { "$ref": "#/$defs/feature_records" },
+        "psychoacoustic_indicators": { "$ref": "#/$defs/feature_records" },
+        "derived_features": { "$ref": "#/$defs/feature_records" }
+      }
+    },
+    "knowledge_graph": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "additionalProperties": true,
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/graph_node" }
+        },
+        "edges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/graph_edge" }
+        }
+      }
+    },
+    "harmonisation_potential": {
+      "type": "object",
+      "required": ["score", "components"],
+      "additionalProperties": true,
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "components": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/potential_component" }
+        },
+        "interpretation": { "type": ["string", "null"] }
+      }
+    },
+    "missingness": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/missingness_record" }
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/provenance_record" }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["unchecked", "valid", "valid_with_warnings", "invalid"]
+        },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "$defs": {
+    "harmonisation_status": {
+      "type": "string",
+      "enum": ["aligned", "partially_aligned", "documented_only", "not_performed", "not_applicable", "unknown"]
+    },
+    "harmonisation_level": {
+      "type": "object",
+      "required": ["status", "note"],
+      "additionalProperties": true,
+      "properties": {
+        "status": { "$ref": "#/$defs/harmonisation_status" },
+        "note": { "type": "string" }
+      }
+    },
+    "checklist_item": {
+      "type": "object",
+      "required": ["item", "status", "note"],
+      "additionalProperties": true,
+      "properties": {
+        "item": { "type": "string" },
+        "status": { "$ref": "#/$defs/harmonisation_status" },
+        "note": { "type": "string" }
+      }
+    },
+    "view_status": {
+      "type": "string",
+      "enum": ["available", "partial", "not_reported", "not_accessible", "not_applicable", "unknown"]
+    },
+    "visual_type": {
+      "type": "string",
+      "enum": ["none", "image", "video", "vr", "eye_tracking", "derived_visual_feature", "unknown"]
+    },
+    "audio_channel_type": {
+      "type": "string",
+      "enum": ["mono", "stereo", "binaural", "ambisonic", "unknown"]
+    },
+    "environment_type": {
+      "type": "string",
+      "enum": ["real", "recorded", "virtual", "unknown"]
+    },
+    "setting": {
+      "type": "string",
+      "enum": ["field", "laboratory", "mixed", "unknown"]
+    },
+    "access_status": {
+      "type": "string",
+      "enum": ["open", "restricted", "request_required", "closed", "unknown"]
+    },
+    "missingness_status": {
+      "type": "string",
+      "enum": ["available", "not_collected", "not_reported", "not_accessible", "not_applicable", "unknown"]
+    },
+    "provenance_source_type": {
+      "type": "string",
+      "enum": ["paper", "dataset_documentation", "metadata_file", "manual_inspection", "code_extraction", "author_communication", "unknown"]
+    },
+    "paq_rating": {
+      "type": "object",
+      "required": ["value", "original_field"],
+      "additionalProperties": true,
+      "properties": {
+        "value": { "type": ["number", "null"] },
+        "original_field": { "type": ["string", "null"] },
+        "value_type": {
+          "type": "string",
+          "enum": ["raw_response", "aggregated_sample_annotation"]
+        },
+        "aggregation": { "type": ["string", "null"] }
+      }
+    },
+    "derived_coordinate": {
+      "type": "object",
+      "required": ["value", "method", "source"],
+      "additionalProperties": true,
+      "properties": {
+        "value": { "type": ["number", "null"] },
+        "method": { "type": "string" },
+        "source": { "type": "string" },
+        "value_type": {
+          "type": "string",
+          "enum": ["derived_coordinate"]
+        },
+        "provenance": { "type": ["string", "null"] }
+      }
+    },
+    "feature_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "additionalProperties": true,
+        "properties": {
+          "name": { "type": "string" },
+          "value": {},
+          "unit": { "type": ["string", "null"] },
+          "method": { "type": ["string", "null"] },
+          "provenance": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "graph_node": {
+      "type": "object",
+      "required": ["id", "type", "label"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Dataset",
+            "Sample",
+            "AudioAsset",
+            "VisualAsset",
+            "PAQAnnotation",
+            "ISO12913Item",
+            "DerivedCoordinate",
+            "FeatureRecord",
+            "Context",
+            "AcousticEnvironment",
+            "ParticipantGroup"
+          ]
+        },
+        "label": { "type": "string" }
+      }
+    },
+    "graph_edge": {
+      "type": "object",
+      "required": ["source", "relation", "target"],
+      "additionalProperties": true,
+      "properties": {
+        "source": { "type": "string" },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "has_sample",
+            "has_audio",
+            "has_visual",
+            "has_context",
+            "has_acoustic_environment",
+            "has_participant_group",
+            "has_annotation",
+            "uses_framework_item",
+            "has_derived_coordinate",
+            "has_feature",
+            "derived_from"
+          ]
+        },
+        "target": { "type": "string" }
+      }
+    },
+    "potential_component": {
+      "type": "object",
+      "required": ["name", "score", "status", "reason"],
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string" },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "status": { "$ref": "#/$defs/harmonisation_status" },
+        "reason": { "type": "string" }
+      }
+    },
+    "missingness_record": {
+      "type": "object",
+      "required": ["field", "status"],
+      "additionalProperties": true,
+      "properties": {
+        "field": { "type": "string" },
+        "status": { "$ref": "#/$defs/missingness_status" },
+        "reason": { "type": ["string", "null"] }
+      }
+    },
+    "provenance_record": {
+      "type": "object",
+      "required": ["source_type", "note"],
+      "additionalProperties": true,
+      "properties": {
+        "source_type": { "$ref": "#/$defs/provenance_source_type" },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

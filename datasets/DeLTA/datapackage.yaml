@@ -1,0 +1,45 @@
+$schema: https://specs.frictionlessdata.io/schemas/data-package.json
+name: delta
+title: DeLTA (Deep Learning Techniques for noise Annoyance detection) Dataset
+description: |
+  DeLTA subset packaged for MOSAIQ from the Zenodo v1.0 record. The package
+  contains response-level annoyance and sound-source labels, plus the
+  collapsed-majority clip-level source labels and mean annoyance ratings.
+
+  Source: Mitchell et al., 2022 (Zenodo: 10.5281/zenodo.7158057)
+
+version: "0.1.0"
+licenses:
+  - name: CC-BY-4.0
+    title: Creative Commons Attribution 4.0 International
+    path: https://creativecommons.org/licenses/by/4.0/
+
+contributors:
+  - title: DeLTA Dataset Team
+    role: author
+    organization: University College London
+
+resources:
+  - name: clips
+    title: Clip-level metadata (collapsed majority)
+    path: data/clips.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/clips.schema.yaml
+
+  - name: responses
+    title: Response-level metadata (per-participant)
+    path: data/responses.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/responses.schema.yaml
+
+  - name: source_files
+    title: Zenodo source file manifest
+    path: data/source_files.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: schemas/source_files.schema.yaml

@@ -2,7 +2,7 @@
 
 This script writes clip-level records to features.csv using the generic MOSAIQ
 feature schema, with:
-- feature_type=clip_embedding
+- feature_type=visual_clip_embedding
 - feature_family=visual_embedding
 - value_format in {path, base64}
 """
@@ -320,12 +320,12 @@ def main() -> None:
     else:
         rows = []
 
-    # Keep non-clip_embedding features; replace clip_embedding rows by clip_id.
+    # Keep non-visual-clip-embedding features; replace visual embedding rows by clip_id.
     kept = [r for r in rows if not (r.get("feature_type") == "visual_clip_embedding" and r.get("clip_id"))]
     merged = kept + generated
     write_rows(output_csv, merged)
 
-    print(f"Wrote {len(generated)} clip_embedding rows to {output_csv}")
+    print(f"Wrote {len(generated)} visual_clip_embedding rows to {output_csv}")
     if skipped:
         print(f"Skipped {skipped} clips with unresolved videos")
 

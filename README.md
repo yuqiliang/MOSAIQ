@@ -32,17 +32,25 @@ MOSAIQ/
 │   │       ├── clips.csv
 │   │       ├── features.csv
 │   │       └── responses.csv
-│   └── ARAUS/
+│   ├── ARAUS/
+│   │   ├── datapackage.yaml
+│   │   ├── SCHEMA_NOTES.md
+│   │   ├── schemas/
+│   │   │   ├── clips.schema.yaml
+│   │   │   └── responses.schema.yaml
+│   │   └── data/
+│   │       ├── clips.csv
+│   │       └── responses.csv
+│   ├── SATP/
+│   │   ├── datapackage.yaml
+│   │   ├── SCHEMA_NOTES.md
+│   │   ├── schemas/
+│   │   └── data/
+│   └── DeLTA/
 │       ├── datapackage.yaml
 │       ├── SCHEMA_NOTES.md
 │       ├── schemas/
-│       │   ├── clips.schema.yaml
-│       │   ├── features.schema.yaml
-│       │   └── responses.schema.yaml
 │       └── data/
-│           ├── clips.csv
-│           ├── features.csv
-│           └── responses.csv
 │
 ├── shared_schemas/               
 │   ├── datasets.schema.yaml
@@ -53,6 +61,9 @@ MOSAIQ/
 │
 ├── scripts/
 │   ├── build_isd.py
+│   ├── build_araus.py
+│   ├── build_satp.py
+│   ├── build_delta.py
 │   ├── build_clip_features.py
 │   ├── build_cityseg_features.py
 │   ├── validate_in_python.py
@@ -90,6 +101,8 @@ dependencies pinned in `uv.lock`.
 uv run frictionless validate catalogue/datapackage.yaml
 uv run frictionless validate datasets/ISD/datapackage.yaml --trusted
 uv run frictionless validate datasets/ARAUS/datapackage.yaml --trusted
+uv run frictionless validate datasets/SATP/datapackage.yaml
+uv run frictionless validate datasets/DeLTA/datapackage.yaml
 ```
 
 Expected output: catalogue resources (`datasets`) and dataset package
@@ -103,14 +116,14 @@ MOSAIQ supports optional derived FeatureRecords linked by `clip_id` in
 `datasets/<dataset>/data/features.csv`.
 
 Supported examples include:
-- psychoacoustic descriptors
 - CLIP visual embeddings
 - CitySeg semantic summaries
-- soundscape captions
 
-In this release, MOSAIQ defines the shared FeatureRecord schema and placeholder
-resources. Full extraction pipelines and benchmark baselines for these derived
-features will be provided in later MOSAIQ releases.
+In this release, MOSAIQ defines the shared FeatureRecord schema for visual
+derived features and placeholder resources. Psychoacoustic indicators remain in
+clip-level/acoustic metadata when available, rather than in the FeatureRecord
+layer. Caption features are a future extension and are not included in the
+current schema.
 
 ### 4. Build CLIP visual embedding features (optional)
 
@@ -122,17 +135,17 @@ Input (`clips.csv` must contain these columns):
 
 Output:
 - `datasets/<dataset>/data/features.csv` with columns:
-  `feature_id, clip_id, dataset_id, feature_type, feature_family, value_format, feature_path, feature_json, provenance_json, created_at, notes`
+  `feature_id, clip_id, feature_type, source_modality, value_format, provenance_json, feature_path, feature_value_json, embedding_dim, dtype, model_name, model_version, input_asset_id, frame_time_s, frame_index, pooling, language, notes`
 - If `--storage npy` (default): one `.npy` file per clip under:
   `datasets/<dataset>/data/features/clip_embedding/`
-- If `--storage base64`: embedding payload is stored in `feature_json`.
+- If `--storage base64`: embedding payload is stored in `feature_value_json`.
 
 Sampling and feature definition:
 - `feature_type` is always `visual_clip_embedding`.
 - `source_modality` is `visual`.
 - Default frame rule is center frame:
   `t = (start_s + end_s) / 2`.
-- Pooling/frame metadata are stored in `feature_json`.
+- Pooling/frame metadata are stored in `feature_value_json`.
 
 Mandatory provenance fields written to `provenance_json`:
 - `model`, `version`, `library_versions`, `frame_sampling_rule`,
@@ -216,7 +229,9 @@ regenerate the derived CSVs from scratch:
 
 ```bash
 uv run python scripts/build_datasets_csv.py     # rebuilds data/catalogue/datasets.csv
-uv run python scripts/regen_and_flatten.py      # rebuilds data/ISD/clips.csv + responses.csv
+uv run python scripts/build_isd.py              # rebuilds data/ISD/clips.csv + responses.csv
+uv run python scripts/build_satp.py             # rebuilds data/SATP/clips.csv + responses.csv
+uv run python scripts/build_delta.py            # rebuilds data/DeLTA/clips.csv + responses.csv
 ```
 
 ## Schema design philosophy
@@ -229,7 +244,7 @@ MOSAIQ separates the data into three layers, each with its own schema:
 
 2. **Clip-level metadata** (`data/<dataset>/clips.csv`) — one row per clip
    with aggregated PAQ ratings, derived ISO Pleasant / Eventful coordinates,
-   and primary psychoacoustic features.
+   and available acoustic or psychoacoustic measurements.
 
 3. **Response-level metadata** (`data/<dataset>/responses.csv`) — one row
    per individual participant assessment, linked to clips via `clip_id`.
@@ -237,6 +252,12 @@ MOSAIQ separates the data into three layers, each with its own schema:
 Schemas are formally specified using the [Frictionless Data Package](https://specs.frictionlessdata.io/)
 standard, which supports type checks, value-range constraints, enumerations,
 and foreign-key relationships across resources.
+
+An additional schema-level harmonisation layer is documented in
+[`docs/schema_level_harmonisation.md`](docs/schema_level_harmonisation.md).
+This layer prepares ISD and ARAUS for later benchmark construction using a
+shared structure and conservative ISO 12913 semantics; it does not claim that
+the datasets are statistically or fully harmonised.
 
 ## Development
 

@@ -386,7 +386,7 @@ def main() -> None:
         kept.append(r)
 
     write_rows(args.output, kept)
-    print(f"Wrote {len(generated_rows)} cityseg_summary rows to {args.output}")
+    print(f"Wrote {len(generated_rows)} visual_semantic_summary rows to {args.output}")
     if missing_count:
         print(f"Missing summaries for {missing_count} clips")
 

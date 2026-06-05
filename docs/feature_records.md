@@ -14,14 +14,8 @@ Derived features are stored in `features.csv` so MOSAIQ can:
 ## How `feature_id` and `clip_id` work
 - `feature_id` uniquely identifies a single FeatureRecord row.
 - `clip_id` points to the clip unit of analysis in `clips.csv`.
-- Multiple FeatureRecords can reference the same `clip_id` (e.g., psychoacoustic + CLIP + CitySeg + caption).
-
-## Representing psychoacoustic features
-Use:
-- `feature_type=psychoacoustic`
-- `source_modality=audio`
-- `value_format=json` or `scalar`
-- `feature_value_json` for compact descriptors (e.g., LAeq, loudness, roughness).
+- Multiple FeatureRecords can reference the same `clip_id` (e.g., CLIP + CitySeg).
+- Psychoacoustic indicators are currently kept in clip-level/acoustic metadata when available, rather than represented as FeatureRecords.
 
 ## Representing CLIP embeddings
 Use:
@@ -40,13 +34,6 @@ Use:
 
 Store only clip-level summaries in `features.csv`.
 Do not store full segmentation masks directly in `features.csv`; keep large assets external and reference by `feature_path` and provenance.
-
-## Representing soundscape captions
-Use:
-- `feature_type=text_caption`
-- `source_modality=text` (or `audio_visual`/`multimodal` depending on generation pipeline)
-- `value_format=text` or `json`
-- caption text can be stored in `feature_value_json` (or external path if needed).
 
 ## Provenance JSON guidance
 `provenance_json` should capture enough information to reproduce feature extraction.
@@ -85,31 +72,14 @@ CitySeg example:
 }
 ```
 
-Soundscape caption example:
-
-```json
-{
-  "tool": "SoundSCaper_or_captioning_model",
-  "model_name": "placeholder",
-  "input_features": ["acoustic_scene", "audio_events", "affective_quality"],
-  "prompt_template": "placeholder",
-  "decoding_parameters": {
-    "temperature": "placeholder",
-    "max_tokens": "placeholder"
-  },
-  "language": "en",
-  "created_date": "YYYY-MM-DD"
-}
-```
-
 ## Current status in this release
 Currently provided:
 - shared FeatureRecord schema;
-- dataset placeholder `features.csv` resources with example rows;
+- dataset placeholder `features.csv` resources with visual example rows;
 - lightweight validation helper script.
 
 Placeholder/future extension areas:
 - full CLIP embedding extraction assets;
 - full CitySeg HDF5 aggregation pipelines;
-- generated soundscape caption baselines;
+- generated soundscape caption baselines, after the caption task is formally included;
 - behavioural/eye-tracking derived descriptors.
