@@ -15,26 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-FEATURE_FIELDS = [
-    "feature_id",
-    "clip_id",
-    "feature_type",
-    "source_modality",
-    "value_format",
-    "provenance_json",
-    "feature_path",
-    "feature_value_json",
-    "embedding_dim",
-    "dtype",
-    "model_name",
-    "model_version",
-    "input_asset_id",
-    "frame_time_s",
-    "frame_index",
-    "pooling",
-    "language",
-    "notes",
-]
+from feature_fields import FEATURE_FIELDS
 
 
 def parse_args() -> argparse.Namespace:
@@ -355,22 +336,41 @@ def main() -> None:
         generated_rows.append(
             {
                 "feature_id": feature_id,
+                "dataset_id": args.dataset_id,
                 "clip_id": clip_id,
+                "asset_id": video_asset_id or "",
+                "modality": "visual",
                 "feature_type": "visual_semantic_summary",
+                "feature_name": "CitySeg semantic class summary",
                 "source_modality": "visual",
                 "value_format": "json" if not feature_path else "path",
+                "extractor_name": "CitySeg",
+                "extractor_version": str(provenance.get("tool_version", "unknown")),
                 "provenance_json": json.dumps(provenance, ensure_ascii=True, separators=(",", ":")),
+                "feature_storage_path": feature_path,
                 "feature_path": feature_path,
+                "feature_file_type": Path(feature_path).suffix.lstrip(".") if feature_path else "json",
                 "feature_value_json": json.dumps(feature_payload, ensure_ascii=True, separators=(",", ":")),
+                "feature_dimension": "",
+                "feature_shape": "object",
+                "feature_format": "json" if not feature_path else "path",
                 "embedding_dim": "",
                 "dtype": "",
                 "model_name": str(provenance.get("segmentation_model", "OneFormer")),
                 "model_version": str(provenance.get("tool_version", "unknown")),
+                "model_checkpoint": str(provenance.get("model_checkpoint") or ""),
                 "input_asset_id": video_asset_id or "",
+                "input_asset": video_asset or "",
+                "input_time_window": "",
+                "sampling_rate_or_fps": frame_sampling_rule,
+                "code_reference": "scripts/build_cityseg_features.py",
+                "created_by": "MOSAIQ",
+                "date_created": now_iso,
                 "frame_time_s": "",
                 "frame_index": "",
                 "pooling": "",
                 "language": "",
+                "provenance_notes": str(summary.get("notes", "")),
                 "notes": str(summary.get("notes", "")),
             }
         )

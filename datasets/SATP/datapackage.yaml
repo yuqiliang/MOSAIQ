@@ -4,8 +4,9 @@ title: Soundscape Attributes Translation Project (SATP) Dataset
 description: |
   SATP subset packaged for MOSAIQ from the Zenodo v1.2.1 record. The package
   contains response-level perceptual ratings and clip-level aggregates for 27
-  urban soundscape recordings. Source PAQ ratings are preserved as 0-100 raw
-  fields and converted to MOSAIQ's 1-5 PAQ fields for ISO 12913 coordinates.
+  urban soundscape recordings. Source PAQ ratings are preserved as original
+  0-100 raw fields. MOSAIQ-compatible 1-5 PAQ fields are stored separately as
+  derived harmonised values for comparison and ISO 12913 coordinate derivation.
 
   Source: Oberman et al., 2022 (Zenodo: 10.5281/zenodo.7143599)
 
@@ -30,12 +31,40 @@ resources:
     schema: schemas/clips.schema.yaml
 
   - name: responses
-    title: Response-level metadata (per-participant)
+    title: Response-level metadata (per-participant, wide table)
     path: data/responses.csv
     format: csv
     mediatype: text/csv
     encoding: utf-8
     schema: schemas/responses.schema.yaml
+
+  - name: ratings
+    title: Long-form rating-scale examples preserving original and harmonised values
+    description: |
+      Minimal auditable examples showing how SATP 0-100 PAQ values are linked
+      to derived 1-5 MOSAIQ PAQ values. The complete wide response table remains
+      in responses.csv.
+    path: data/ratings.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: ../../shared_schemas/ratings.schema.yaml
+
+  - name: preprocessing
+    title: SATP preprocessing and harmonisation records
+    path: data/preprocessing.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: ../../shared_schemas/preprocessing.schema.yaml
+
+  - name: features
+    title: Optional clip-level features (e.g., PANNs audio embeddings)
+    path: data/features.csv
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    schema: ../../shared_schemas/features.schema.yaml
 
   - name: source_files
     title: Zenodo source file manifest

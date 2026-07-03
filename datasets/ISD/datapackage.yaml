@@ -36,7 +36,7 @@ resources:
     schema: schemas/responses.schema.yaml
 
   - name: features
-    title: Optional clip-level features (e.g., CLIP embeddings, CitySeg summaries)
+    title: Optional clip-level features (e.g., PANNs, CLIP, CitySeg)
     path: data/features.csv
     format: csv
     mediatype: text/csv

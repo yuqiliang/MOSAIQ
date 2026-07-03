@@ -14,21 +14,19 @@ from pathlib import Path
 import pandas as pd
 
 ALLOWED_FEATURE_TYPES = {
-    "psychoacoustic",
     "audio_embedding",
     "visual_clip_embedding",
     "visual_semantic_summary",
-    "text_caption",
     "behavioural_attention",
     "contextual_descriptor",
-    "caption_or_prompt_descriptor",
+    "psychoacoustic_descriptor",
     "other",
 }
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Check MOSAIQ FeatureRecords")
-    parser.add_argument("--dataset", required=True, choices=["ISD", "ARAUS"], help="Dataset id")
+    parser.add_argument("--dataset", required=True, choices=["ISD", "ARAUS", "SATP"], help="Dataset id")
     parser.add_argument("--clips", default=None, help="Optional clips.csv path")
     parser.add_argument("--features", default=None, help="Optional features.csv path")
     return parser.parse_args()
@@ -62,6 +60,20 @@ def main() -> None:
             errors.append(
                 f"features.clip_id values not found in clips.clip_id: {missing_clip['clip_id'].astype(str).head(10).tolist()}"
             )
+
+    if "dataset_id" in features.columns and "dataset_id" in clips.columns:
+        bad_dataset = features.merge(
+            clips[["clip_id", "dataset_id"]],
+            on="clip_id",
+            suffixes=("_feature", "_clip"),
+            how="left",
+        )
+        bad_dataset = bad_dataset[
+            bad_dataset["dataset_id_clip"].notna()
+            & (bad_dataset["dataset_id_feature"].astype(str) != bad_dataset["dataset_id_clip"].astype(str))
+        ]
+        if not bad_dataset.empty:
+            errors.append("features.dataset_id does not match clips.dataset_id for some rows")
 
     if "feature_type" not in features.columns:
         errors.append("Missing column: feature_type")

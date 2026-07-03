@@ -3,8 +3,8 @@
 This script writes clip-level records to features.csv using the generic MOSAIQ
 feature schema, with:
 - feature_type=visual_clip_embedding
-- feature_family=visual_embedding
-- value_format in {path, base64}
+- source_modality=visual
+- value_format in {path, vector}
 """
 
 from __future__ import annotations
@@ -23,27 +23,9 @@ from typing import Any
 
 import numpy as np
 
+from feature_fields import FEATURE_FIELDS
+
 VIDEO_EXTENSIONS = [".mp4", ".mov", ".mkv", ".avi", ".webm", ".m4v"]
-FEATURE_FIELDS = [
-    "feature_id",
-    "clip_id",
-    "feature_type",
-    "source_modality",
-    "value_format",
-    "provenance_json",
-    "feature_path",
-    "feature_value_json",
-    "embedding_dim",
-    "dtype",
-    "model_name",
-    "model_version",
-    "input_asset_id",
-    "frame_time_s",
-    "frame_index",
-    "pooling",
-    "language",
-    "notes",
-]
 
 
 @dataclass
@@ -257,7 +239,7 @@ def main() -> None:
         emb = emb.astype(out_dtype, copy=False)
 
         feature_path = ""
-        value_format = "base64"
+        value_format = "vector"
         feature_json_payload: dict[str, Any] = {
             "embedding_dim": int(emb.shape[0]),
             "dtype": str(emb.dtype),
@@ -295,22 +277,41 @@ def main() -> None:
         generated.append(
             {
                 "feature_id": f"clipemb_{clip.clip_id}",
+                "dataset_id": clip.dataset_id,
                 "clip_id": clip.clip_id,
+                "asset_id": clip.video_asset_id,
+                "modality": "visual",
                 "feature_type": "visual_clip_embedding",
+                "feature_name": "CLIP visual embedding",
                 "source_modality": "visual",
                 "value_format": value_format,
+                "extractor_name": "open_clip",
+                "extractor_version": package_version("open-clip-torch"),
                 "provenance_json": json.dumps(provenance, ensure_ascii=True, separators=(",", ":")),
+                "feature_storage_path": feature_path,
                 "feature_path": feature_path,
+                "feature_file_type": "npy" if value_format == "path" else "inline_base64",
                 "feature_value_json": json.dumps(feature_json_payload, ensure_ascii=True, separators=(",", ":")),
+                "feature_dimension": int(emb.shape[0]),
+                "feature_shape": f"[{int(emb.shape[0])}]",
+                "feature_format": value_format,
                 "embedding_dim": int(emb.shape[0]),
                 "dtype": str(emb.dtype),
                 "model_name": model_name,
                 "model_version": args.pretrained,
+                "model_checkpoint": args.pretrained,
                 "input_asset_id": clip.video_asset_id,
+                "input_asset": clip.video_asset,
+                "input_time_window": f"{clip.start_s:.6g}-{clip.end_s:.6g}s",
+                "sampling_rate_or_fps": "center_frame",
+                "code_reference": "scripts/build_clip_features.py",
+                "created_by": "MOSAIQ",
+                "date_created": now_iso,
                 "frame_time_s": round(float(frame_time_s), 6),
                 "frame_index": int(frame_index),
                 "pooling": "center_frame",
                 "language": "",
+                "provenance_notes": "",
                 "notes": "",
             }
         )
