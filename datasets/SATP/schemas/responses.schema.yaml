@@ -2,8 +2,9 @@ $schema: https://specs.frictionlessdata.io/schemas/table-schema.json
 name: mosaiq_satp_responses
 title: MOSAIQ SATP Response-level Schema
 description: |
-  One row per SATP perceptual response. PAQ fields are converted from the
-  source 0-100 scale to MOSAIQ's 1-5 scale, with raw values retained.
+  One row per SATP perceptual response. The source 0-100 PAQ values are
+  retained as *_raw_0_100 fields. MOSAIQ 1-5 PAQ values are stored as derived
+  harmonised fields, not as replacements for the original measurements.
 
 primaryKey:
   - response_id

@@ -33,7 +33,23 @@ jobs:
         run: uv run frictionless validate datasets/ARAUS/datapackage.yaml --trusted
 
       - name: Validate SATP package
-        run: uv run frictionless validate datasets/SATP/datapackage.yaml
+        run: uv run frictionless validate datasets/SATP/datapackage.yaml --trusted
 
       - name: Validate DeLTA package
         run: uv run frictionless validate datasets/DeLTA/datapackage.yaml
+
+      - name: Validate MOSAIQ linked records
+        run: |
+          uv run python scripts/validate_mosaiq.py --dataset-dir datasets/ISD --skip-file-check
+          uv run python scripts/validate_mosaiq.py --dataset-dir datasets/ARAUS --skip-file-check
+          uv run python scripts/validate_mosaiq.py --dataset-dir datasets/SATP --skip-file-check
+          uv run python scripts/validate_mosaiq.py --dataset-dir datasets/DeLTA --skip-file-check
+
+      - name: Check FeatureRecords
+        run: |
+          uv run python scripts/check_feature_records.py --dataset ISD
+          uv run python scripts/check_feature_records.py --dataset ARAUS
+          uv run python scripts/check_feature_records.py --dataset SATP
+
+      - name: Validate schema-level harmonisation
+        run: uv run python scripts/validate_schema_harmonisation.py

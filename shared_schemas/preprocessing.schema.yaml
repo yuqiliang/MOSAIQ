@@ -1,0 +1,75 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_preprocessing
+title: MOSAIQ Preprocessing and Transformation Schema
+description: |
+  Records transformations used to derive harmonised fields, normalised values,
+  or feature inputs from original dataset values. This table makes
+  preprocessing auditable without overwriting source measurements.
+
+primaryKey:
+  - preprocessing_id
+
+fields:
+  - name: preprocessing_id
+    type: string
+    constraints:
+      required: true
+      unique: true
+
+  - name: dataset_id
+    type: string
+    constraints:
+      required: true
+
+  - name: clip_id
+    type: string
+
+  - name: input_field
+    type: string
+    constraints:
+      required: true
+
+  - name: output_field
+    type: string
+    constraints:
+      required: true
+
+  - name: transformation_type
+    type: string
+    constraints:
+      required: true
+      enum:
+        - scale_conversion
+        - aggregation
+        - iso_coordinate_derivation
+        - normalisation
+        - feature_extraction
+        - filtering
+        - renaming
+        - other
+
+  - name: transformation_formula
+    type: string
+
+  - name: normalisation_range
+    type: string
+
+  - name: software_or_script
+    type: string
+    constraints:
+      required: true
+
+  - name: code_version
+    type: string
+
+  - name: date_created
+    type: string
+
+  - name: notes
+    type: string
+
+foreignKeys:
+  - fields: clip_id
+    reference:
+      resource: clips
+      fields: clip_id

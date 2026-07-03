@@ -2,9 +2,11 @@ $schema: https://specs.frictionlessdata.io/schemas/table-schema.json
 name: mosaiq_feature_records
 title: MOSAIQ FeatureRecord Schema
 description: |
-  Optional clip-level derived FeatureRecords linked by clip_id.
-  This schema supports multimodal derived descriptors while keeping clips.csv
-  focused on core clip metadata.
+  Optional clip-level derived FeatureRecords linked by stable identifiers.
+  This schema supports audio embeddings, visual embeddings, semantic
+  segmentation summaries, eye-tracking descriptors, psychoacoustic descriptors,
+  and future multimodal features while keeping clips.csv focused on core clip
+  metadata.
 
 primaryKey:
   - feature_id
@@ -16,10 +18,36 @@ fields:
       required: true
       unique: true
 
-  - name: clip_id
+  - name: dataset_id
     type: string
+    description: Source dataset identifier, e.g. ISD, ARAUS, SATP.
     constraints:
       required: true
+
+  - name: clip_id
+    type: string
+    description: Stable clip or stimulus identifier.
+    constraints:
+      required: true
+
+  - name: asset_id
+    type: string
+    description: Stable source asset identifier when available.
+
+  - name: modality
+    type: string
+    description: Primary modality represented by this feature.
+    constraints:
+      required: true
+      enum:
+        - audio
+        - visual
+        - audio_visual
+        - gaze
+        - contextual
+        - multimodal
+        - psychoacoustic
+        - other
 
   - name: feature_type
     type: string
@@ -31,24 +59,31 @@ fields:
         - visual_semantic_summary
         - behavioural_attention
         - contextual_descriptor
+        - psychoacoustic_descriptor
         - other
+
+  - name: feature_name
+    type: string
+    description: Human-readable feature or descriptor name.
 
   - name: source_modality
     type: string
+    description: Backward-compatible modality field used by existing scripts.
     constraints:
       required: true
       enum:
         - audio
         - visual
         - audio_visual
-        - text
         - gaze
         - contextual
         - multimodal
+        - psychoacoustic
         - other
 
   - name: value_format
     type: string
+    description: Backward-compatible value-storage format.
     constraints:
       required: true
       enum:
@@ -61,21 +96,10 @@ fields:
         - array
         - other
 
-  - name: provenance_json
-    type: string
-    constraints:
-      required: true
-
-  - name: feature_path
+  - name: extractor_name
     type: string
 
-  - name: feature_value_json
-    type: string
-
-  - name: embedding_dim
-    type: integer
-
-  - name: dtype
+  - name: extractor_version
     type: string
 
   - name: model_name
@@ -84,7 +108,63 @@ fields:
   - name: model_version
     type: string
 
+  - name: model_checkpoint
+    type: string
+
   - name: input_asset_id
+    type: string
+
+  - name: input_asset
+    type: string
+
+  - name: input_time_window
+    type: string
+    description: Time window used for extraction, e.g. 0.0-30.0s.
+
+  - name: sampling_rate_or_fps
+    type: string
+    description: Sampling rate, frame rate, or other temporal sampling note.
+
+  - name: feature_dimension
+    type: integer
+
+  - name: feature_shape
+    type: string
+
+  - name: feature_format
+    type: string
+
+  - name: feature_storage_path
+    type: string
+
+  - name: feature_path
+    type: string
+    description: Backward-compatible storage path for externally stored values.
+
+  - name: feature_file_type
+    type: string
+
+  - name: feature_value_json
+    type: string
+
+  - name: provenance_json
+    type: string
+    constraints:
+      required: true
+
+  - name: checksum
+    type: string
+
+  - name: preprocessing_id
+    type: string
+
+  - name: code_reference
+    type: string
+
+  - name: created_by
+    type: string
+
+  - name: date_created
     type: string
 
   - name: frame_time_s
@@ -96,7 +176,17 @@ fields:
   - name: pooling
     type: string
 
+  - name: embedding_dim
+    type: integer
+    description: Backward-compatible embedding dimension.
+
+  - name: dtype
+    type: string
+
   - name: language
+    type: string
+
+  - name: provenance_notes
     type: string
 
   - name: notes

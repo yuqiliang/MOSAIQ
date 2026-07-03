@@ -1,0 +1,106 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_ratings
+title: MOSAIQ Rating Record Schema
+description: |
+  Long-form rating records that preserve original measurement values and
+  separately document any harmonised value. This schema is intentionally
+  conservative: original values remain available, and harmonised values are
+  treated as derived fields with explicit scale metadata and transformation
+  notes.
+
+primaryKey:
+  - rating_id
+
+fields:
+  - name: rating_id
+    type: string
+    constraints:
+      required: true
+      unique: true
+
+  - name: dataset_id
+    type: string
+    constraints:
+      required: true
+
+  - name: clip_id
+    type: string
+    constraints:
+      required: true
+
+  - name: response_id
+    type: string
+
+  - name: participant_id
+    type: string
+
+  - name: rating_item_original
+    type: string
+    description: Source item or column name before MOSAIQ harmonisation.
+    constraints:
+      required: true
+
+  - name: rating_dimension
+    type: string
+    description: Canonical perceptual dimension, e.g. pleasant, vibrant.
+    constraints:
+      required: true
+
+  - name: rating_framework
+    type: string
+    description: Rating framework, e.g. ISO_12913, SAM, EmojiGrid, annoyance.
+    constraints:
+      required: true
+
+  - name: rating_value_original
+    type: number
+    constraints:
+      required: true
+
+  - name: rating_scale_min_original
+    type: number
+    constraints:
+      required: true
+
+  - name: rating_scale_max_original
+    type: number
+    constraints:
+      required: true
+
+  - name: rating_scale_step_original
+    type: number
+
+  - name: rating_scale_label_original
+    type: string
+
+  - name: rating_value_harmonised
+    type: number
+
+  - name: rating_scale_min_harmonised
+    type: number
+
+  - name: rating_scale_max_harmonised
+    type: number
+
+  - name: harmonisation_method
+    type: string
+    description: Name of the transformation, e.g. linear_0_100_to_1_5.
+
+  - name: harmonisation_notes
+    type: string
+
+  - name: preprocessing_id
+    type: string
+
+  - name: provenance
+    type: string
+
+foreignKeys:
+  - fields: clip_id
+    reference:
+      resource: clips
+      fields: clip_id
+  - fields: preprocessing_id
+    reference:
+      resource: preprocessing
+      fields: preprocessing_id

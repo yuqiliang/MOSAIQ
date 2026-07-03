@@ -4,25 +4,34 @@ title: MOSAIQ Dataset-level Schema
 description: |
   Schema for the dataset-level catalogue. Each row describes one source
   dataset (e.g., ISD, ARAUS) with its scale, modalities, recording details,
-  perceptual framework, and access conditions. All durations are normalised
-  to seconds (audio clip duration) or minutes (total dataset duration);
-  all sampling rates in Hz; bit depths in bits.
+  perceptual framework, rating-scale information, access conditions,
+  documentation limits, and provenance. The catalogue supports comparison
+  across heterogeneous soundscape datasets without forcing all datasets into
+  a single identical clip-level format. All durations are normalised to
+  seconds (audio clip duration) or minutes (total dataset duration); all
+  sampling rates in Hz; bit depths in bits.
 
-  Foreign key target: clips.dataset_id references datasets.dataset_name.
+  Foreign key target: clips.dataset_id references datasets.dataset_id.
 
 primaryKey:
-  - dataset_name
+  - dataset_id
 
 fields:
   # =========================================================
   # 1. Identification
   # =========================================================
-  - name: dataset_name
+  - name: dataset_id
     type: string
-    description: Canonical dataset name (used as foreign key by clips.dataset_id)
+    description: Stable short identifier used by clip-level tables.
     constraints:
       required: true
       unique: true
+
+  - name: dataset_name
+    type: string
+    description: Human-readable dataset name.
+    constraints:
+      required: true
 
   - name: description
     type: string
@@ -46,6 +55,10 @@ fields:
     format: uri
     description: Permanent URL or DOI to the dataset
 
+  - name: source_reference
+    type: string
+    description: DOI, URL, publication, or source record used for catalogue metadata
+
   # =========================================================
   # 2. Access & licensing
   # =========================================================
@@ -55,6 +68,10 @@ fields:
     constraints:
       required: true
       enum: [Fully, Partially, Restricted]
+
+  - name: access_status
+    type: string
+    description: Free-text access status preserved for comparison and provenance
 
   - name: licence_spdx
     type: string
@@ -85,9 +102,21 @@ fields:
     description: Total duration of audio material (minutes)
     constraints: { minimum: 0 }
 
+  - name: scale
+    type: string
+    description: Human-readable scale summary, e.g. clips, participants, assessments
+
   # =========================================================
   # 4. Audio modalities (binary availability + technical specs)
   # =========================================================
+  - name: modality_availability
+    type: string
+    description: Compact summary of available audio, visual, and contextual modalities
+
+  - name: audio_format
+    type: string
+    description: Compact summary of available audio formats or channel types
+
   - name: audio_ambisonics_available
     type: boolean
     description: Ambisonics audio available
@@ -170,11 +199,27 @@ fields:
     constraints:
       required: true
 
+  - name: perceptual_framework
+    type: string
+    description: Alias/summary field for the perceptual framework
+
   - name: experimental_setting
     type: string
     description: Setting in which assessments were collected
     constraints:
       enum: [On-site, Lab-based, Online, Mixed, Other]
+
+  - name: rating_scale_information
+    type: string
+    description: Original rating scale information and harmonisation notes where known
+
+  - name: recording_protocol
+    type: string
+    description: Summary of data capture or stimulus generation protocol
+
+  - name: reproduction_protocol
+    type: string
+    description: Summary of playback or participant assessment protocol
 
   # =========================================================
   # 7. Acoustic / environmental measurements
@@ -190,3 +235,22 @@ fields:
   - name: environmental_data_available
     type: boolean
     description: Environmental context data (temperature, humidity, etc.) provided
+
+  # =========================================================
+  # 8. Documentation, limitations, and provenance
+  # =========================================================
+  - name: metadata_availability
+    type: string
+    description: Summary of whether dataset metadata are complete, partial, or unknown
+
+  - name: known_limitations
+    type: string
+    description: Known documentation, access, or harmonisation limitations
+
+  - name: schema_version
+    type: string
+    description: MOSAIQ catalogue schema version used for this row
+
+  - name: provenance
+    type: string
+    description: Source and curation provenance for the catalogue row

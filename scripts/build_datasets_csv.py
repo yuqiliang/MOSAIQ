@@ -117,6 +117,73 @@ def normalise_setting(value):
     return "Other"
 
 
+def dataset_id_from_name(name):
+    known = {
+        "International Soundscape Database (ISD)": "ISD",
+        "Affective Responses to Augmented Urban Soundscapes (ARAUS)": "ARAUS",
+        "Athens Urban Soundscape (ATHUS)": "ATHUS",
+        "IADS-2": "IADS2",
+        "IADS-E": "IADSE",
+        "Emo-soundscapes": "EMO_SOUNDSCAPES",
+        "DeLTA": "DeLTA",
+        "SATP": "SATP",
+        "The Lion City Soundscapes (LCS)": "LCS",
+    }
+    if name in known:
+        return known[name]
+    return re.sub(r"[^A-Za-z0-9]+", "_", str(name)).strip("_").upper()
+
+
+def scale_summary(n_audio, n_participants, n_assessments):
+    parts = []
+    if n_audio:
+        parts.append(f"{n_audio} audio samples")
+    if n_participants:
+        parts.append(f"{n_participants} participants")
+    if n_assessments:
+        parts.append(f"{n_assessments} assessments")
+    return "; ".join(parts) if parts else "not_reported"
+
+
+def modality_summary(row):
+    parts = []
+    if row["audio_format"] != "not_reported":
+        parts.append("audio")
+    if row["visual_available"]:
+        parts.append("visual")
+    if row["acoustic_data_available"]:
+        parts.append("acoustic_metrics")
+    if row["environmental_data_available"]:
+        parts.append("environmental_context")
+    return "; ".join(parts) if parts else "not_reported"
+
+
+def audio_format_summary(row):
+    formats = []
+    if row["audio_ambisonics_available"]:
+        formats.append("ambisonics")
+    if row["audio_binaural_available"]:
+        formats.append("binaural")
+    if row["audio_monaural_available"]:
+        formats.append("monaural")
+    return "; ".join(formats) if formats else "not_reported"
+
+
+def rating_scale_information(name, framework):
+    if name == "SATP":
+        return (
+            "ISO 12913 Method A PAQ; original SATP scale 0-100 retained; "
+            "derived MOSAIQ 1-5 values documented separately."
+        )
+    if framework and "ISO/TS 12913" in str(framework):
+        return "ISO 12913 PAQ; scale information preserved or documented at dataset/resource level."
+    if framework and "SAM" in str(framework):
+        return "SAM affective ratings; not mapped onto ISO 12913 in current schema-level harmonisation."
+    if framework and "EmojiGrid" in str(framework):
+        return "EmojiGrid valence-arousal ratings; not mapped onto ISO 12913 in current schema-level harmonisation."
+    return framework or "not_reported"
+
+
 with open(SRC) as f:
     data = json.load(f)
 
@@ -139,14 +206,17 @@ for name, d in data.items():
 
     row = {
         # 1. Identification
+        "dataset_id":    dataset_id_from_name(name),
         "dataset_name":  name,
         "description":   d.get("Description"),
         "year":          d.get("Year"),
         "scenario":      d.get("Scenario"),
         "link":          d.get("Link") if d.get("Link") not in (None, "no available link") else "",
+        "source_reference": d.get("Link") if d.get("Link") not in (None, "no available link") else "",
 
         # 2. Access & licensing
         "access":        d.get("Access") if d.get("Access") != "Partilally" else "Partially",
+        "access_status": d.get("Access") if d.get("Access") != "Partilally" else "Partially",
         "licence_spdx":  licence_from_description(d.get("Description")),
 
         # 3. Scale
@@ -185,6 +255,7 @@ for name, d in data.items():
 
         # 6. Annotation
         "annotation_framework":  safe_get(d, "Emotional Annotation", "Assessment Framework"),
+        "perceptual_framework":  safe_get(d, "Emotional Annotation", "Assessment Framework"),
         "experimental_setting":  normalise_setting(
             safe_get(d, "Emotional Annotation", "Experimental Setting")),
 
@@ -193,6 +264,28 @@ for name, d in data.items():
         "acoustic_measuring_instrument": safe_get(d, "Acoustic Data", "Measuring Instrument"),
         "environmental_data_available": d.get("Environmental Data") is not None,
     }
+    row["scale"] = scale_summary(
+        row["n_audio_samples"], row["n_participants"], row["n_assessments"]
+    )
+    row["audio_format"] = audio_format_summary(row)
+    row["modality_availability"] = modality_summary(row)
+    row["rating_scale_information"] = rating_scale_information(
+        row["dataset_name"], row["annotation_framework"]
+    )
+    row["recording_protocol"] = (
+        f"{row['scenario']} recordings; audio={row['audio_format']}; "
+        f"visual={row['visual_format'] or 'none'}"
+    )
+    row["reproduction_protocol"] = row["experimental_setting"]
+    row["metadata_availability"] = "partial_catalogue_metadata"
+    row["known_limitations"] = (
+        "Catalogue-level metadata only; clip-level curation and benchmark readiness "
+        "not yet implemented."
+    )
+    row["schema_version"] = "0.2.0"
+    row["provenance"] = (
+        "Compiled from reviewed dataset documentation and MOSAIQ schema revision 2026-06-15."
+    )
     rows.append(row)
 
 df = pd.DataFrame(rows)

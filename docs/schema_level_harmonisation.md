@@ -56,6 +56,13 @@ This implementation adds a minimal schema-level layer:
   `uneventful`, and `calm`
 - separate derived ISO coordinate fields:
   `pleasantness` and `eventfulness`
+- long-form rating-scale examples that preserve `rating_value_original` and
+  document `rating_value_harmonised` separately
+- preprocessing records that describe transformations such as SATP 0-100 to
+  MOSAIQ 1-5 PAQ conversion
+- an expanded FeatureRecord schema for audio embeddings, visual embeddings,
+  semantic visual summaries, gaze/attention descriptors, and future multimodal
+  features
 - mapping tables for ISD and ARAUS:
   `mappings/isd_to_mosaiq_schema.json`
   `mappings/araus_to_mosaiq_schema.json`
@@ -122,6 +129,49 @@ MOSAIQ also separates value layers:
 - `aggregated_sample_annotation`: clip/sample-level PAQ summaries such as means
 - `derived_coordinate`: pleasantness/eventfulness coordinates computed or
   copied as ISO Method A derived values
+
+## Original and harmonised rating values
+
+MOSAIQ does not overwrite source ratings. When a source dataset uses a different
+response scale, the original value remains available and any harmonised value is
+documented as a derived field.
+
+For SATP, the source PAQ values are retained as `*_raw_0_100` columns in
+`datasets/SATP/data/responses.csv`. The MOSAIQ 1-5 PAQ columns are derived with:
+
+```text
+1 + 4 * raw_0_100 / 100
+```
+
+The transformation is documented in:
+
+```text
+datasets/SATP/data/preprocessing.csv
+```
+
+and a small long-form rating example is stored in:
+
+```text
+datasets/SATP/data/ratings.csv
+```
+
+This is still schema-level harmonisation. It is not z-normalisation,
+distribution matching, or full statistical harmonisation.
+
+## FeatureRecord extensibility
+
+Derived descriptors are represented through `FeatureRecord` rows rather than
+being mixed into raw response tables. The shared schema is stored in:
+
+```text
+shared_schemas/features.schema.yaml
+```
+
+FeatureRecords link derived data to `dataset_id`, `clip_id`, optional
+`asset_id`, extractor metadata, input time windows, storage paths, checksums,
+preprocessing IDs, and provenance notes. The current examples cover PANNs audio
+embeddings, CLIP visual embeddings, CitySeg semantic summaries, and a
+placeholder gaze-on-class descriptor.
 
 ## Structural, semantic, and statistical harmonisation
 
