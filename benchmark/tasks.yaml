@@ -1,0 +1,55 @@
+schema_version: "0.1"
+
+benchmark:
+  id: mosaiq-benchmark
+  version: 0.1.0-dev
+  status: draft
+  title: MOSAIQ Multimodal Soundscape Benchmark
+  unit_of_analysis: clip
+  description: >-
+    A versioned benchmark specification for clip- and response-level soundscape
+    perception and sound-source modelling across the materialised MOSAIQ datasets.
+  split_release_status: released
+
+tasks:
+  - id: iso_paq_regression
+    config: benchmark/configs/task_iso_paq.yaml
+    status: draft
+    datasets: [ISD, ARAUS, SATP]
+    summary: Predict the eight clip-level mean ISO PAQ ratings.
+
+  - id: iso_coordinate_regression
+    config: benchmark/configs/task_iso_coordinates.yaml
+    status: draft
+    datasets: [ISD, ARAUS, SATP]
+    summary: Predict clip-level mean ISO Pleasantness and Eventfulness.
+
+  - id: araus_appropriateness
+    config: benchmark/configs/task_araus_appropriateness.yaml
+    status: draft
+    datasets: [ARAUS]
+    summary: Predict mean contextual appropriateness for ARAUS stimuli.
+
+  - id: araus_pleasantness_regression
+    config: benchmark/configs/task_araus_pleasantness.yaml
+    status: draft
+    datasets: [ARAUS]
+    summary: Predict clip-level mean ISO Pleasantness for ARAUS reference baselines.
+
+  - id: isd_individual_iso_prediction
+    config: benchmark/configs/task_isd_individual_iso.yaml
+    status: draft
+    datasets: [ISD]
+    summary: Predict individual ISO Pleasantness and Eventfulness responses.
+
+  - id: delta_annoyance
+    config: benchmark/configs/task_delta_annoyance.yaml
+    status: draft
+    datasets: [DeLTA]
+    summary: Predict clip-level mean annoyance on the source 1-10 scale.
+
+  - id: delta_source_multilabel
+    config: benchmark/configs/task_delta_sources.yaml
+    status: draft
+    datasets: [DeLTA]
+    summary: Predict the 24 clip-level binary sound-source labels.

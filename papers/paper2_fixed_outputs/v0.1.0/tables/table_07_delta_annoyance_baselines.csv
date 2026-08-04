@@ -1,0 +1,4 @@
+task_id,dataset_id,feature_set,model_id,target,n_train,n_eval,cohort_id,rmse,rmse_ci_low,rmse_ci_high,mae,r2,pearson_r,spearman_rho,n_clusters
+delta_annoyance,DeLTA,delta_source_indicators,delta_annoyance_from_observed_sources_rf,mean_annoyance,2012,437,delta_annoyance__delta_source_indicators__ntrain2012__neval437,1.248405,1.170754,1.324743,1.022267,0.146305,0.406382,0.403050,437
+delta_annoyance,DeLTA,delta_source_indicators,delta_annoyance_from_observed_sources_ridge,mean_annoyance,2012,437,delta_annoyance__delta_source_indicators__ntrain2012__neval437,1.245487,1.166718,1.326092,1.013139,0.150291,0.396269,0.411069,437
+delta_annoyance,DeLTA,none,delta_annoyance_target_mean,mean_annoyance,2012,437,delta_annoyance__none__ntrain2012__neval437,1.351583,1.272547,1.430353,1.124421,-0.000638,,,437

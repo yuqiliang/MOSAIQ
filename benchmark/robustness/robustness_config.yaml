@@ -1,0 +1,71 @@
+schema_version: "0.1"
+robustness_version: 0.1.0
+benchmark_version: 0.1.0-dev
+split_version: 0.1.0
+baseline_config: benchmark/baselines/baseline_config.yaml
+status: executable
+
+multiseed:
+  seeds: [2026, 2027, 2028, 2029, 2030]
+  experiments:
+    - tong_style_reduced_rf
+    - tong_style_reduced_xgboost
+    - delta_annoyance_from_observed_sources_rf
+
+bootstrap:
+  random_seed: 27072026
+  n_resamples: 2000
+  confidence_level: 0.95
+  partition: test
+  regression_metrics: [rmse, mae, r2, pearson_r, spearman_rho]
+  classification_metrics:
+    - macro_average_precision
+    - micro_average_precision
+    - macro_f1
+    - micro_f1
+  cluster_column: clip_id
+
+paired_comparisons:
+  - reference: isd_response_target_mean_shared6
+    candidates:
+      - tong_style_reduced_lr
+      - tong_style_reduced_rf
+      - tong_style_reduced_xgboost
+      - tong_style_reduced_gpr
+    metrics: [rmse, mae, r2]
+  - reference: delta_annoyance_target_mean
+    candidates:
+      - delta_annoyance_from_observed_sources_ridge
+      - delta_annoyance_from_observed_sources_rf
+    metrics: [rmse, mae, r2]
+  - reference: delta_source_label_prevalence
+    candidates:
+      - delta_source_from_observed_annoyance_logistic
+    metrics:
+      - macro_average_precision
+      - micro_average_precision
+      - macro_f1
+      - micro_f1
+
+feature_coverage_sensitivity:
+  dataset_id: ISD
+  cohorts:
+    - id: all_eligible
+      feature_set: none
+    - id: shared6_complete
+      feature_set: shared6_cohort_only
+  tasks:
+    - benchmark/configs/task_iso_coordinates.yaml
+    - benchmark/configs/task_isd_individual_iso.yaml
+
+gpr_calibration:
+  experiment: tong_style_reduced_gpr
+  partition: test
+  nominal_coverage: [0.50, 0.80, 0.95]
+
+interpretation_rules:
+  - Positive paired improvement means the candidate is better than the reference.
+  - Response-level bootstrap resamples clip_id clusters, preserving assessments from the same soundscape.
+  - Confidence intervals quantify test-sample uncertainty, not cross-dataset generalisation.
+  - Multi-seed summaries apply only to stochastic estimators.
+  - Feature-coverage sensitivity describes cohort selection and target-mean performance; it does not impute missing shared6 features.

@@ -1,0 +1,51 @@
+{
+  "run_id": "isd_audio_descriptor_baselines_v0.1",
+  "created_at": "2026-07-30T15:32:18.955295+00:00",
+  "dataset_id": "ISD",
+  "tasks": {
+    "isd_audio_clip_iso_coordinates": {
+      "record_id": "clip_id",
+      "targets": [
+        "mean_ISOPleasant",
+        "mean_ISOEventful"
+      ],
+      "train_rows": 546,
+      "dev_rows": 154,
+      "test_rows": 120,
+      "train_clips": 546,
+      "dev_clips": 154,
+      "test_clips": 120
+    },
+    "isd_audio_response_iso_coordinates": {
+      "record_id": "response_id",
+      "targets": [
+        "ISOPleasant",
+        "ISOEventful"
+      ],
+      "train_rows": 967,
+      "dev_rows": 258,
+      "test_rows": 215,
+      "train_clips": 546,
+      "dev_clips": 154,
+      "test_clips": 120
+    }
+  },
+  "split_version": "0.1.0",
+  "models": [
+    "audio_target_mean",
+    "audio_descriptor_ridge"
+  ],
+  "features": [
+    "crest_factor",
+    "zero_crossing_rate",
+    "stereo_correlation",
+    "spectral_centroid_hz",
+    "spectral_bandwidth_hz",
+    "spectral_rolloff85_hz",
+    "bandpower_low_20_250",
+    "bandpower_mid_250_2000",
+    "bandpower_high_2000_20000"
+  ],
+  "audio_used": true,
+  "calibration_status": "relative_descriptors_only_pending_source_review"
+}

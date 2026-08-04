@@ -1,0 +1,98 @@
+$schema: https://specs.frictionlessdata.io/schemas/table-schema.json
+name: mosaiq_audio_manifest
+title: MOSAIQ Audio Asset Manifest
+description: |
+  Source, integrity, materialisation, mapping, and technical metadata for
+  rights-cleared audio assets linked to MOSAIQ clips.
+
+primaryKey:
+  - asset_id
+
+fields:
+  - name: asset_id
+    type: string
+    constraints: {required: true, unique: true}
+  - name: dataset_id
+    type: string
+    constraints: {required: true}
+  - name: clip_id
+    type: string
+  - name: split
+    type: string
+  - name: source_record
+    type: string
+    constraints: {required: true}
+  - name: source_version
+    type: string
+    constraints: {required: true}
+  - name: archive_name
+    type: string
+  - name: member_path
+    type: string
+  - name: local_relative_path
+    type: string
+  - name: source_uri
+    type: string
+  - name: licence_spdx
+    type: string
+    constraints: {required: true}
+  - name: redistribution_status
+    type: string
+    constraints:
+      required: true
+      enum:
+        - permitted_with_attribution
+        - source_access_only
+        - managed_access
+        - prohibited
+        - pending_review
+  - name: access_class
+    type: string
+    constraints:
+      required: true
+      enum: [open, embargoed, managed, unavailable]
+  - name: group_id_normalized
+    type: string
+  - name: location_hint
+    type: string
+  - name: audio_sha256
+    type: string
+  - name: bytes
+    type: integer
+  - name: format
+    type: string
+  - name: sample_rate_hz
+    type: integer
+  - name: channels
+    type: integer
+  - name: frames
+    type: integer
+  - name: duration_s
+    type: number
+  - name: expected_duration_s
+    type: number
+  - name: sample_dtype
+    type: string
+  - name: calibration_status
+    type: string
+  - name: materialization_status
+    type: string
+    constraints:
+      required: true
+      enum: [materialized, source_missing, not_downloaded, invalid]
+  - name: mapping_status
+    type: string
+    constraints:
+      required: true
+      enum:
+        - matched
+        - missing_source_asset
+        - unmatched_source_asset
+        - ambiguous_clip_match
+        - exact_duplicate_excluded
+        - duplicate_conflict
+  - name: use_for_benchmark
+    type: boolean
+    constraints: {required: true}
+  - name: mapping_notes
+    type: string

@@ -1,0 +1,102 @@
+schema_version: "0.1"
+track:
+  id: isd_audio
+  version: 0.1.0-audio
+  status: reference_baselines_executed
+  dataset_id: ISD
+  source_record: https://doi.org/10.5281/zenodo.10672568
+  source_version: 1.0.1-alpha.1
+  licence_spdx: CC-BY-4.0
+  scope_note: >-
+    This track materialises ISD waveforms only. It does not provide ARAUS,
+    SATP, or DeLTA audio and is not the final multimodal MOSAIQ-v1.0 release.
+
+storage:
+  git_policy: manifests_configs_and_qc_only
+  waveform_policy: external_working_storage
+  public_redistribution: pending_final_release_review
+
+mapping:
+  clip_key_columns: [LocationID, SessionID, GroupID]
+  source_filename_key: GroupID
+  response_split_inheritance: clip_id
+  duplicate_policy: fail_unless_byte_identical_and_one_copy_is_explicitly_excluded
+  missing_asset_policy: report_and_exclude
+  archive_scope:
+    benchmark_candidates:
+      - WAV_Granada_1.zip
+      - WAV_Groningen_1.zip
+      - WAV_London_1.zip
+      - WAV_London_2.zip
+      - WAV_London_3.zip
+      - WAV_London_4.zip
+      - WAV_Venice_1.zip
+    source_audit_only_pending_label_linkage:
+      - WAV_Lockdown_London.zip
+      - WAV_Lockdown_Venice.zip
+
+quality_control:
+  expected_format: WAV
+  allowed_source_sample_rates_hz: [44100, 48000]
+  target_model_sample_rate_hz: 48000
+  expected_channels: 2
+  source_description_sample_dtype: float32
+  observed_dtype_policy: detect_and_normalize_by_actual_encoding
+  duration_tolerance_s: 0.25
+  fail_on:
+    - unreadable
+    - empty
+    - non_finite_samples
+    - zero_signal
+  warn_on:
+    - unsupported_sample_rate
+    - unexpected_channel_count
+    - source_description_sample_dtype_mismatch
+    - duration_mismatch
+    - float_amplitude_scale_requires_review
+    - calibration_metadata_pending
+
+preprocessing:
+  target_sample_rate_hz: 48000
+  channel_policy: preserve_binaural_stereo
+  segment_policy: full_group_recording
+  normalization: none_before_calibration_review
+  random_seed: 2026
+  descriptor_model_policy: >-
+    Preserve RMS and peak for QC, but exclude amplitude-scale-dependent
+    descriptors from the Ridge model until calibration metadata are confirmed.
+
+tasks:
+  - id: isd_audio_clip_iso_coordinates
+    unit_of_analysis: clip
+    split_file: benchmark/splits/isd_split.csv
+    targets: [mean_ISOPleasant, mean_ISOEventful]
+    status: target_mean_and_descriptor_ridge_executed
+  - id: isd_audio_response_iso_coordinates
+    unit_of_analysis: response
+    split_link_column: clip_id
+    split_file: benchmark/splits/isd_split.csv
+    targets: [ISOPleasant, ISOEventful]
+    status: target_mean_and_descriptor_ridge_executed
+
+baselines:
+  - id: audio_target_mean
+    model: target_mean
+    status: executed
+  - id: audio_descriptor_ridge
+    model: ridge
+    input: deterministic_waveform_descriptors
+    status: executed
+  - id: isd_adapted_logmel_cnn
+    model: cnn
+    input: stereo_log_mel_spectrogram
+    status: planned_after_full_coverage
+    claim_boundary: adapted_architecture_not_araus_replication
+  - id: pretrained_audio_encoder_linear_probe
+    model: linear_probe
+    input: frozen_audio_embedding
+    status: planned_after_full_coverage
+
+deferred_by_user:
+  - external_usability_review
+  - paper2_coauthor_review

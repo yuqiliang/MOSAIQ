@@ -1,0 +1,18 @@
+schema_version: "0.1"
+
+exclusions:
+  - dataset_id: ISD
+    clip_id: "ISD_RegentsParkFields_RegentsParkFields2_RF222 "
+    status: pending_source_review
+    reason: >-
+      The identifier differs from another clip only by trailing whitespace,
+      while coordinates, response membership, duration, and feature coverage
+      conflict. Excluded rather than silently merged or renamed.
+
+  - dataset_id: ISD
+    clip_id: "ISD_TorringtonSq_TorringtonSq4_TS417 "
+    status: pending_source_review
+    reason: >-
+      The identifier differs from another clip only by trailing whitespace,
+      while response membership, duration, and feature coverage conflict.
+      Excluded rather than silently merged or renamed.

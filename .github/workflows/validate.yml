@@ -23,6 +23,9 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
+      - name: Run unit tests
+        run: uv run pytest -q
+
       - name: Validate catalogue package
         run: uv run frictionless validate catalogue/datapackage.yaml
 
@@ -37,3 +40,32 @@ jobs:
 
       - name: Validate DeLTA package
         run: uv run frictionless validate datasets/DeLTA/datapackage.yaml
+
+      - name: Validate benchmark contracts and splits
+        run: |
+          uv run python scripts/validate_benchmark_tasks.py
+          uv run python scripts/validate_benchmark_splits.py
+          uv run python scripts/validate_submission.py benchmark/submissions/submission_template.csv --allow-empty
+
+      - name: Validate committed ISD audio smoke outputs
+        run: |
+          uv run frictionless validate benchmark/audio/manifests/isd_groningen_audio_manifest.csv --schema benchmark/audio/audio_manifest.schema.yaml
+          uv run python scripts/validate_audio_manifest.py benchmark/audio/manifests/isd_groningen_audio_manifest.csv
+          uv run python scripts/validate_audio_smoke_outputs.py
+
+      - name: Validate frozen ISD audio reference outputs
+        run: |
+          uv run frictionless validate benchmark/audio/manifests/isd_audio_manifest_v0.1.0.csv --schema benchmark/audio/audio_manifest.schema.yaml
+          uv run python scripts/validate_audio_manifest.py benchmark/audio/manifests/isd_audio_manifest_v0.1.0.csv
+          uv run python scripts/validate_isd_audio_outputs.py
+
+      - name: Validate frozen benchmark and tabular results
+        run: |
+          uv run python scripts/build_benchmark_report.py --check-only
+          uv run python scripts/build_model_cards.py
+          uv run python scripts/validate_tabular_baselines.py
+          uv run python scripts/validate_robustness_evaluation.py
+          uv run python scripts/build_paper2_fixed_outputs.py
+          uv run python scripts/validate_paper2_fixed_outputs.py
+          git diff --exit-code -- benchmark/model_cards
+          git diff --exit-code -- papers/paper2_fixed_outputs

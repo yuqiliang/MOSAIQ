@@ -1,0 +1,6 @@
+benchmark_version,task_id,task_version,split_version,dataset_id,partition,scope,feature_set,model_id,target,metric,n_train,n_eval,mean,std,minimum,maximum,n_seeds
+0.1.0-dev,delta_annoyance,0.1.0,0.1.0,DeLTA,test,record,delta_source_indicators,delta_annoyance_from_observed_sources_rf,mean_annoyance,rmse,2012,437,1.246709,0.001197,1.245470,1.248405,5
+0.1.0-dev,isd_individual_iso_prediction,0.1.0,0.1.0,ISD,test,individual,tong_style_reduced,tong_style_reduced_rf,ISOEventful,rmse,1324,279,0.320435,0.000786,0.319555,0.321469,5
+0.1.0-dev,isd_individual_iso_prediction,0.1.0,0.1.0,ISD,test,individual,tong_style_reduced,tong_style_reduced_rf,ISOPleasant,rmse,1324,279,0.356712,0.001305,0.355376,0.358649,5
+0.1.0-dev,isd_individual_iso_prediction,0.1.0,0.1.0,ISD,test,individual,tong_style_reduced,tong_style_reduced_xgboost,ISOEventful,rmse,1324,279,0.321099,0.001492,0.319332,0.322624,5
+0.1.0-dev,isd_individual_iso_prediction,0.1.0,0.1.0,ISD,test,individual,tong_style_reduced,tong_style_reduced_xgboost,ISOPleasant,rmse,1324,279,0.344153,0.003435,0.340302,0.349360,5

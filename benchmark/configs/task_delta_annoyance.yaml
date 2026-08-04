@@ -1,0 +1,55 @@
+schema_version: "0.1"
+
+task:
+  id: delta_annoyance
+  version: 0.1.0
+  title: DeLTA annoyance regression
+  status: draft
+  unit_of_analysis: clip
+  task_type: regression
+  description: Predict clip-level mean annoyance while retaining the original DeLTA 1-10 scale.
+
+input:
+  record_type: clips
+  id_column: clip_id
+  datasets:
+    - dataset_id: DeLTA
+      path: datasets/DeLTA/data/clips.csv
+
+target:
+  columns: [mean_annoyance]
+  representation: Clip-level arithmetic mean on the source 1-10 annoyance scale.
+  scale: {minimum: 1, maximum: 10}
+  aggregation: Mean across valid DeLTA responses linked to each recording.
+  missing_value_policy: drop_row
+
+split_protocol:
+  status: released
+  version: 0.1.0
+  protocol: fixed_train_dev_test
+  assignment_files:
+    DeLTA: benchmark/splits/delta_split.csv
+  rules:
+    - dataset_id: DeLTA
+      method: iterative_multilabel_stratified_split
+      group_columns: [recording]
+      stratify_columns: [mean_annoyance]
+      description: Use the shared DeLTA iterative split, balancing annoyance bins together with the 24 source-label marginals.
+  leakage_constraints:
+    - A clip_id and recording must occur in exactly one benchmark partition.
+    - Split generation must operate on clip records rather than individual responses.
+  random_seed: 2026
+
+evaluation:
+  primary_metric: rmse
+  metrics:
+    - name: rmse
+      direction: minimize
+      description: Root mean squared error on mean annoyance.
+    - name: mae
+      direction: minimize
+      description: Mean absolute error on mean annoyance.
+    - name: r2
+      direction: maximize
+      description: Coefficient of determination for mean annoyance.
+  reporting: [per_dataset]

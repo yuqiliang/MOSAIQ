@@ -1,0 +1,17 @@
+dataset_id,track,partition,n_clips,fraction,split_version,n_with_exclusion_reason
+ISD,core,dev,524,0.19342931,0.1.0,0
+ISD,core,excluded,5,0.0018457,0.1.0,5
+ISD,core,test,581,0.21447028,0.1.0,0
+ISD,core,train,1599,0.59025471,0.1.0,0
+ARAUS,core,dev,4440,0.19978402,0.1.0,0
+ARAUS,core,excluded,6,0.00026998,0.1.0,6
+ARAUS,core,test,48,0.00215983,0.1.0,0
+ARAUS,core,train,17730,0.79778618,0.1.0,0
+SATP,extension,fold_0,5,0.18518519,0.1.0,0
+SATP,extension,fold_1,5,0.18518519,0.1.0,0
+SATP,extension,fold_2,5,0.18518519,0.1.0,0
+SATP,extension,fold_3,6,0.22222222,0.1.0,0
+SATP,extension,fold_4,6,0.22222222,0.1.0,0
+DeLTA,extension,dev,441,0.15259516,0.1.0,0
+DeLTA,extension,test,437,0.15121107,0.1.0,0
+DeLTA,extension,train,2012,0.69619377,0.1.0,0

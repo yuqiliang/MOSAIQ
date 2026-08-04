@@ -184,7 +184,12 @@ def build(source: Path, outdir: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--source", type=Path, default=Path("/private/tmp/SATP_Dataset_v1.2.xlsx"))
+    parser.add_argument(
+        "--source",
+        type=Path,
+        required=True,
+        help="Path to the SATP source workbook.",
+    )
     parser.add_argument("--outdir", type=Path, default=Path("datasets/SATP/data"))
     args = parser.parse_args()
     build(args.source, args.outdir)

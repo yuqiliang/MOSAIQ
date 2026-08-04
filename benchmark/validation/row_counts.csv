@@ -1,0 +1,13 @@
+dataset_id,track,resource,path,n_rows,n_columns,sha256
+ISD,core,clips,datasets/ISD/data/clips.csv,2709,33,cc7cd31129644764d760b5d2a7c138c33c6fb3baefa04a2198a51a4cb63611ee
+ISD,core,responses,datasets/ISD/data/responses.csv,3589,16,9a760b3aa47a11b831d8fa2e819c3b706294937a6122d53e3da832a3459c0aaf
+ISD,core,features,datasets/ISD/data/features.csv,2,18,1ef547c35c238188fd6e03465f79cd8c946bc6986decc70ae516cde78272cc75
+ARAUS,core,clips,datasets/ARAUS/data/clips.csv,22224,32,eaf19c78c8beb41476e1f9d52956d3ac77a6fa44fe1ad70e5c7c9c42d3860d4f
+ARAUS,core,responses,datasets/ARAUS/data/responses.csv,27255,27,2ea0a94ef5e02345818703629bcc5660d6f813ba4e10c5bc5a0aae348bd5fd3a
+ARAUS,core,features,datasets/ARAUS/data/features.csv,1,18,21589a4de21ab8031404c88216d081642a3036ded8101121f1dbbcf74bb5846b
+SATP,extension,clips,datasets/SATP/data/clips.csv,27,19,e2bca4ed5d7b5bbd1b8d6efc03d041221d17a9db1861fd63a015d9d58a5b6216
+SATP,extension,responses,datasets/SATP/data/responses.csv,17441,27,840fbaa1ac6b8716e3b49dfdfe8df645154adfef2772a3c7fd906a0dae59b35a
+SATP,extension,source_files,datasets/SATP/data/source_files.csv,4,7,ba506738223fb155c335d61c02ad6015e8092eb2f2ec3f2b7849fe05be017db1
+DeLTA,extension,clips,datasets/DeLTA/data/clips.csv,2890,32,c907ec86bb5d8e86206355f1ef76bb026fd8d94b1637286891414256b5ff72e1
+DeLTA,extension,responses,datasets/DeLTA/data/responses.csv,11650,36,b3d8f6597fb07cd604706a81b0b24532d5839e7f30264a40c4a76b0528c60221
+DeLTA,extension,source_files,datasets/DeLTA/data/source_files.csv,3,7,a8eca429b422f2a143dc20afe00c8c71bc6b17b8c04f50b88717a35adb026985

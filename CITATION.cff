@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "Please cite the archived MOSAIQ release and the associated paper."
+title: "MOSAIQ soundscape benchmark"
+type: dataset
+version: 0.1.0-dev
+date-released: 2026-07-24
+authors:
+  - family-names: Liang
+    given-names: Yuqi
+  - family-names: Mitchell
+    given-names: Andrew
+  - family-names: Oberman
+    given-names: Tin
+  - family-names: Kang
+    given-names: Jian
+  - family-names: Aletta
+    given-names: Francesco
+repository-code: "https://github.com/yuqiliang/MOSAIQ"
+license: MIT
+abstract: >-
+  A versioned, ISO 12913-aware benchmark candidate that harmonises four
+  soundscape datasets, publishes leakage-aware splits and task manifests, and
+  provides reproducible no-audio tabular baselines and robustness checks.
+keywords:
+  - soundscape
+  - benchmark
+  - ISO 12913
+  - perceptual prediction
+  - reproducible machine learning
+identifiers:
+  - type: other
+    value: "mosaiq-benchmark-v0.1-candidate-20260716"
+    description: "Internal candidate freeze; replace with the public DOI."
+preferred-citation:
+  type: article
+  title: "A harmonised soundscape benchmark with fixed splits and reproducible baselines"
+  authors:
+    - family-names: Liang
+      given-names: Yuqi
+    - family-names: Mitchell
+      given-names: Andrew
+    - family-names: Oberman
+      given-names: Tin
+    - family-names: Kang
+      given-names: Jian
+    - family-names: Aletta
+      given-names: Francesco
+  notes: "Manuscript in preparation; add journal, year, and DOI after acceptance."

@@ -4,3 +4,7 @@ __pycache__/
 .DS_Store
 .ipynb_checkpoints/
 *.old
+benchmark/results/artifacts/
+benchmark/robustness/multiseed/artifacts/
+audio_data/
+source_data/

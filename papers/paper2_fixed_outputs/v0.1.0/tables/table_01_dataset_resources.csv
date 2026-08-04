@@ -1,0 +1,6 @@
+dataset_id,track,target_family,n_clips,n_responses,n_participants
+ISD,core,ISO PAQ and ISO coordinates,2709,3589,2664
+ARAUS,core,"ISO PAQ, ISO coordinates, appropriateness",22224,27255,605
+SATP,extension,Multilingual ISO PAQ and ISO coordinates,27,17441,645
+DeLTA,extension,Annoyance and 24 sound-source labels,2890,11650,1164
+Total,core + extension,dataset-specific,27850,59935,5078

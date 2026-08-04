@@ -1,0 +1,81 @@
+dataset_id,track,partition,feature_set_id,n_clips,n_available,coverage,source,notes
+ISD,core,all,laeq,2709,1174,0.43337025,clip_columns,LAeq_dBA
+ISD,core,dev,laeq,524,204,0.38931298,clip_columns,LAeq_dBA
+ISD,core,excluded,laeq,5,2,0.4,clip_columns,LAeq_dBA
+ISD,core,test,laeq,581,184,0.31669535,clip_columns,LAeq_dBA
+ISD,core,train,laeq,1599,784,0.49030644,clip_columns,LAeq_dBA
+ISD,core,all,shared_psychoacoustic_complete,2709,1174,0.43337025,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ISD,core,dev,shared_psychoacoustic_complete,524,204,0.38931298,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ISD,core,excluded,shared_psychoacoustic_complete,5,2,0.4,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ISD,core,test,shared_psychoacoustic_complete,581,184,0.31669535,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ISD,core,train,shared_psychoacoustic_complete,1599,784,0.49030644,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ISD,core,all,visual_clip_embedding,2709,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,dev,visual_clip_embedding,524,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,excluded,visual_clip_embedding,5,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,test,visual_clip_embedding,581,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,train,visual_clip_embedding,1599,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,all,visual_semantic_summary,2709,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,dev,visual_semantic_summary,524,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,excluded,visual_semantic_summary,5,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,test,visual_semantic_summary,581,0,0.0,feature_records,placeholder FeatureRecords excluded
+ISD,core,train,visual_semantic_summary,1599,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,all,laeq,22224,22224,1.0,clip_columns,LAeq_dBA
+ARAUS,core,dev,laeq,4440,4440,1.0,clip_columns,LAeq_dBA
+ARAUS,core,excluded,laeq,6,6,1.0,clip_columns,LAeq_dBA
+ARAUS,core,test,laeq,48,48,1.0,clip_columns,LAeq_dBA
+ARAUS,core,train,laeq,17730,17730,1.0,clip_columns,LAeq_dBA
+ARAUS,core,all,shared_psychoacoustic_complete,22224,22224,1.0,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ARAUS,core,dev,shared_psychoacoustic_complete,4440,4440,1.0,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ARAUS,core,excluded,shared_psychoacoustic_complete,6,6,1.0,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ARAUS,core,test,shared_psychoacoustic_complete,48,48,1.0,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ARAUS,core,train,shared_psychoacoustic_complete,17730,17730,1.0,clip_columns,LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+ARAUS,core,all,visual_clip_embedding,22224,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,dev,visual_clip_embedding,4440,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,excluded,visual_clip_embedding,6,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,test,visual_clip_embedding,48,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,train,visual_clip_embedding,17730,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,all,visual_semantic_summary,22224,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,dev,visual_semantic_summary,4440,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,excluded,visual_semantic_summary,6,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,test,visual_semantic_summary,48,0,0.0,feature_records,placeholder FeatureRecords excluded
+ARAUS,core,train,visual_semantic_summary,17730,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,all,laeq,27,0,0.0,clip_columns,missing_columns=LAeq_dBA
+SATP,extension,fold_0,laeq,5,0,0.0,clip_columns,missing_columns=LAeq_dBA
+SATP,extension,fold_1,laeq,5,0,0.0,clip_columns,missing_columns=LAeq_dBA
+SATP,extension,fold_2,laeq,5,0,0.0,clip_columns,missing_columns=LAeq_dBA
+SATP,extension,fold_3,laeq,6,0,0.0,clip_columns,missing_columns=LAeq_dBA
+SATP,extension,fold_4,laeq,6,0,0.0,clip_columns,missing_columns=LAeq_dBA
+SATP,extension,all,shared_psychoacoustic_complete,27,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+SATP,extension,fold_0,shared_psychoacoustic_complete,5,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+SATP,extension,fold_1,shared_psychoacoustic_complete,5,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+SATP,extension,fold_2,shared_psychoacoustic_complete,5,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+SATP,extension,fold_3,shared_psychoacoustic_complete,6,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+SATP,extension,fold_4,shared_psychoacoustic_complete,6,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+SATP,extension,all,visual_clip_embedding,27,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_0,visual_clip_embedding,5,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_1,visual_clip_embedding,5,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_2,visual_clip_embedding,5,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_3,visual_clip_embedding,6,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_4,visual_clip_embedding,6,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,all,visual_semantic_summary,27,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_0,visual_semantic_summary,5,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_1,visual_semantic_summary,5,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_2,visual_semantic_summary,5,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_3,visual_semantic_summary,6,0,0.0,feature_records,placeholder FeatureRecords excluded
+SATP,extension,fold_4,visual_semantic_summary,6,0,0.0,feature_records,placeholder FeatureRecords excluded
+DeLTA,extension,all,laeq,2890,0,0.0,clip_columns,missing_columns=LAeq_dBA
+DeLTA,extension,dev,laeq,441,0,0.0,clip_columns,missing_columns=LAeq_dBA
+DeLTA,extension,test,laeq,437,0,0.0,clip_columns,missing_columns=LAeq_dBA
+DeLTA,extension,train,laeq,2012,0,0.0,clip_columns,missing_columns=LAeq_dBA
+DeLTA,extension,all,shared_psychoacoustic_complete,2890,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+DeLTA,extension,dev,shared_psychoacoustic_complete,441,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+DeLTA,extension,test,shared_psychoacoustic_complete,437,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+DeLTA,extension,train,shared_psychoacoustic_complete,2012,0,0.0,clip_columns,missing_columns=LAeq_dBA+loudness_N_sone+sharpness_S_acum+roughness_R_asper+fluctuation_strength_F_vacil+tonality_T_tu
+DeLTA,extension,all,visual_clip_embedding,2890,0,0.0,feature_records,placeholder FeatureRecords excluded
+DeLTA,extension,dev,visual_clip_embedding,441,0,0.0,feature_records,placeholder FeatureRecords excluded
+DeLTA,extension,test,visual_clip_embedding,437,0,0.0,feature_records,placeholder FeatureRecords excluded
+DeLTA,extension,train,visual_clip_embedding,2012,0,0.0,feature_records,placeholder FeatureRecords excluded
+DeLTA,extension,all,visual_semantic_summary,2890,0,0.0,feature_records,placeholder FeatureRecords excluded
+DeLTA,extension,dev,visual_semantic_summary,441,0,0.0,feature_records,placeholder FeatureRecords excluded
+DeLTA,extension,test,visual_semantic_summary,437,0,0.0,feature_records,placeholder FeatureRecords excluded
+DeLTA,extension,train,visual_semantic_summary,2012,0,0.0,feature_records,placeholder FeatureRecords excluded

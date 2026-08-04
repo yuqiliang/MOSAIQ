@@ -158,12 +158,14 @@ def main() -> None:
     parser.add_argument(
         "--responses-source",
         type=Path,
-        default=Path("/private/tmp/DeLTA_Survey_Responses.xlsx"),
+        required=True,
+        help="Path to the DeLTA survey-response workbook.",
     )
     parser.add_argument(
         "--collapsed-source",
         type=Path,
-        default=Path("/private/tmp/DeLTA_collapsed_majority.xlsx"),
+        required=True,
+        help="Path to the DeLTA collapsed-majority workbook.",
     )
     parser.add_argument("--outdir", type=Path, default=Path("datasets/DeLTA/data"))
     args = parser.parse_args()
