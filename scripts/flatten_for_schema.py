@@ -7,8 +7,9 @@ import json
 import pandas as pd
 from pathlib import Path
 
-SRC = "/mnt/user-data/uploads/samples.jsonl"  # or your latest samples.jsonl
-OUT_DIR = Path("/home/claude/mosaiq_frictionless/data/ISD")
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "source_data" / "ISD" / "samples.jsonl"
+OUT_DIR = ROOT / "datasets" / "ISD" / "data"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 clips_rows = []

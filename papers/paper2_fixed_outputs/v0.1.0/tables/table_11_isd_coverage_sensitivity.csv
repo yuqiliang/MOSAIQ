@@ -1,0 +1,5 @@
+task_id,unit_of_analysis,dataset_id,partition,cohort,target,n_records,n_clips,n_all_eligible,coverage_fraction,target_mean,target_std,all_eligible_target_mean,shared6_target_mean,shared6_minus_all_mean,standardized_mean_shift,target_mean_train_value,target_mean_rmse,target_mean_mae
+isd_individual_iso_prediction,response,ISD,test,shared6_complete,ISOEventful,279,184,685,0.407299,0.228460,0.310905,0.081808,0.228460,0.146652,0.526043,0.093805,0.338301,0.268983
+isd_individual_iso_prediction,response,ISD,test,shared6_complete,ISOPleasant,279,184,685,0.407299,0.306276,0.310820,0.251744,0.306276,0.054533,0.176704,0.309643,0.310280,0.260111
+iso_coordinate_regression,clip,ISD,test,shared6_complete,mean_ISOEventful,184,184,581,0.316695,0.183841,0.271320,0.039145,0.183841,0.144696,0.609086,0.105721,0.281634,0.221685
+iso_coordinate_regression,clip,ISD,test,shared6_complete,mean_ISOPleasant,184,184,581,0.316695,0.298815,0.283083,0.240707,0.298815,0.058108,0.195460,0.299389,0.282313,0.236566

@@ -1,0 +1,93 @@
+schema_version: "0.1"
+
+task:
+  id: iso_paq_regression
+  version: 0.1.0
+  title: ISO 12913 PAQ item regression
+  status: draft
+  unit_of_analysis: clip
+  task_type: multi_output_regression
+  description: >-
+    Predict the eight clip-level mean perceived affective quality ratings while
+    retaining each dataset as a separately reportable evaluation domain.
+
+input:
+  record_type: clips
+  id_column: clip_id
+  datasets:
+    - dataset_id: ISD
+      path: datasets/ISD/data/clips.csv
+      exclusions_file: benchmark/exclusions.yaml
+    - dataset_id: ARAUS
+      path: datasets/ARAUS/data/clips.csv
+      filters:
+        - column: is_common_stimulus
+          operator: equals
+          value: false
+      notes: Common practice, attention, and consistency stimuli are excluded.
+    - dataset_id: SATP
+      path: datasets/SATP/data/clips.csv
+
+target:
+  columns:
+    - mean_PAQ1_pleasant
+    - mean_PAQ2_vibrant
+    - mean_PAQ3_eventful
+    - mean_PAQ4_chaotic
+    - mean_PAQ5_annoying
+    - mean_PAQ6_monotonous
+    - mean_PAQ7_uneventful
+    - mean_PAQ8_calm
+  representation: Eight clip-level arithmetic means on the harmonised 1-5 scale.
+  scale: {minimum: 1, maximum: 5}
+  aggregation: Mean across valid responses linked to each clip.
+  missing_value_policy: drop_row
+
+split_protocol:
+  status: released
+  version: 0.1.0
+  protocol: dataset_specific
+  assignment_files:
+    ISD: benchmark/splits/isd_split.csv
+    ARAUS: benchmark/splits/araus_split.csv
+    SATP: benchmark/splits/satp_folds.csv
+  rules:
+    - dataset_id: ISD
+      method: grouped_stratified_split
+      group_columns: [LocationID]
+      stratify_columns: [mean_ISOPleasant, mean_ISOEventful]
+      n_folds: 5
+      description: Use stratified grouped five-fold assignment, then map one fold to test, one to dev, and three to train while keeping each location intact.
+    - dataset_id: ARAUS
+      method: source_fold_mapping
+      source_fold_mapping:
+        train: [1, 2, 3, 4]
+        dev: [5]
+        test: [0]
+        excluded: [-1, 6, 7]
+      description: Preserve the published fold structure; exclude common and currently unmaterialised v2 folds.
+    - dataset_id: SATP
+      method: grouped_five_fold_cross_validation
+      group_columns: [recording]
+      stratify_columns: [mean_ISOPleasant, mean_ISOEventful]
+      n_folds: 5
+      description: Use deterministic five-fold evaluation because SATP contains only 27 recordings.
+  leakage_constraints:
+    - A clip_id must occur in exactly one benchmark partition or fold.
+    - All ISD clips sharing a LocationID must remain in one partition.
+    - ARAUS auxiliary common stimuli must not enter training or evaluation.
+  random_seed: 2026
+
+evaluation:
+  primary_metric: macro_rmse
+  metrics:
+    - name: macro_rmse
+      direction: minimize
+      description: Mean RMSE across the eight PAQ targets.
+    - name: macro_mae
+      direction: minimize
+      description: Mean MAE across the eight PAQ targets.
+    - name: macro_r2
+      direction: maximize
+      description: Mean coefficient of determination across the eight PAQ targets.
+  reporting: [per_dataset, pooled_macro, per_target, per_fold]

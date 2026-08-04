@@ -1,0 +1,14 @@
+schema_version: '0.1'
+source_record: https://doi.org/10.5281/zenodo.10672568
+source_version: 1.0.1-alpha.1
+rows: 60
+scope_clips: 59
+usable_assets: 51
+usable_clips: 51
+mapping_status_counts:
+  exact_duplicate_excluded: 1
+  matched: 51
+  missing_source_asset: 8
+split_counts:
+  test: 51
+complete: false

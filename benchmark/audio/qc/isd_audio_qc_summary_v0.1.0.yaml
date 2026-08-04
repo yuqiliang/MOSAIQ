@@ -1,0 +1,11 @@
+schema_version: '0.1'
+manifest: benchmark/audio/manifests/isd_audio_manifest_v0.1.0.csv
+assets_checked: 820
+status_counts:
+  warn: 820
+issue_counts:
+  calibration_metadata_pending: 820
+  float_amplitude_scale_requires_review: 247
+  source_description_sample_dtype_mismatch: 51
+technical_qc_passed: true
+calibration_review_complete: false

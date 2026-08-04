@@ -1,0 +1,28 @@
+schema_version: "0.1"
+audit_date: 2026-07-30
+benchmark_version: 0.1.0-dev
+split_version: 0.1.0
+paper_output_freeze: mosaiq-paper2-fixed-v0.1.0-20260721
+audio_extension_version: 0.1.0-audio
+paper_working_draft: MOSAIQ_Paper2_ScientificData_Draft_v0.2.0_audio_reference.docx
+review_passes:
+  - id: plan_alignment
+    status: pass_with_future_multimodal_obligations
+    report: benchmark/audits/plan_alignment_audit_2026-07-30.md
+  - id: technical_readiness
+    status: pass_internal_candidate
+    report: benchmark/audits/technical_readiness_audit_2026-07-30.md
+  - id: manuscript_compliance
+    status: pass_draft_blocked_for_submission
+    report: papers/paper2_manuscript_compliance_audit_2026-07-30.md
+internal_candidate_ready: true
+public_v1_ready: false
+journal_submission_ready: false
+blocking_gates:
+  - complete source and per-file rights review
+  - decide tabular public release versus media-bearing multimodal v1
+  - complete independent usability review
+  - create immutable GitHub release and archival data/code DOI
+  - provide anonymous reviewer data access
+  - confirm author metadata contributions funding and competing interests
+  - complete co-author scientific and language review

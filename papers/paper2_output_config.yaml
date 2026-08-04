@@ -1,0 +1,44 @@
+schema_version: "0.1"
+output_version: 0.1.0
+freeze_id: mosaiq-paper2-fixed-v0.1.0-20260721
+freeze_date: 2026-07-21
+status: candidate
+benchmark_version: 0.1.0-dev
+split_version: 0.1.0
+robustness_version: 0.1.0
+output_dir: papers/paper2_fixed_outputs/v0.1.0
+legacy_draft_status: integrated_and_removed
+
+figures:
+  - id: Figure_1
+    source: papers/figures/paper2_response_rmse.png
+    filename: figure_01_isd_response_rmse.png
+    caption: Test RMSE for matched-cohort ISD response-level baselines.
+  - id: Figure_2
+    source: papers/figures/paper2_response_distributions.png
+    filename: figure_02_isd_response_distributions.png
+    caption: Observed and predicted ISD response distributions on the fixed ISO interval.
+  - id: Figure_3
+    source: papers/figures/paper2_gpr_observed_predicted.png
+    filename: figure_03_gpr_observed_predicted.png
+    caption: Observed versus predicted ISD responses for the reduced-feature GPR baseline.
+  - id: Figure_4
+    source: papers/figures/paper2_multiseed_stability.png
+    filename: figure_04_multiseed_stability.png
+    caption: Test-RMSE standard deviation across five fixed seeds for stochastic baselines.
+  - id: Figure_5
+    source: papers/figures/paper2_paired_rmse_improvement.png
+    filename: figure_05_paired_rmse_improvement.png
+    caption: Direction-normalised paired RMSE improvement with 95% cluster-bootstrap intervals.
+  - id: Figure_6
+    source: papers/figures/paper2_coverage_and_calibration.png
+    filename: figure_06_coverage_and_calibration.png
+    caption: ISD shared6 test coverage and GPR prediction-interval calibration.
+
+interpretation_rules:
+  - Tables report the released test partition unless explicitly labelled otherwise.
+  - Model comparisons require matching feature cohort, n_train, and n_eval.
+  - ARAUS test estimates are based on 48 records and must retain that limitation.
+  - Positive paired improvement always favours the candidate model.
+  - Bootstrap intervals condition on the released test sample and are not external validation.
+  - All current baseline and robustness results use audio_used=false.

@@ -1,0 +1,7 @@
+task_id,model_id,partition,target,nominal_coverage,empirical_coverage,calibration_error,absolute_calibration_error,mean_interval_width,mean_interval_score,n_eval,n_clips
+isd_individual_iso_prediction,tong_style_reduced_gpr,test,ISOEventful,0.5,0.3154121863799283,-0.1845878136200717,0.1845878136200717,0.3420804435903355,0.9885128523731082,279,184
+isd_individual_iso_prediction,tong_style_reduced_gpr,test,ISOEventful,0.8,0.5734767025089605,-0.2265232974910395,0.2265232974910395,0.6499635137493784,1.4614650870154944,279,184
+isd_individual_iso_prediction,tong_style_reduced_gpr,test,ISOEventful,0.95,0.8100358422939068,-0.13996415770609316,0.13996415770609316,0.9940334142329538,2.340644604985586,279,184
+isd_individual_iso_prediction,tong_style_reduced_gpr,test,ISOPleasant,0.5,0.43727598566308246,-0.06272401433691754,0.06272401433691754,0.4243010115751813,0.8563000264931271,279,184
+isd_individual_iso_prediction,tong_style_reduced_gpr,test,ISOPleasant,0.8,0.7598566308243727,-0.04014336917562733,0.04014336917562733,0.8061851577259003,1.2015305524649618,279,184
+isd_individual_iso_prediction,tong_style_reduced_gpr,test,ISOPleasant,0.95,0.910394265232975,-0.039605734767025,0.039605734767025,1.2329538010763073,1.7200405536450738,279,184

@@ -1,0 +1,30 @@
+{
+  "audio_used": false,
+  "benchmark_version": "0.1.0-dev",
+  "experiment": {
+    "dataset_id": "ISD",
+    "feature_set": "shared6_cohort_only",
+    "id": "isd_response_target_mean_shared6",
+    "model": "target_mean",
+    "task_config": "benchmark/configs/task_isd_individual_iso.yaml"
+  },
+  "experiment_sha256": "382e24a08e25596346a64d7d1466ec99d2854f28b68631abb5f5f512e4371148",
+  "n_rows": {
+    "dev": 308,
+    "test": 279,
+    "train": 1324
+  },
+  "packages": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "pyyaml": "6.0.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.3.0"
+  },
+  "platform": "macOS-15.3.1-arm64-arm-64bit",
+  "python": "3.12.2",
+  "random_seed": 2026,
+  "run_id": "isd_individual_iso_prediction__isd__isd_response_target_mean_shared6__seed2026",
+  "split_version": "0.1.0"
+}

@@ -1,77 +1,66 @@
 # MOSAIQ — Multimodal Open Soundscape AI Quality-benchmark
 
-MOSAIQ is a standardised multimodal benchmark for soundscape AI research,
-integrating audio, visual, and perceptual rating data from multiple source
-datasets (ISD, ARAUS, …) under a unified schema. This repository hosts the
-MOSAIQ data schema, validation tooling, build scripts, and (in later
-phases) baseline models and evaluation pipelines.
+MOSAIQ is a versioned benchmark infrastructure for soundscape AI research. It
+harmonises records from ISD, ARAUS, SATP, and DeLTA under shared schemas and
+publishes task contracts, leakage-aware splits, frozen manifests, validators,
+reproducible baselines, uncertainty analyses, and model/data cards.
 
+The current `0.1.0-dev` candidate is intentionally **no-audio and tabular**.
+Audio and visual assets are referenced through provenance fields but are not
+distributed or consumed by the current models. It must not be described as the
+final multimodal MOSAIQ-v1.0 release.
+
+An experimental ISD audio track is maintained separately under
+[`benchmark/audio/`](benchmark/audio/). Seven benchmark-candidate archives are
+verified and the frozen `0.1.0-audio` cohort contains 820 trainable clips.
+Committed outputs include technical QC, deterministic descriptors, clip- and
+response-level Target Mean/Ridge results, cluster-bootstrap intervals, and
+model cards. Raw WAV files remain outside Git. This does not change the frozen
+no-audio Paper 2 outputs or constitute the final multimodal benchmark.
 
 ## Repository structure
 
+```mermaid
+flowchart LR
+    sources["External source datasets and archives"] --> builders["Acquisition and build scripts"]
+    builders --> catalogue["Dataset catalogue"]
+    builders --> packages["Harmonised dataset packages"]
+    schemas["Shared and dataset-specific schemas"] -.-> packages
+    packages --> mappings["Schema-level mappings and examples"]
+    packages --> contracts["Tasks, manifests, and leakage-aware splits"]
+    contracts --> baselines["No-audio tabular baselines"]
+    builders --> audio["Experimental ISD audio track"]
+    baselines --> evidence["Results, robustness, and model cards"]
+    audio --> evidence
+    evidence --> paper["Paper 2 fixed outputs"]
+    validation["Frictionless, validators, tests, and CI"] -.-> packages
+    validation -.-> contracts
+    validation -.-> evidence
 ```
+
+```text
 MOSAIQ/
-├── README.md
-├── pyproject.toml
-├── uv.lock
-├── datacatalog.yaml             
-│
-├── catalogue/                   
-│   ├── datapackage.yaml
-│   ├── datasets.csv
-│   └── datasets_catalogue.json   
-│
-├── datasets/                    
-│   ├── ISD/
-│   │   ├── datapackage.yaml
-│   │   ├── schemas/
-│   │   │   ├── clips.schema.yaml
-│   │   │   ├── features.schema.yaml
-│   │   │   └── responses.schema.yaml
-│   │   └── data/
-│   │       ├── clips.csv
-│   │       ├── features.csv
-│   │       └── responses.csv
-│   ├── ARAUS/
-│   │   ├── datapackage.yaml
-│   │   ├── SCHEMA_NOTES.md
-│   │   ├── schemas/
-│   │   │   ├── clips.schema.yaml
-│   │   │   └── responses.schema.yaml
-│   │   └── data/
-│   │       ├── clips.csv
-│   │       └── responses.csv
-│   ├── SATP/
-│   │   ├── datapackage.yaml
-│   │   ├── SCHEMA_NOTES.md
-│   │   ├── schemas/
-│   │   └── data/
-│   └── DeLTA/
-│       ├── datapackage.yaml
-│       ├── SCHEMA_NOTES.md
-│       ├── schemas/
-│       └── data/
-│
-├── shared_schemas/               
-│   ├── datasets.schema.yaml
-│   └── features.schema.yaml
-│
-├── config/
-│   └── cityseg_class_map.yaml
-│
-├── scripts/
-│   ├── build_isd.py
-│   ├── build_araus.py
-│   ├── build_satp.py
-│   ├── build_delta.py
-│   ├── build_clip_features.py
-│   ├── build_cityseg_features.py
-│   ├── validate_in_python.py
-│   └── validate_mosaiq.py
-│
-└── notebooks/
-    └── 01_explore_isd.ipynb
+|-- catalogue/          # dataset-level inventory and schema
+|-- datasets/           # ISD, ARAUS, SATP, and DeLTA packages
+|-- shared_schemas/     # reusable Frictionless and harmonisation contracts
+|-- mappings/           # explicit source-to-MOSAIQ semantic mappings
+|-- examples/           # harmonised ISD and ARAUS sample records
+|-- benchmark/          # tasks, splits, manifests, baselines, and validation
+|   |-- audio/          # separate experimental ISD audio track
+|   |-- data_cards/     # benchmark and source-dataset documentation
+|   |-- governance/     # licence, consent, and attribution records
+|   |-- results/        # frozen no-audio predictions and metrics
+|   `-- robustness/     # multi-seed and uncertainty analyses
+|-- papers/             # fixed manuscript tables, figures, and evidence
+|-- docs/               # reproduction, feature, release, and audit notes
+|-- scripts/            # acquisition, build, evaluation, and validation tools
+|-- tests/              # unit and contract tests
+|-- notebooks/          # exploratory and generated analysis notebooks
+`-- config/             # optional feature configuration such as CitySeg classes
 ```
+
+The detailed component and validation audit is in
+[`docs/repository_audit.md`](docs/repository_audit.md).
 
 ## Quick start
 
@@ -109,6 +98,47 @@ Expected output: catalogue resources (`datasets`) and dataset package
 resources (`clips`, `responses`, optional `features`) all reporting `VALID`.
 (`--trusted` is used for dataset packages because the shared feature schema is
 referenced via a parent-relative path.)
+
+Validate the draft benchmark task registry and its source-column contracts:
+
+```bash
+uv run python scripts/validate_benchmark_tasks.py
+uv run python scripts/validate_benchmark_splits.py
+uv run python scripts/build_benchmark_report.py --check-only
+```
+
+See [`benchmark/README.md`](benchmark/README.md) for the seven MOSAIQ v0.1
+clip- and response-level tasks, candidate dataset freeze, technical-validation
+outputs, and executed audio-free tabular baselines. To regenerate the complete
+freeze and baseline outputs, run:
+
+```bash
+uv run python scripts/build_benchmark_report.py
+uv run python scripts/run_tabular_baselines.py
+uv run python scripts/build_model_cards.py
+uv run python scripts/validate_tabular_baselines.py
+uv run python scripts/run_robustness_evaluation.py
+uv run python scripts/validate_robustness_evaluation.py
+uv run python scripts/build_paper2_fixed_outputs.py
+uv run python scripts/validate_paper2_fixed_outputs.py
+```
+
+The fixed manuscript-facing Paper 2 snapshot is under
+`papers/paper2_fixed_outputs/v0.1.0/`. It contains generated tables, figures,
+key numbers, manuscript evidence text, provenance, and checksums.
+
+Release and reuse documentation:
+
+- [`DATA_LICENSE.md`](DATA_LICENSE.md): code/data licensing boundary;
+- [`benchmark/data_cards/`](benchmark/data_cards/): benchmark and track cards;
+- [`benchmark/governance/`](benchmark/governance/): source attribution and
+  licence/consent status;
+- [`docs/reproduce_benchmark.md`](docs/reproduce_benchmark.md): full
+  reproduction workflow;
+- [`benchmark/submissions/`](benchmark/submissions/): result format and
+  validation contract;
+- [`benchmark/release_checklist.md`](benchmark/release_checklist.md): internal
+  and external release gates.
 
 ### Derived FeatureRecords
 
@@ -224,29 +254,36 @@ uv run python scripts/validate_mosaiq.py --dataset-dir datasets/ISD
 
 ### 6. Regenerate data from source
 
-If you have access to the original ISD `ISD_v1_0_Data.csv`, you can
-regenerate the derived CSVs from scratch:
+Source files are intentionally kept under the ignored `source_data/` directory
+or passed explicitly on the command line. The main builders are:
 
 ```bash
-uv run python scripts/build_datasets_csv.py     # rebuilds data/catalogue/datasets.csv
-uv run python scripts/build_isd.py              # rebuilds data/ISD/clips.csv + responses.csv
-uv run python scripts/build_satp.py             # rebuilds data/SATP/clips.csv + responses.csv
-uv run python scripts/build_delta.py            # rebuilds data/DeLTA/clips.csv + responses.csv
+uv run python scripts/build_datasets_csv.py
+uv run python scripts/build_isd.py
+uv run python scripts/build_araus.py --input-zip /path/to/ARAUS.zip
+uv run python scripts/build_satp.py --source /path/to/SATP_Dataset_v1.2.xlsx
+uv run python scripts/build_delta.py \
+  --responses-source /path/to/DeLTA_Survey_Responses.xlsx \
+  --collapsed-source /path/to/DeLTA_collapsed_majority.xlsx
 ```
+
+`build_datasets_csv.py` expects `source_data/dataset-level.json`, while
+`build_isd.py` expects `source_data/ISD/ISD_v1_0_Data.csv`. Generated tables
+are written to `catalogue/` and `datasets/<dataset>/data/`.
 
 ## Schema design philosophy
 
 MOSAIQ separates the data into three layers, each with its own schema:
 
-1. **Dataset-level catalogue** (`data/catalogue/datasets.csv`) — one row per
+1. **Dataset-level catalogue** (`catalogue/datasets.csv`) — one row per
    source dataset, capturing scale, modalities, recording specifications,
    perceptual framework, and access conditions.
 
-2. **Clip-level metadata** (`data/<dataset>/clips.csv`) — one row per clip
+2. **Clip-level metadata** (`datasets/<dataset>/data/clips.csv`) — one row per clip
    with aggregated PAQ ratings, derived ISO Pleasant / Eventful coordinates,
    and available acoustic or psychoacoustic measurements.
 
-3. **Response-level metadata** (`data/<dataset>/responses.csv`) — one row
+3. **Response-level metadata** (`datasets/<dataset>/data/responses.csv`) — one row
    per individual participant assessment, linked to clips via `clip_id`.
 
 Schemas are formally specified using the [Frictionless Data Package](https://specs.frictionlessdata.io/)

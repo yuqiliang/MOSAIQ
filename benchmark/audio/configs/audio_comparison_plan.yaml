@@ -1,0 +1,103 @@
+schema_version: "0.1"
+frozen_on: "2026-07-30"
+status: preregistered_plan_with_reference_baselines_executed
+split_version: 0.1.0
+random_seeds: [2026, 2027, 2028, 2029, 2030]
+
+scope:
+  first_dataset: ISD
+  tasks:
+    - isd_audio_clip_iso_coordinates
+    - isd_audio_response_iso_coordinates
+  primary_targets: [ISOPleasant, ISOEventful]
+  note: >-
+    ISD audio results are a dataset-specific audio track. They do not establish
+    audio availability or cross-dataset generalisation for all MOSAIQ sources.
+
+model_families:
+  - id: target_mean
+    modality: none
+    role: naive_reference
+  - id: psychoacoustic_ridge
+    modality: tabular
+    role: current_tabular_reference
+  - id: audio_descriptor_ridge
+    modality: audio
+    role: deterministic_low_capacity_audio_reference
+  - id: adapted_logmel_cnn
+    modality: audio
+    role: learned_audio_baseline
+    claim_boundary: adapted_from_araus_style_not_an_araus_replication
+  - id: pretrained_audio_encoder_linear_probe
+    modality: audio
+    role: pretrained_representation_reference
+  - id: tabular_audio_late_fusion
+    modality: multimodal
+    role: fusion_reference
+
+primary_comparisons:
+  - comparison: audio_descriptor_ridge_vs_target_mean
+    question: Does waveform information beat an input-free reference?
+  - comparison: adapted_logmel_cnn_vs_audio_descriptor_ridge
+    question: Does learned time-frequency structure improve over fixed descriptors?
+  - comparison: pretrained_encoder_vs_adapted_logmel_cnn
+    question: Does frozen pretraining improve data efficiency?
+  - comparison: late_fusion_vs_best_single_modality
+    question: Is tabular plus audio complementary?
+
+missing_modality_conditions:
+  - complete_inputs
+  - audio_missing
+  - tabular_missing
+  - both_available_with_zero_imputation_control
+
+added_noise_conditions:
+  noise_type: source-independent-environmental
+  snr_db: [20, 10, 0]
+  apply_to: [dev, test]
+  training_policy: clean_training_primary_noise_augmentation_secondary
+
+evaluation:
+  primary_metric: RMSE
+  secondary_metrics: [MAE, R2]
+  report_by: [target, split, location]
+  uncertainty:
+    bootstrap_unit: clip
+    confidence_level: 0.95
+    iterations: 2000
+  paired_tests:
+    unit: clip
+    multiplicity_control: benjamini_hochberg
+
+leakage_controls:
+  - Every response inherits the split of its linked clip.
+  - No audio SHA-256 may occur in more than one split.
+  - Preprocessing statistics are fitted on train only.
+  - Model selection uses dev only; test is evaluated once per frozen run.
+  - Added-noise variants of a clip remain in the original clip partition.
+
+publication_rules:
+  - Report coverage and exclusions before model scores.
+  - Do not compare models trained on different audio cohorts as if paired.
+  - Keep Groningen-only smoke results out of headline benchmark tables.
+  - Label ISD-adapted CNN results separately from ARAUS reproduction claims.
+
+execution:
+  cohort_version: 0.1.0-audio
+  completed_models: [target_mean, audio_descriptor_ridge]
+  completed_tasks:
+    - isd_audio_clip_iso_coordinates
+    - isd_audio_response_iso_coordinates
+  results: benchmark/audio/results/v0.1.0
+  report: benchmark/audio/isd_audio_report_v0.1.0.md
+  remaining_models:
+    - adapted_logmel_cnn
+    - pretrained_audio_encoder_linear_probe
+    - tabular_audio_late_fusion
+  remaining_conditions:
+    - missing_modality
+    - added_noise
+
+deferred_by_user:
+  - external_usability_review
+  - paper2_coauthor_review
