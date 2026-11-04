@@ -1,0 +1,204 @@
+schema_version: "0.2"
+benchmark_version: 0.1.0-dev
+split_version: 0.1.0
+random_seed: 2026
+status: executable
+
+feature_sets:
+  none:
+    numeric: []
+    categorical: []
+    complete_case: []
+  laeq:
+    numeric: [LAeq_dBA]
+    categorical: []
+    complete_case: [LAeq_dBA]
+  shared6:
+    numeric: &shared6_columns
+      - LAeq_dBA
+      - loudness_N_sone
+      - sharpness_S_acum
+      - roughness_R_asper
+      - fluctuation_strength_F_vacil
+      - tonality_T_tu
+    categorical: []
+    complete_case: *shared6_columns
+  shared6_cohort_only:
+    numeric: []
+    categorical: []
+    complete_case: *shared6_columns
+  tong_style_reduced:
+    numeric:
+      - LAeq_dBA
+      - loudness_N_sone
+      - sharpness_S_acum
+      - roughness_R_asper
+      - fluctuation_strength_F_vacil
+      - tonality_T_tu
+      - age
+      - latitude
+      - longitude
+    categorical: [gender, language]
+    complete_case: *shared6_columns
+  delta_annoyance_only:
+    numeric: [mean_annoyance]
+    categorical: []
+    complete_case: [mean_annoyance]
+  delta_source_indicators:
+    numeric: &delta_source_columns
+      - source_aircraft
+      - source_bells
+      - source_bird_tweet
+      - source_bus
+      - source_car
+      - source_children
+      - source_construction
+      - source_dog_bark
+      - source_footsteps
+      - source_general_traffic
+      - source_horn
+      - source_laughter
+      - source_motorcycle
+      - source_music
+      - source_non_identifiable
+      - source_other
+      - source_rail
+      - source_rustling_leaves
+      - source_screeching_brakes
+      - source_shouting
+      - source_siren
+      - source_speech
+      - source_ventilation
+      - source_water
+    categorical: []
+    complete_case: *delta_source_columns
+
+experiments:
+  - id: isd_clip_target_mean
+    task_config: benchmark/configs/task_iso_coordinates.yaml
+    dataset_id: ISD
+    feature_set: none
+    model: target_mean
+
+  - id: isd_clip_laeq_ridge
+    task_config: benchmark/configs/task_iso_coordinates.yaml
+    dataset_id: ISD
+    feature_set: laeq
+    model: ridge
+    parameters: {alpha: 1.0}
+
+  - id: isd_clip_psychoacoustic_ridge
+    task_config: benchmark/configs/task_iso_coordinates.yaml
+    dataset_id: ISD
+    feature_set: shared6
+    model: ridge
+    parameters: {alpha: 1.0}
+
+  - id: araus_target_mean
+    task_config: benchmark/configs/task_araus_pleasantness.yaml
+    dataset_id: ARAUS
+    feature_set: none
+    model: target_mean
+
+  - id: araus_laeq_ridge
+    task_config: benchmark/configs/task_araus_pleasantness.yaml
+    dataset_id: ARAUS
+    feature_set: laeq
+    model: ridge
+    parameters: {alpha: 1.0}
+
+  - id: araus_psychoacoustic_ridge
+    task_config: benchmark/configs/task_araus_pleasantness.yaml
+    dataset_id: ARAUS
+    feature_set: shared6
+    model: ridge
+    parameters: {alpha: 1.0}
+
+  - id: araus_elastic_net_shared6
+    task_config: benchmark/configs/task_araus_pleasantness.yaml
+    dataset_id: ARAUS
+    feature_set: shared6
+    model: elastic_net_cv
+    parameters:
+      l1_ratio: [0.1, 0.5, 0.9, 1.0]
+      cv: 5
+      n_jobs: 1
+
+  - id: isd_response_target_mean_shared6
+    task_config: benchmark/configs/task_isd_individual_iso.yaml
+    dataset_id: ISD
+    feature_set: shared6_cohort_only
+    model: target_mean
+
+  - id: tong_style_reduced_lr
+    task_config: benchmark/configs/task_isd_individual_iso.yaml
+    dataset_id: ISD
+    feature_set: tong_style_reduced
+    model: linear_regression
+
+  - id: tong_style_reduced_rf
+    task_config: benchmark/configs/task_isd_individual_iso.yaml
+    dataset_id: ISD
+    feature_set: tong_style_reduced
+    model: random_forest
+    parameters: {n_estimators: 300, min_samples_leaf: 3, n_jobs: 1}
+
+  - id: tong_style_reduced_xgboost
+    task_config: benchmark/configs/task_isd_individual_iso.yaml
+    dataset_id: ISD
+    feature_set: tong_style_reduced
+    model: xgboost
+    parameters:
+      n_estimators: 300
+      max_depth: 4
+      learning_rate: 0.03
+      subsample: 0.9
+      colsample_bytree: 0.9
+      n_jobs: 1
+
+  - id: tong_style_reduced_gpr
+    task_config: benchmark/configs/task_isd_individual_iso.yaml
+    dataset_id: ISD
+    feature_set: tong_style_reduced
+    model: gaussian_process
+    parameters: {noise_level: 0.1}
+
+  - id: delta_source_label_prevalence
+    task_config: benchmark/configs/task_delta_sources.yaml
+    dataset_id: DeLTA
+    feature_set: none
+    model: label_prevalence
+
+  - id: delta_source_from_observed_annoyance_logistic
+    task_config: benchmark/configs/task_delta_sources.yaml
+    dataset_id: DeLTA
+    feature_set: delta_annoyance_only
+    model: one_vs_rest_logistic
+    parameters: {C: 1.0, class_weight: balanced}
+
+  - id: delta_annoyance_target_mean
+    task_config: benchmark/configs/task_delta_annoyance.yaml
+    dataset_id: DeLTA
+    feature_set: none
+    model: target_mean
+
+  - id: delta_annoyance_from_observed_sources_ridge
+    task_config: benchmark/configs/task_delta_annoyance.yaml
+    dataset_id: DeLTA
+    feature_set: delta_source_indicators
+    model: ridge
+    parameters: {alpha: 1.0}
+
+  - id: delta_annoyance_from_observed_sources_rf
+    task_config: benchmark/configs/task_delta_annoyance.yaml
+    dataset_id: DeLTA
+    feature_set: delta_source_indicators
+    model: random_forest
+    parameters: {n_estimators: 300, min_samples_leaf: 3, n_jobs: 1}
+
+limitations:
+  - No experiment consumes or claims to validate audio waveforms.
+  - araus_elastic_net_shared6 is a six-feature transfer baseline, not the published 264-candidate replication.
+  - tong_style_reduced models omit unavailable CitySeg, OSM, THD, and other published factors.
+  - DeLTA source-from-annoyance is a diagnostic classifier conditioned on an observed human response, not an audio source-recognition model.
+  - DeLTA annoyance-from-sources assumes observed source annotations are available at inference time.

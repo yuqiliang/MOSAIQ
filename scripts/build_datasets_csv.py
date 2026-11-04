@@ -11,8 +11,9 @@ import re
 import pandas as pd
 from pathlib import Path
 
-SRC = "/mnt/user-data/uploads/dataset-level.json"
-OUT = "/home/claude/mosaiq_v2/datasets.csv"
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "source_data" / "dataset-level.json"
+OUT = ROOT / "catalogue" / "datasets.csv"
 
 
 def parse_duration_to_s(value):

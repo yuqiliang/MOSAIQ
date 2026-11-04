@@ -1,0 +1,50 @@
+check_id,status,scope,dataset_id,task_id,observed,expected,details
+validate_benchmark_tasks,PASS,benchmark,,,exit=0,exit=0,"Benchmark task validation passed: benchmark/tasks.yaml (7 tasks) - iso_paq_regression: ISD 2704/2709, ARAUS 22218/22224, SATP 27/27 eligible rows - iso_coordinate_regression: ISD 2704/2709, ARAUS 22218/22224, SATP 27/27 eligible rows - araus_appropriateness: ARAUS 22218/22224 eligible rows - araus_pleasantness_regression: ARAUS 22218/22224 eligible rows - isd_individual_iso_prediction: ISD 3552/3589 eligible rows - delta_annoyance: DeLTA 2890/2890 eligible rows - delta_source_multilabel: DeLTA 2890/2890 eligible rows"
+validate_benchmark_splits,PASS,benchmark,,,exit=0,exit=0,"Benchmark split validation passed: version 0.1.0 - ISD: dev=524, excluded=5, test=581, train=1599 - ARAUS: dev=4440, excluded=6, test=48, train=17730 - SATP: 0=5, 1=5, 2=5, 3=6, 4=6 - DeLTA: dev=441, test=437, train=2012"
+frictionless_package_validation,PASS,dataset,ISD,,valid,valid,"{""tasks"":[{""errors"":0,""fields"":33,""name"":""clips"",""rows"":2709,""sha256"":""cc7cd31129644764d760b5d2a7c138c33c6fb3baefa04a2198a51a4cb63611ee"",""valid"":true,""warnings"":0},{""errors"":0,""fields"":16,""name"":""responses"",""rows"":3589,""sha256"":""9a760b3aa47a11b831d8fa2e819c3b706294937a6122d53e3da832a3459c0aaf"",""valid"":true,""warnings"":0},{""errors"":0,""fields"":18,""name"":""features"",""rows"":2,""sha256"":""1ef547c35c238188fd6e03465f79cd8c946bc6986decc70ae516cde78272cc75"",""valid"":true,""warnings"":0}],""valid"":true}"
+frictionless_package_validation,PASS,dataset,ARAUS,,valid,valid,"{""tasks"":[{""errors"":0,""fields"":32,""name"":""clips"",""rows"":22224,""sha256"":""eaf19c78c8beb41476e1f9d52956d3ac77a6fa44fe1ad70e5c7c9c42d3860d4f"",""valid"":true,""warnings"":0},{""errors"":0,""fields"":27,""name"":""responses"",""rows"":27255,""sha256"":""2ea0a94ef5e02345818703629bcc5660d6f813ba4e10c5bc5a0aae348bd5fd3a"",""valid"":true,""warnings"":0},{""errors"":0,""fields"":18,""name"":""features"",""rows"":1,""sha256"":""21589a4de21ab8031404c88216d081642a3036ded8101121f1dbbcf74bb5846b"",""valid"":true,""warnings"":0}],""valid"":true}"
+frictionless_package_validation,PASS,dataset,SATP,,valid,valid,"{""tasks"":[{""errors"":0,""fields"":19,""name"":""clips"",""rows"":27,""sha256"":""e2bca4ed5d7b5bbd1b8d6efc03d041221d17a9db1861fd63a015d9d58a5b6216"",""valid"":true,""warnings"":0},{""errors"":0,""fields"":27,""name"":""responses"",""rows"":17441,""sha256"":""840fbaa1ac6b8716e3b49dfdfe8df645154adfef2772a3c7fd906a0dae59b35a"",""valid"":true,""warnings"":0},{""errors"":0,""fields"":7,""name"":""source_files"",""rows"":4,""sha256"":""ba506738223fb155c335d61c02ad6015e8092eb2f2ec3f2b7849fe05be017db1"",""valid"":true,""warnings"":0}],""valid"":true}"
+frictionless_package_validation,PASS,dataset,DeLTA,,valid,valid,"{""tasks"":[{""errors"":0,""fields"":32,""name"":""clips"",""rows"":2890,""sha256"":""c907ec86bb5d8e86206355f1ef76bb026fd8d94b1637286891414256b5ff72e1"",""valid"":true,""warnings"":0},{""errors"":0,""fields"":36,""name"":""responses"",""rows"":11650,""sha256"":""b3d8f6597fb07cd604706a81b0b24532d5839e7f30264a40c4a76b0528c60221"",""valid"":true,""warnings"":0},{""errors"":0,""fields"":7,""name"":""source_files"",""rows"":3,""sha256"":""a8eca429b422f2a143dc20afe00c8c71bc6b17b8c04f50b88717a35adb026985"",""valid"":true,""warnings"":0}],""valid"":true}"
+clip_id_integrity,PASS,dataset,ISD,,duplicates=0; blanks=0,duplicates=0; blanks=0,Exact clip identifiers must be unique and non-empty.
+whitespace_normalised_id_collision,WARN,dataset,ISD,,2,0,All collision rows are explicitly excluded pending source review.
+response_linkage,PASS,dataset,ISD,,orphans=0; duplicate_response_ids=0,orphans=0; duplicate_response_ids=0,Every response must link to exactly one source clip.
+response_count_consistency,PASS,dataset,ISD,,0,0,clips.n_responses must equal the number of linked response rows.
+dataset_namespace,PASS,dataset,ISD,,,ISD,All clip rows must use the declared dataset namespace.
+clip_id_integrity,PASS,dataset,ARAUS,,duplicates=0; blanks=0,duplicates=0; blanks=0,Exact clip identifiers must be unique and non-empty.
+whitespace_normalised_id_collision,PASS,dataset,ARAUS,,0,0,No whitespace-normalised identifier collisions.
+response_linkage,PASS,dataset,ARAUS,,orphans=0; duplicate_response_ids=0,orphans=0; duplicate_response_ids=0,Every response must link to exactly one source clip.
+response_count_consistency,PASS,dataset,ARAUS,,0,0,clips.n_responses must equal the number of linked response rows.
+dataset_namespace,PASS,dataset,ARAUS,,,ARAUS,All clip rows must use the declared dataset namespace.
+clip_id_integrity,PASS,dataset,SATP,,duplicates=0; blanks=0,duplicates=0; blanks=0,Exact clip identifiers must be unique and non-empty.
+whitespace_normalised_id_collision,PASS,dataset,SATP,,0,0,No whitespace-normalised identifier collisions.
+response_linkage,PASS,dataset,SATP,,orphans=0; duplicate_response_ids=0,orphans=0; duplicate_response_ids=0,Every response must link to exactly one source clip.
+response_count_consistency,PASS,dataset,SATP,,0,0,clips.n_responses must equal the number of linked response rows.
+dataset_namespace,PASS,dataset,SATP,,,SATP,All clip rows must use the declared dataset namespace.
+clip_id_integrity,PASS,dataset,DeLTA,,duplicates=0; blanks=0,duplicates=0; blanks=0,Exact clip identifiers must be unique and non-empty.
+whitespace_normalised_id_collision,PASS,dataset,DeLTA,,0,0,No whitespace-normalised identifier collisions.
+response_linkage,PASS,dataset,DeLTA,,orphans=0; duplicate_response_ids=0,orphans=0; duplicate_response_ids=0,Every response must link to exactly one source clip.
+response_count_consistency,PASS,dataset,DeLTA,,0,0,clips.n_responses must equal the number of linked response rows.
+dataset_namespace,PASS,dataset,DeLTA,,,DeLTA,All clip rows must use the declared dataset namespace.
+task_manifest_freeze,PASS,task_dataset,ISD,iso_paq_regression,2704,>0 with no excluded or unassigned rows,benchmark/manifests/iso_paq_regression__isd.csv
+task_manifest_freeze,PASS,task_dataset,ARAUS,iso_paq_regression,22218,>0 with no excluded or unassigned rows,benchmark/manifests/iso_paq_regression__araus.csv
+task_manifest_freeze,PASS,task_dataset,SATP,iso_paq_regression,27,>0 with no excluded or unassigned rows,benchmark/manifests/iso_paq_regression__satp.csv
+task_manifest_freeze,PASS,task_dataset,ISD,iso_coordinate_regression,2704,>0 with no excluded or unassigned rows,benchmark/manifests/iso_coordinate_regression__isd.csv
+task_manifest_freeze,PASS,task_dataset,ARAUS,iso_coordinate_regression,22218,>0 with no excluded or unassigned rows,benchmark/manifests/iso_coordinate_regression__araus.csv
+task_manifest_freeze,PASS,task_dataset,SATP,iso_coordinate_regression,27,>0 with no excluded or unassigned rows,benchmark/manifests/iso_coordinate_regression__satp.csv
+task_manifest_freeze,PASS,task_dataset,ARAUS,araus_appropriateness,22218,>0 with no excluded or unassigned rows,benchmark/manifests/araus_appropriateness__araus.csv
+task_manifest_freeze,PASS,task_dataset,ARAUS,araus_pleasantness_regression,22218,>0 with no excluded or unassigned rows,benchmark/manifests/araus_pleasantness_regression__araus.csv
+task_manifest_freeze,PASS,task_dataset,ISD,isd_individual_iso_prediction,3549,>0 with no excluded or unassigned rows,benchmark/manifests/isd_individual_iso_prediction__isd.csv
+task_manifest_freeze,PASS,task_dataset,DeLTA,delta_annoyance,2890,>0 with no excluded or unassigned rows,benchmark/manifests/delta_annoyance__delta.csv
+task_manifest_freeze,PASS,task_dataset,DeLTA,delta_source_multilabel,2890,>0 with no excluded or unassigned rows,benchmark/manifests/delta_source_multilabel__delta.csv
+audio_asset_reference_integrity,PASS,dataset,ISD,,0,0,External references are audited for presence; local existence is not expected.
+visual_asset_reference_integrity,PASS,dataset,ISD,,0,0,External references are audited for presence; local existence is not expected.
+audio_asset_reference_integrity,PASS,dataset,ARAUS,,0,0,External references are audited for presence; local existence is not expected.
+visual_asset_reference_integrity,PASS,dataset,ARAUS,,0,0,External references are audited for presence; local existence is not expected.
+audio_asset_reference_integrity,PASS,dataset,SATP,,0,0,External references are audited for presence; local existence is not expected.
+audio_asset_reference_integrity,PASS,dataset,DeLTA,,0,0,External references are audited for presence; local existence is not expected.
+declared_license_consistency,PASS,dataset,ISD,,CC-BY-4.0,CC-BY-4.0,Observed clip licence values match the release declaration.
+declared_license_consistency,WARN,dataset,ARAUS,,Other,Other,Per-file raw-asset review remains required before public release.
+declared_license_consistency,PASS,dataset,SATP,,CC-BY-4.0,CC-BY-4.0,Observed clip licence values match the release declaration.
+source_download_url_shape,PASS,dataset,SATP,,4,4,Source manifest download URLs must be absolute HTTPS URLs.
+declared_license_consistency,PASS,dataset,DeLTA,,CC-BY-4.0,CC-BY-4.0,Observed clip licence values match the release declaration.
+source_download_url_shape,PASS,dataset,DeLTA,,3,3,Source manifest download URLs must be absolute HTTPS URLs.

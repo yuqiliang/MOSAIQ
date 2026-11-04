@@ -1,0 +1,107 @@
+schema_version: "0.1"
+
+task:
+  id: delta_source_multilabel
+  version: 0.1.0
+  title: DeLTA sound-source multi-label classification
+  status: draft
+  unit_of_analysis: clip
+  task_type: multilabel_classification
+  description: Predict the 24 binary sound-source labels attached to each DeLTA clip.
+
+input:
+  record_type: clips
+  id_column: clip_id
+  datasets:
+    - dataset_id: DeLTA
+      path: datasets/DeLTA/data/clips.csv
+
+target:
+  columns:
+    - source_aircraft
+    - source_bells
+    - source_bird_tweet
+    - source_bus
+    - source_car
+    - source_children
+    - source_construction
+    - source_dog_bark
+    - source_footsteps
+    - source_general_traffic
+    - source_horn
+    - source_laughter
+    - source_motorcycle
+    - source_music
+    - source_non_identifiable
+    - source_other
+    - source_rail
+    - source_rustling_leaves
+    - source_screeching_brakes
+    - source_shouting
+    - source_siren
+    - source_speech
+    - source_ventilation
+    - source_water
+  labels: [absent, present]
+  representation: Twenty-four clip-level binary indicators from the DeLTA collapsed-majority table.
+  scale: {minimum: 0, maximum: 1}
+  aggregation: Source labels retained from the published collapsed-majority clip records.
+  missing_value_policy: drop_row
+
+split_protocol:
+  status: released
+  version: 0.1.0
+  protocol: fixed_train_dev_test
+  assignment_files:
+    DeLTA: benchmark/splits/delta_split.csv
+  rules:
+    - dataset_id: DeLTA
+      method: iterative_multilabel_stratified_split
+      group_columns: [recording]
+      stratify_columns:
+        - source_aircraft
+        - source_bells
+        - source_bird_tweet
+        - source_bus
+        - source_car
+        - source_children
+        - source_construction
+        - source_dog_bark
+        - source_footsteps
+        - source_general_traffic
+        - source_horn
+        - source_laughter
+        - source_motorcycle
+        - source_music
+        - source_non_identifiable
+        - source_other
+        - source_rail
+        - source_rustling_leaves
+        - source_screeching_brakes
+        - source_shouting
+        - source_siren
+        - source_speech
+        - source_ventilation
+        - source_water
+      description: Preserve marginal label prevalence as far as possible across deterministic partitions.
+  leakage_constraints:
+    - A clip_id and recording must occur in exactly one benchmark partition.
+    - The annoyance and source tasks must use the same DeLTA split assignment.
+  random_seed: 2026
+
+evaluation:
+  primary_metric: macro_average_precision
+  metrics:
+    - name: macro_average_precision
+      direction: maximize
+      description: Unweighted mean average precision across the 24 source labels.
+    - name: micro_average_precision
+      direction: maximize
+      description: Average precision after pooling decisions across all labels.
+    - name: macro_f1
+      direction: maximize
+      description: Unweighted mean F1 across labels using thresholds selected on development data.
+    - name: micro_f1
+      direction: maximize
+      description: F1 after pooling thresholded decisions across all labels.
+  reporting: [per_dataset, per_label]

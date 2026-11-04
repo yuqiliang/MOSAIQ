@@ -1,0 +1,111 @@
+schema_version: "0.1"
+
+freeze:
+  id: mosaiq-benchmark-v0.1-candidate-20260716
+  generated_at: "2026-07-17T16:00:00Z"
+  status: technical_validation_candidate
+  benchmark_id: mosaiq-benchmark
+  benchmark_version: 0.1.0-dev
+  split_version: 0.1.0
+  unit_of_analysis: clip_and_response
+  notes: >-
+    This freezes the machine-readable task eligibility and source rows used for
+    technical validation, including the response-level ISD extension. It is not
+    the final MOSAIQ-v1.0 public release.
+
+tracks:
+  core: [ISD, ARAUS]
+  extension: [SATP, DeLTA]
+
+datasets:
+  - dataset_id: ISD
+    track: core
+    package: datasets/ISD/datapackage.yaml
+    clips: datasets/ISD/data/clips.csv
+    responses: datasets/ISD/data/responses.csv
+    features: datasets/ISD/data/features.csv
+    declared_license: CC-BY-4.0
+    metadata_redistribution_status: permitted_by_declared_package_license
+    raw_asset_redistribution_status: permitted_by_declared_package_license
+    assets:
+      audio:
+        column: audio_asset
+        reference_type: source_identifier
+        materialisation: external_not_in_repository
+      visual:
+        column: video_asset
+        reference_type: source_identifier
+        materialisation: external_not_in_repository
+
+  - dataset_id: ARAUS
+    track: core
+    package: datasets/ARAUS/datapackage.yaml
+    clips: datasets/ARAUS/data/clips.csv
+    responses: datasets/ARAUS/data/responses.csv
+    features: datasets/ARAUS/data/features.csv
+    declared_license: Other
+    metadata_redistribution_status: source_terms_apply
+    raw_asset_redistribution_status: per_file_review_required
+    assets:
+      audio:
+        derivation_columns: [soundscape, masker, smr_db]
+        reference_type: reconstruct_from_source_components
+        materialisation: external_not_in_repository
+      visual:
+        column: video_asset
+        reference_type: source_identifier
+        materialisation: external_not_in_repository
+
+  - dataset_id: SATP
+    track: extension
+    package: datasets/SATP/datapackage.yaml
+    clips: datasets/SATP/data/clips.csv
+    responses: datasets/SATP/data/responses.csv
+    source_files: datasets/SATP/data/source_files.csv
+    declared_license: CC-BY-4.0
+    metadata_redistribution_status: permitted_by_declared_package_license
+    raw_asset_redistribution_status: source_license_applies_verify_before_release
+    assets:
+      audio:
+        column: audio_asset
+        reference_type: source_archive_member
+        materialisation: source_archive_not_ingested
+
+  - dataset_id: DeLTA
+    track: extension
+    package: datasets/DeLTA/datapackage.yaml
+    clips: datasets/DeLTA/data/clips.csv
+    responses: datasets/DeLTA/data/responses.csv
+    source_files: datasets/DeLTA/data/source_files.csv
+    declared_license: CC-BY-4.0
+    metadata_redistribution_status: permitted_by_declared_package_license
+    raw_asset_redistribution_status: source_license_applies_verify_before_release
+    assets:
+      audio:
+        column: audio_asset
+        reference_type: source_archive_member
+        materialisation: source_archive_not_ingested
+
+feature_sets:
+  - feature_set_id: laeq
+    source: clip_columns
+    required_columns: [LAeq_dBA]
+  - feature_set_id: shared_psychoacoustic_complete
+    source: clip_columns
+    required_columns:
+      - LAeq_dBA
+      - loudness_N_sone
+      - sharpness_S_acum
+      - roughness_R_asper
+      - fluctuation_strength_F_vacil
+      - tonality_T_tu
+  - feature_set_id: visual_clip_embedding
+    source: feature_records
+    feature_type: visual_clip_embedding
+  - feature_set_id: visual_semantic_summary
+    source: feature_records
+    feature_type: visual_semantic_summary
+
+release_policy_note: >-
+  Redistribution statuses are a release-planning audit of the metadata currently
+  recorded in MOSAIQ, not legal advice. Per-file source terms remain authoritative.

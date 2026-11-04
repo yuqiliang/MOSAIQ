@@ -248,26 +248,6 @@ def main() -> None:
     )
 
     # Build clips (aggregated means over responses per clip).
-    paq_mean_cols = [
-        "PAQ1_pleasant",
-        "PAQ2_vibrant",
-        "PAQ3_eventful",
-        "PAQ4_chaotic",
-        "PAQ5_annoying",
-        "PAQ6_monotonous",
-        "PAQ7_uneventful",
-        "PAQ8_calm",
-        "appropriate",
-        "ISOPleasant",
-        "ISOEventful",
-        "LAeq_dBA",
-        "loudness_N_sone",
-        "sharpness_S_acum",
-        "roughness_R_asper",
-        "fluctuation_strength_F_vacil",
-        "tonality_T_tu",
-    ]
-
     clip_agg = (
         resp.groupby("clip_id", as_index=False)
         .agg(

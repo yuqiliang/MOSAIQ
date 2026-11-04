@@ -1,0 +1,11 @@
+task_id,dataset_id,feature_set,model_id,target,n_train,n_eval,cohort_id,rmse,rmse_ci_low,rmse_ci_high,mae,r2,pearson_r,spearman_rho,n_clusters
+araus_pleasantness_regression,ARAUS,shared6,araus_elastic_net_shared6,mean_ISOPleasant,17730,48,araus_pleasantness_regression__shared6__ntrain17730__neval48,0.277722,0.235331,0.316447,0.237357,0.185989,0.788906,0.809596,48
+araus_pleasantness_regression,ARAUS,laeq,araus_laeq_ridge,mean_ISOPleasant,17730,48,araus_pleasantness_regression__laeq__ntrain17730__neval48,0.270142,0.226085,0.310256,0.222394,0.229817,0.813941,0.789698,48
+araus_pleasantness_regression,ARAUS,shared6,araus_psychoacoustic_ridge,mean_ISOPleasant,17730,48,araus_pleasantness_regression__shared6__ntrain17730__neval48,0.276151,0.233116,0.316479,0.235631,0.195170,0.789317,0.810139,48
+araus_pleasantness_regression,ARAUS,none,araus_target_mean,mean_ISOPleasant,17730,48,araus_pleasantness_regression__none__ntrain17730__neval48,0.337387,0.283461,0.384643,0.279843,-0.201345,,,48
+iso_coordinate_regression,ISD,laeq,isd_clip_laeq_ridge,mean_ISOEventful,784,184,iso_coordinate_regression__laeq__ntrain784__neval184,0.283151,0.254268,0.311810,0.221371,-0.095060,0.047539,0.072662,184
+iso_coordinate_regression,ISD,laeq,isd_clip_laeq_ridge,mean_ISOPleasant,784,184,iso_coordinate_regression__laeq__ntrain784__neval184,0.270072,0.244487,0.296378,0.224467,0.084838,0.299534,0.290780,184
+iso_coordinate_regression,ISD,shared6,isd_clip_psychoacoustic_ridge,mean_ISOEventful,784,184,iso_coordinate_regression__shared6__ntrain784__neval184,0.284953,0.255339,0.314005,0.223420,-0.109039,0.046207,0.104218,184
+iso_coordinate_regression,ISD,shared6,isd_clip_psychoacoustic_ridge,mean_ISOPleasant,784,184,iso_coordinate_regression__shared6__ntrain784__neval184,0.276364,0.249984,0.303903,0.224992,0.041697,0.274111,0.283453,184
+iso_coordinate_regression,ISD,none,isd_clip_target_mean,mean_ISOEventful,1599,581,iso_coordinate_regression__none__ntrain1599__neval581,0.238270,0.223252,0.253130,0.182848,-0.007699,,,581
+iso_coordinate_regression,ISD,none,isd_clip_target_mean,mean_ISOPleasant,1599,581,iso_coordinate_regression__none__ntrain1599__neval581,0.297371,0.279606,0.315445,0.238529,-0.002282,,,581

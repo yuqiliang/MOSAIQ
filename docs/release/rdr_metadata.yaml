@@ -1,0 +1,111 @@
+record:
+  title: "MOSAIQ soundscape benchmark: harmonised data, fixed evaluation, ISD audio reference and ARAUS v1 source register"
+  item_type: dataset
+  version: "0.2.0-rc1 private-draft package set"
+  publication_status: private_draft
+  public_release_status: not_authorised
+  language: English
+  date_prepared: "2026-08-03"
+
+authors:
+  - given_name: Yuqi
+    family_name: Liang
+    affiliation: "University College London"
+    orcid: pending
+  - given_name: Andrew
+    family_name: Mitchell
+    affiliation: "University College London"
+    orcid: pending
+  - given_name: Tin
+    family_name: Oberman
+    affiliation: "University College London"
+    orcid: pending
+  - given_name: Jian
+    family_name: Kang
+    affiliation: "University College London"
+    orcid: pending
+  - given_name: Francesco
+    family_name: Aletta
+    affiliation: "University College London"
+    orcid: pending
+
+description: >-
+  MOSAIQ is a reproducible soundscape benchmark for harmonised data, fixed
+  evaluation splits, technical validation, and reference prediction models.
+  The core package harmonises tabular records from ISD, ARAUS, SATP, and DeLTA
+  under shared schemas; defines seven clip- and response-level tasks; and
+  includes deterministic leakage-aware splits, frozen manifests, baseline
+  predictions, robustness analyses, model and data cards, validators, tests,
+  and manuscript-facing fixed outputs. A separately versioned ISD audio
+  reference extension contains 820 accepted stereo WAV files from seven
+  official source archives in one ZIP64 package, organised into 546 train, 154
+  development, and 120 test clips. The audio extension is ISD-only. A separate
+  ARAUS v1 source register freezes the official ARAUS v4.2 and USotW source
+  records, scope decisions, source checksums, and acquisition code, but does
+  not include ARAUS or USotW media. SATP and DeLTA raw media are not
+  redistributed. All accepted ISD WAV files retain a calibration warning.
+  This record remains a private development draft and must not be submitted for
+  review, published, or assigned a DOI until participant-data, rights,
+  authorship, funding, licence, and release-version gates are confirmed.
+
+keywords:
+  - soundscape
+  - benchmark
+  - ISO 12913
+  - perceptual prediction
+  - environmental audio
+  - reproducible machine learning
+  - affective computing
+  - multimodal artificial intelligence
+
+licensing:
+  code: MIT
+  mosaiq_original_metadata_and_documentation: "CC BY 4.0 proposed; owner confirmation pending"
+  source_derived_data: "Source-specific terms apply"
+  deposit_access: private
+  public_licence_selection: "CC BY 4.0 selected provisionally in private draft"
+  note: >-
+    Do not assign one blanket public licence to the complete archive. Consult
+    DATA_LICENSE.md and benchmark/governance/license_consent_registry.csv.
+
+related_identifiers:
+  - relation: is_derived_from
+    identifier: "https://doi.org/10.5281/zenodo.10672568"
+    title: "International Soundscape Database"
+  - relation: is_derived_from
+    identifier: "https://doi.org/10.21979/N9/9OTEVX"
+    title: "ARAUS dataset"
+  - relation: is_supplement_to
+    identifier: "https://doi.org/10.1109/TAFFC.2023.3247914"
+    title: "ARAUS dataset and baseline-model paper"
+  - relation: is_derived_from
+    identifier: "https://doi.org/10.5281/zenodo.7143599"
+    title: "Soundscape Attributes Translation Project dataset"
+  - relation: is_derived_from
+    identifier: "https://doi.org/10.5281/zenodo.7158057"
+    title: "DeLTA dataset"
+  - relation: is_supplement_to
+    identifier: "https://github.com/yuqiliang/MOSAIQ"
+    title: "MOSAIQ source-code repository"
+
+subjects:
+  - acoustics
+  - environmental psychology
+  - machine learning
+  - research data management
+
+funding:
+  status: pending_confirmation
+
+review_before_publication:
+  - Confirm all author names, order, affiliations, and ORCIDs.
+  - Add confirmed funder names and grant identifiers.
+  - Complete ARAUS source and per-file rights review.
+  - Replace the ARAUS source register with a complete verified media extension
+    only if written redistribution permission and per-file terms allow it.
+  - Confirm owner approval for MOSAIQ-generated CC BY 4.0 content.
+  - Confirm participant-data and consent wording with UCL research data support.
+  - Complete independent usability review.
+  - Replace the development version and candidate freeze with the release tag.
+  - Confirm whether the ISD audio extension remains in the public record.
+  - Obtain explicit co-author approval before publishing or minting a DOI.

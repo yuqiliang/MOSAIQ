@@ -1,0 +1,9 @@
+model_id,metric,estimate,n_train,n_eval,ci_low,ci_high,n_clusters
+delta_source_from_observed_annoyance_logistic,macro_average_precision,0.161474,2012,437,0.158633,0.181025,437
+delta_source_from_observed_annoyance_logistic,macro_f1,0.209946,2012,437,0.197533,0.221023,437
+delta_source_from_observed_annoyance_logistic,micro_average_precision,0.159429,2012,437,0.149752,0.170622,437
+delta_source_from_observed_annoyance_logistic,micro_f1,0.296343,2012,437,0.283184,0.309334,437
+delta_source_label_prevalence,macro_average_precision,0.126240,2012,437,0.121472,0.130628,437
+delta_source_label_prevalence,macro_f1,0.197296,2012,437,0.190714,0.203452,437
+delta_source_label_prevalence,micro_average_precision,0.427980,2012,437,0.402489,0.453638,437
+delta_source_label_prevalence,micro_f1,0.224179,2012,437,0.216630,0.231071,437

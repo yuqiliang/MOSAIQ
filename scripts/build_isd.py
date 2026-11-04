@@ -3,8 +3,9 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
-CSV = "/mnt/user-data/uploads/ISD_v1_0_Data.csv"
-OUT_DIR = Path("/home/claude/mosaiq_frictionless/data/ISD")
+ROOT = Path(__file__).resolve().parents[1]
+CSV = ROOT / "source_data" / "ISD" / "ISD_v1_0_Data.csv"
+OUT_DIR = ROOT / "datasets" / "ISD" / "data"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 df = pd.read_csv(CSV)

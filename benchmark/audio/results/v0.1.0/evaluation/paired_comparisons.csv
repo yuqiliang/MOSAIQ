@@ -1,0 +1,9 @@
+baseline_model,candidate_model,task_id,partition,target,metric,estimate,ci_low,ci_high,candidate_better_probability,bootstrap_iterations,bootstrap_unit,n,n_clusters
+audio_target_mean,audio_descriptor_ridge,isd_audio_clip_iso_coordinates,dev,mean_ISOEventful,rmse_improvement,0.0005866965284977432,-0.008942245242264503,0.009548519773089872,0.546,2000,clip_id,154,154
+audio_target_mean,audio_descriptor_ridge,isd_audio_clip_iso_coordinates,dev,mean_ISOPleasant,rmse_improvement,0.013345215558267065,-0.0009519581908896249,0.02801961659760104,0.9665,2000,clip_id,154,154
+audio_target_mean,audio_descriptor_ridge,isd_audio_clip_iso_coordinates,test,mean_ISOEventful,rmse_improvement,0.02743290952370442,0.01375112561154802,0.042060203924053914,0.9995,2000,clip_id,120,120
+audio_target_mean,audio_descriptor_ridge,isd_audio_clip_iso_coordinates,test,mean_ISOPleasant,rmse_improvement,-0.023102071189248174,-0.048540340999668,0.003303493935145448,0.0455,2000,clip_id,120,120
+audio_target_mean,audio_descriptor_ridge,isd_audio_response_iso_coordinates,dev,ISOEventful,rmse_improvement,-0.0010329426561687671,-0.008939262021784255,0.005898735247655109,0.392,2000,clip_id,258,154
+audio_target_mean,audio_descriptor_ridge,isd_audio_response_iso_coordinates,dev,ISOPleasant,rmse_improvement,0.02909080653792484,0.01589604987183753,0.043669453546122686,1.0,2000,clip_id,258,154
+audio_target_mean,audio_descriptor_ridge,isd_audio_response_iso_coordinates,test,ISOEventful,rmse_improvement,0.027065447546114618,0.013720343195392195,0.03987222872845503,1.0,2000,clip_id,215,120
+audio_target_mean,audio_descriptor_ridge,isd_audio_response_iso_coordinates,test,ISOPleasant,rmse_improvement,-0.0052531535707840415,-0.028637551138106614,0.017888609998147842,0.3325,2000,clip_id,215,120

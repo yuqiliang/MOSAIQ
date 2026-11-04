@@ -1,0 +1,12 @@
+dataset_id,clip_id,split_version,exclusion_reason,declaration_status,details
+ISD,ISD_CarloV_CarloV1_CV44,0.1.0,missing_iso_target,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.
+ISD,ISD_CarloV_CarloV2_2CV21,0.1.0,missing_iso_target,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.
+ISD,ISD_RegentsParkFields_RegentsParkFields2_RF222 ,0.1.0,pending_source_review,pending_source_review,"The identifier differs from another clip only by trailing whitespace, while coordinates, response membership, duration, and feature coverage conflict. Excluded rather than silently merged or renamed."
+ISD,ISD_RussellSq_RussellSq2_RS204,0.1.0,missing_iso_target,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.
+ISD,ISD_TorringtonSq_TorringtonSq4_TS417 ,0.1.0,pending_source_review,pending_source_review,"The identifier differs from another clip only by trailing whitespace, while response membership, duration, and feature coverage conflict. Excluded rather than silently merged or renamed."
+ARAUS,ARAUS_000001,0.1.0,auxiliary_common_stimulus,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.
+ARAUS,ARAUS_000002,0.1.0,auxiliary_common_stimulus,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.
+ARAUS,ARAUS_000003,0.1.0,auxiliary_common_stimulus,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.
+ARAUS,ARAUS_000004,0.1.0,auxiliary_common_stimulus,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.
+ARAUS,ARAUS_000005,0.1.0,auxiliary_common_stimulus,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.
+ARAUS,ARAUS_000006,0.1.0,auxiliary_common_stimulus,derived_from_split_build,Excluded deterministically by the split builder from source target/fold state.

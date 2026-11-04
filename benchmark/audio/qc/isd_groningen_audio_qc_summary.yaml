@@ -1,0 +1,10 @@
+schema_version: '0.1'
+manifest: benchmark/audio/manifests/isd_groningen_audio_manifest.csv
+assets_checked: 51
+status_counts:
+  warn: 51
+issue_counts:
+  calibration_metadata_pending: 51
+  source_description_sample_dtype_mismatch: 51
+technical_qc_passed: true
+calibration_review_complete: false

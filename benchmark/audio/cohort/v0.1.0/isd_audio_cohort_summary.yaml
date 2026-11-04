@@ -1,0 +1,19 @@
+schema_version: '0.1'
+cohort_version: 0.1.0-audio
+source_manifest: benchmark/audio/manifests/isd_audio_manifest_v0.1.0.csv
+source_qc: benchmark/audio/qc/isd_audio_qc_v0.1.0.csv
+accepted_assets: 820
+accepted_clips: 820
+split_counts:
+  dev: 154
+  test: 120
+  train: 546
+excluded_rows: 201
+exclusion_reason_counts:
+  ambiguous_clip_match: 3
+  exact_duplicate_excluded: 1
+  frozen_split_excluded: 2
+  missing_source_asset: 143
+  unmatched_source_asset: 52
+audio_sha_cross_split_count: 0
+technical_qc_failures: 0

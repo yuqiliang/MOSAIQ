@@ -1,0 +1,35 @@
+{
+  "audio_used": false,
+  "benchmark_version": "0.1.0-dev",
+  "experiment": {
+    "dataset_id": "DeLTA",
+    "feature_set": "delta_source_indicators",
+    "id": "delta_annoyance_from_observed_sources_rf",
+    "model": "random_forest",
+    "parameters": {
+      "min_samples_leaf": 3,
+      "n_estimators": 300,
+      "n_jobs": 1
+    },
+    "task_config": "benchmark/configs/task_delta_annoyance.yaml"
+  },
+  "experiment_sha256": "c5487b6cb1f8f172dbbe58967b32a40031cdd4217edd1bba667e351c003741a2",
+  "n_rows": {
+    "dev": 441,
+    "test": 437,
+    "train": 2012
+  },
+  "packages": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "pyyaml": "6.0.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.3.0"
+  },
+  "platform": "macOS-15.3.1-arm64-arm-64bit",
+  "python": "3.12.2",
+  "random_seed": 2027,
+  "run_id": "delta_annoyance__delta__delta_annoyance_from_observed_sources_rf__seed2027",
+  "split_version": "0.1.0"
+}

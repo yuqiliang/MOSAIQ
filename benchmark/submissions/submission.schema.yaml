@@ -1,0 +1,20 @@
+schema_version: "0.1"
+fields:
+  benchmark_version: {type: string, required: true}
+  split_version: {type: string, required: true}
+  task_id: {type: string, required: true}
+  task_version: {type: string, required: true}
+  dataset_id: {type: string, required: true}
+  partition: {type: string, required: false}
+  fold: {type: integer, required: false}
+  record_id: {type: string, required: true}
+  target: {type: string, required: true}
+  prediction: {type: number, required: true}
+  uncertainty: {type: number, required: false, minimum: 0}
+  model_id: {type: string, required: true}
+  run_id: {type: string, required: true}
+primary_key:
+  - task_id
+  - dataset_id
+  - record_id
+  - target

@@ -1,0 +1,43 @@
+freeze:
+  freeze_id: mosaiq-paper2-fixed-v0.1.0-20260721
+  freeze_date: '2026-07-21'
+  output_version: 0.1.0
+  benchmark_version: 0.1.0-dev
+  split_version: 0.1.0
+  robustness_version: 0.1.0
+  status: candidate
+catalogue:
+  candidate_datasets: 20
+  fully_accessible: 11
+  visual_available: 8
+  iso_12913_related: 8
+materialised_release:
+  datasets: 4
+  clips: 27850
+  responses: 59935
+  participants_summed_not_deduplicated: 5078
+  manifests: 11
+technical_validation:
+  pass: 47
+  warn: 2
+  fail: 0
+baselines:
+  experiments: 17
+  metric_rows: 498
+  model_cards: 17
+  audio_used: false
+robustness:
+  stochastic_models: 3
+  seeds: 5
+  bootstrap_resamples: 2000
+  bootstrap_intervals: 123
+  paired_comparisons: 34
+  coverage_rows: 24
+  gpr_calibration_rows: 6
+headline_findings:
+  araus_test_n: 48
+  isd_shared6_test_clip_coverage: 0.3166953528399311
+  isd_shared6_test_response_coverage: 0.4072992700729927
+  delta_ridge_rmse_improvement: 0.1060954667237763
+  delta_rf_rmse_improvement: 0.1031778199401529
+  gpr_eventfulness_empirical_80_coverage: 0.5734767025089605

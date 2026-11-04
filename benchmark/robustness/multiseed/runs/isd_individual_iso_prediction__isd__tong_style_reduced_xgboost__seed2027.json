@@ -1,0 +1,38 @@
+{
+  "audio_used": false,
+  "benchmark_version": "0.1.0-dev",
+  "experiment": {
+    "dataset_id": "ISD",
+    "feature_set": "tong_style_reduced",
+    "id": "tong_style_reduced_xgboost",
+    "model": "xgboost",
+    "parameters": {
+      "colsample_bytree": 0.9,
+      "learning_rate": 0.03,
+      "max_depth": 4,
+      "n_estimators": 300,
+      "n_jobs": 1,
+      "subsample": 0.9
+    },
+    "task_config": "benchmark/configs/task_isd_individual_iso.yaml"
+  },
+  "experiment_sha256": "cf7d399568dcae8931dd556e6b9b54501005cf6d320537b64b34322e6989891f",
+  "n_rows": {
+    "dev": 308,
+    "test": 279,
+    "train": 1324
+  },
+  "packages": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "pyyaml": "6.0.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.3.0"
+  },
+  "platform": "macOS-15.3.1-arm64-arm-64bit",
+  "python": "3.12.2",
+  "random_seed": 2027,
+  "run_id": "isd_individual_iso_prediction__isd__tong_style_reduced_xgboost__seed2027",
+  "split_version": "0.1.0"
+}

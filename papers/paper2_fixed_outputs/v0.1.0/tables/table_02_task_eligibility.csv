@@ -1,0 +1,12 @@
+task_id,task_version,dataset_id,unit_of_analysis,source_rows,declared_exclusions,missing_targets,frozen_rows,manifest
+iso_paq_regression,0.1.0,ISD,clip,2709,2,3,2704,benchmark/manifests/iso_paq_regression__isd.csv
+iso_paq_regression,0.1.0,ARAUS,clip,22224,0,0,22218,benchmark/manifests/iso_paq_regression__araus.csv
+iso_paq_regression,0.1.0,SATP,clip,27,0,0,27,benchmark/manifests/iso_paq_regression__satp.csv
+iso_coordinate_regression,0.1.0,ISD,clip,2709,2,3,2704,benchmark/manifests/iso_coordinate_regression__isd.csv
+iso_coordinate_regression,0.1.0,ARAUS,clip,22224,0,0,22218,benchmark/manifests/iso_coordinate_regression__araus.csv
+iso_coordinate_regression,0.1.0,SATP,clip,27,0,0,27,benchmark/manifests/iso_coordinate_regression__satp.csv
+araus_appropriateness,0.1.0,ARAUS,clip,22224,0,0,22218,benchmark/manifests/araus_appropriateness__araus.csv
+araus_pleasantness_regression,0.1.0,ARAUS,clip,22224,0,0,22218,benchmark/manifests/araus_pleasantness_regression__araus.csv
+isd_individual_iso_prediction,0.1.0,ISD,response,3589,3,37,3549,benchmark/manifests/isd_individual_iso_prediction__isd.csv
+delta_annoyance,0.1.0,DeLTA,clip,2890,0,0,2890,benchmark/manifests/delta_annoyance__delta.csv
+delta_source_multilabel,0.1.0,DeLTA,clip,2890,0,0,2890,benchmark/manifests/delta_source_multilabel__delta.csv
