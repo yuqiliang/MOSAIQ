@@ -52,15 +52,14 @@ MOSAIQ/
 |   |-- results/        # frozen no-audio predictions and metrics
 |   `-- robustness/     # multi-seed and uncertainty analyses
 |-- papers/             # fixed manuscript tables, figures, and evidence
-|-- docs/               # reproduction, feature, release, and audit notes
+|-- docs/               # public schema, reproduction, feature, and release guides
 |-- scripts/            # acquisition, build, evaluation, and validation tools
 |-- tests/              # unit and contract tests
 |-- notebooks/          # exploratory and generated analysis notebooks
 `-- config/             # optional feature configuration such as CitySeg classes
 ```
 
-The detailed component and validation audit is in
-[`docs/repository_audit.md`](docs/repository_audit.md).
+Public documentation is indexed in [`docs/README.md`](docs/README.md).
 
 ## Quick start
 

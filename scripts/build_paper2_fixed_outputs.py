@@ -172,29 +172,27 @@ def delta_source_table(
     ).sort_values(["model_id", "metric"])
 
 
-def legacy_draft_audit() -> str:
-    return """# Paper 2 legacy-draft integration audit
+def reproduction_notes() -> str:
+    return """# Fixed-output reproduction notes
 
-Status: **integrated and removed**
-Legacy findings: **19**
+This package is generated from saved benchmark validation, baseline and
+robustness outputs. It does not depend on a manuscript draft, meeting notes,
+personal recaps or internal work audits.
 
-The former repository working draft was audited before removal. It contained
-19 stale triggers, including TODO markers, pre-release split counts, statements
-that ISD/SATP/DeLTA still required splits, proposed rather than executed
-baselines, and missing robustness evidence.
+Run from the repository root:
 
-The replacement Word manuscript:
+```bash
+uv run python scripts/build_paper2_fixed_outputs.py
+uv run python scripts/validate_paper2_fixed_outputs.py
+```
 
-1. uses split version `0.1.0` and the fixed task/dataset counts;
-2. reports the 17 executed no-audio tabular experiments without claiming full
-   ARAUS or Tong-model replication;
-3. incorporates Step 7 uncertainty, sensitivity, and calibration evidence;
-4. preserves the no-audio scope and defers audio/visual/multimodal claims;
-5. retains both validation warnings and the 48-record ARAUS test caveat; and
-6. follows the current Scientific Data Data Descriptor section structure.
+The twelve CSV tables and six figures represent the frozen no-audio benchmark.
+The output manifest records the SHA-256 of each generated file. The separate
+ISD audio reference track is not included in these numerical results.
 
-The removed Markdown file is no longer an input to the deterministic fixed-
-output build. This audit is retained to document why it was deleted.
+Interpret results using the same dataset, task, feature cohort and split.
+Retain the documented validation warnings, small ARAUS test-set caveat and
+conditional interpretation of DeLTA cross-target models.
 """
 
 
@@ -527,8 +525,8 @@ interval covers 57.3% of held-out responses.
     (output_dir / "manuscript_evidence_insert.md").write_text(
         manuscript, encoding="utf-8"
     )
-    (output_dir / "draft_replacement_audit.md").write_text(
-        legacy_draft_audit(), encoding="utf-8"
+    (output_dir / "reproduction_notes.md").write_text(
+        reproduction_notes(), encoding="utf-8"
     )
 
     readme = f"""# MOSAIQ Paper 2 fixed outputs v{config['output_version']}
@@ -541,7 +539,7 @@ and split `{config['split_version']}`. Do not edit generated numbers manually.
 
 - `paper2_key_numbers.yaml`: headline counts and findings;
 - `manuscript_evidence_insert.md`: generated Scientific Data evidence blocks;
-- `draft_replacement_audit.md`: integration record for the removed legacy draft;
+- `reproduction_notes.md`: source scope and fixed-output reproduction instructions;
 - `tables/`: 12 fixed CSV tables;
 - `figures/`: six copied, checksum-locked notebook figures;
 - `figure_index.csv`: captions and source hashes;

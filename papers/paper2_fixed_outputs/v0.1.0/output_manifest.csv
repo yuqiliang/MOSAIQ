@@ -1,6 +1,5 @@
 path,role,bytes,sha256,freeze_id
-README.md,documentation,918,fd8879d8efb470e261cf1882ed74e54649c293fd68bfa37e8523793c57255d03,mosaiq-paper2-fixed-v0.1.0-20260721
-draft_replacement_audit.md,documentation,1037,f36754b230151584a70a56d297ae7d8fd71cf3432947ea5a2f0252479c5885e1,mosaiq-paper2-fixed-v0.1.0-20260721
+README.md,documentation,921,44010ab27158fa46a9e69ec80d74d3192e27c2813e24112694891a0de9fccac4,mosaiq-paper2-fixed-v0.1.0-20260721
 figure_index.csv,documentation,1849,d960eab593d54304edfdc0a946011a1435e479e57899e82ccee6a90b9efd59e1,mosaiq-paper2-fixed-v0.1.0-20260721
 figures/figure_01_isd_response_rmse.png,figure,74763,1d2e818659d9ee8b4325875a77f018406bb5db4a2a0f46fc609b9193fd2b6a9a,mosaiq-paper2-fixed-v0.1.0-20260721
 figures/figure_02_isd_response_distributions.png,figure,235688,092986ceb1774d2216066efbb9888b61a6ccfeac1ac3366db804499e0923fbff,mosaiq-paper2-fixed-v0.1.0-20260721
@@ -10,6 +9,7 @@ figures/figure_05_paired_rmse_improvement.png,figure,154092,f1b07641a2a9bdfccceb
 figures/figure_06_coverage_and_calibration.png,figure,192471,3e5ccdf64d567736f3f0d6f4773133f6c3a3ff3bbb3de740e37b46b93600e997,mosaiq-paper2-fixed-v0.1.0-20260721
 manuscript_evidence_insert.md,documentation,8713,0e56e928318d8e541b9dccd691e7d52e45ac2abea4492252705b3ed100761698,mosaiq-paper2-fixed-v0.1.0-20260721
 paper2_key_numbers.yaml,documentation,1065,1d65bd126d4ae737ffca76401c0e712772b00f2067aee313124b5ad45e8dc5b9,mosaiq-paper2-fixed-v0.1.0-20260721
+reproduction_notes.md,documentation,810,d78bf497b1e0c7807108a610d95768664eace889985b145ecb04791cab5e934f,mosaiq-paper2-fixed-v0.1.0-20260721
 tables/table_01_dataset_resources.csv,table,384,2fad36d5992d4bcd0e3b06509b066584649990c8513603bfcf96e31230733450,mosaiq-paper2-fixed-v0.1.0-20260721
 tables/table_02_task_eligibility.csv,table,1303,2438b14e4ff2011a93fa383f47766b3c4de2db2d4d74ddcbe8dc11df317e17a1,mosaiq-paper2-fixed-v0.1.0-20260721
 tables/table_03_released_splits.csv,table,750,55a701f232751b6f5f8d65525006eb67e77c0a5aa062a8372a5e55a9311866e7,mosaiq-paper2-fixed-v0.1.0-20260721

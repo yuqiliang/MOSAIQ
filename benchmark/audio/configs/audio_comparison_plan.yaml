@@ -97,7 +97,3 @@ execution:
   remaining_conditions:
     - missing_modality
     - added_noise
-
-deferred_by_user:
-  - external_usability_review
-  - paper2_coauthor_review

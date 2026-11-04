@@ -96,7 +96,3 @@ baselines:
     model: linear_probe
     input: frozen_audio_embedding
     status: planned_after_full_coverage
-
-deferred_by_user:
-  - external_usability_review
-  - paper2_coauthor_review

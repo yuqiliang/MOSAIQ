@@ -79,5 +79,5 @@ no-audio Paper 2 evidence.
   cards, a full audio report, and CI validation.
 
 Learned CNN, pretrained-encoder, fusion, missing-modality, and added-noise runs
-remain pending. External usability and Paper 2 co-author review are deferred
-by the user.
+remain pending. Independent usability review and scientific co-author review
+are required before a final public release.

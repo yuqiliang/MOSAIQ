@@ -8,7 +8,7 @@ and split `0.1.0`. Do not edit generated numbers manually.
 
 - `paper2_key_numbers.yaml`: headline counts and findings;
 - `manuscript_evidence_insert.md`: generated Scientific Data evidence blocks;
-- `draft_replacement_audit.md`: integration record for the removed legacy draft;
+- `reproduction_notes.md`: source scope and fixed-output reproduction instructions;
 - `tables/`: 12 fixed CSV tables;
 - `figures/`: six copied, checksum-locked notebook figures;
 - `figure_index.csv`: captions and source hashes;

@@ -212,12 +212,11 @@ def main() -> None:
     ]:
         if required not in manuscript:
             errors.append(f"manuscript evidence is missing fixed claim: {required}")
-    audit = (output_dir / "draft_replacement_audit.md").read_text(encoding="utf-8")
-    if (
-        "Status: **integrated and removed**" not in audit
-        or "Legacy findings: **19**" not in audit
-    ):
-        errors.append("legacy draft integration audit is incomplete")
+    notes = (output_dir / "reproduction_notes.md").read_text(encoding="utf-8")
+    if "scripts/build_paper2_fixed_outputs.py" not in notes:
+        errors.append("fixed-output reproduction instructions are incomplete")
+    if (output_dir / "draft_replacement_audit.md").exists():
+        errors.append("personal manuscript audit must not be included in public outputs")
 
     for frame in [clip_models, response, delta]:
         required_numeric = frame[

@@ -14,6 +14,11 @@ import tempfile
 import zipfile
 from pathlib import Path
 
+if __package__:
+    from .documentation_scope import is_private_document
+else:
+    from documentation_scope import is_private_document
+
 
 ROOT_FILES = (
     ".python-version",
@@ -65,6 +70,8 @@ PACKAGE_README_DESTINATION = Path("RDR_README.md")
 
 def is_included(path: Path, root: Path) -> bool:
     relative = path.relative_to(root)
+    if is_private_document(relative):
+        return False
     if any(part in EXCLUDED_NAMES for part in relative.parts):
         return False
     if path.suffix.lower() in EXCLUDED_SUFFIXES:

@@ -74,5 +74,5 @@ its mixed held-out performance makes that limitation visible.
 The preregistered learned log-mel CNN, frozen pretrained encoder, tabular-audio
 fusion, missing-modality, and added-noise experiments remain separate future
 runs. An ISD-adapted CNN must not be described as a reproduction of the ARAUS
-model. External usability review and Paper 2 co-author review remain deferred
-by the user.
+model. Independent usability review and scientific co-author review remain
+external release requirements.
